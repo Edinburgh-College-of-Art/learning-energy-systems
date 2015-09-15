@@ -1,0 +1,64 @@
+/*
+Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* 
+    Created on : 06-Aug-2015, 15:03:34
+    Author     : loki
+*/
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+* {
+   margin: 0;
+   padding: 0;
+}
+
+#canvas_container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /*width: 100%;*/
+
+    /*border: 1px solid #aaa;*/
+}
+
+.donthighlight {
+       -moz-user-select: none;
+       -webkit-user-select: none;
+}
+
+.portrait_mode {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    
+/*    
+    @media only screen and (orientation:portrait){
+        html {
+     -webkit-transform: rotate(90deg);
+     -moz-transform: rotate(90deg);
+}
+    }
+    @media only screen and (orientation:landscape){
+    }*/

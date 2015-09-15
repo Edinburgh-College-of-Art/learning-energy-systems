@@ -1,0 +1,8 @@
+
+@font-face {
+  font-family: 'TTRounds-Regular';
+  src: url('TTRounds-Regular.eot?#iefix') format('embedded-opentype'),  url('TTRounds-Regular.otf')  format('opentype'),
+	     url('TTRounds-Regular.woff') format('woff'), url('TTRounds-Regular.ttf')  format('truetype'), url('TTRounds-Regular.svg#TTRounds-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
