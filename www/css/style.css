@@ -18,6 +18,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Created on : 06-Aug-2015, 15:03:34
     Author     : loki
 */
+
+
+@font-face {
+  font-family: 'TTRounds-Regular';
+  src: url('TTRounds-Regular.eot?#iefix') format('embedded-opentype'),  url('TTRounds-Regular.otf')  format('opentype'),
+	     url('TTRounds-Regular.woff') format('woff'), url('TTRounds-Regular.ttf')  format('truetype'), url('TTRounds-Regular.svg#TTRounds-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
     height: 100%;
     width: 100%;

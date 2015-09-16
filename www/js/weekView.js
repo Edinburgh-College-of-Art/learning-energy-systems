@@ -139,8 +139,9 @@ function drawConsumptions(_p, _l, _c, _h, _t) {
     var comp = window.g_paper.image("img/icons/lightBulb-week-icon.png", window.g_width / 5 - _l / 2, 4 * window.g_height / 5 - _l / 2, _l, _l);
     var comp = window.g_paper.image("img/icons/heater-week-Icon.png", 4 * window.g_width / 6 - _h / 2, 4 * window.g_height / 5 - _h / 2, _h, _h);
     var total = window.g_paper.circle(window.g_width / 2, centY, circR);
+    total.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 1, "stroke-opacity": 1});
     var titleHeading = window.g_paper.text(window.g_width / 2, centY, _t);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#000","font-family":"TTRounds-Regular"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "48px", "fill": "#000","font-family":"TTRounds-Regular"});
 }
 
 

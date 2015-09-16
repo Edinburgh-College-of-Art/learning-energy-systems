@@ -74,7 +74,7 @@ function initialise() {
 
     var rec = window.g_paper.image("img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png", 0, 0, window.g_width, window.g_height);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_headerHeight / 2, window.g_title);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff","font-family":"TTRounds-Regular"});
    titleHeading .node.onclick = function () {
                            window.location = "index.html";
    }
@@ -134,13 +134,13 @@ function drawConsumptions(_p, _l, _c, _h, _t) {
     var restOfHeight = window.g_height - topStuff;
     var centY = restOfHeight / 2 + topStuff;
     var circR = window.g_width / 10;
-    var proj = window.g_paper.image("img/icons/projector-Icon.png", window.g_width / 5 - _p / 2, window.g_height / 2 - _p / 2, _p, _p);
-    var comp = window.g_paper.image("img/icons/computerIcon.png", 4 * window.g_width / 6 - _c / 2, window.g_height / 2 - _c / 2, _c, _c);
-    var comp = window.g_paper.image("img/icons/lightBulb-icon.png", window.g_width / 5 - _l / 2, 4 * window.g_height / 5 - _l / 2, _l, _l);
-    var comp = window.g_paper.image("img/icons/heaterIcon.png", 4 * window.g_width / 6 - _h / 2, 4 * window.g_height / 5 - _h / 2, _h, _h);
+    var proj = window.g_paper.image("img/icons/projector-week-Icon.png", window.g_width / 5 - _p / 2, window.g_height / 2 - _p / 2, _p, _p);
+    var comp = window.g_paper.image("img/icons/computer-week-Icon.png", 4 * window.g_width / 6 - _c / 2, window.g_height / 2 - _c / 2, _c, _c);
+    var comp = window.g_paper.image("img/icons/lightBulb-week-icon.png", window.g_width / 5 - _l / 2, 4 * window.g_height / 5 - _l / 2, _l, _l);
+    var comp = window.g_paper.image("img/icons/heater-week-Icon.png", 4 * window.g_width / 6 - _h / 2, 4 * window.g_height / 5 - _h / 2, _h, _h);
     var total = window.g_paper.circle(window.g_width / 2, centY, circR);
     var titleHeading = window.g_paper.text(window.g_width / 2, centY, _t);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#000"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#000","font-family":"TTRounds-Regular"});
 }
 
 
@@ -157,11 +157,11 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     if (!_status) {
         this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#333", "fill-opacity": 1, "stroke-opacity": 1});
-        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff"});
+        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff","font-family":"TTRounds-Regular"});
     }
     else {
         this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 1, "stroke-opacity": 1});
-        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#000"});
+        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#000","font-family":"TTRounds-Regular"});
     }
 
     titleHeading.node.setAttribute("class", "donthighlight");
