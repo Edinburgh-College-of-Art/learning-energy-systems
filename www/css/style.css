@@ -72,3 +72,9 @@ html, body {
     }
     @media only screen and (orientation:landscape){
     }*/
+
+
+.donthighlight {
+       -moz-user-select: none;
+       -webkit-user-select: none;
+}

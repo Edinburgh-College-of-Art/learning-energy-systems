@@ -64,7 +64,7 @@ function initialise() {
     window.g_leftMargin = g_width / 60;
     window.g_iconW = g_width / 10;
     window.g_iconH = g_height / 5;
-    window.g_sliderW = 3 * g_width / 4 + 4 * window.g_leftMargin;
+    window.g_sliderW = 3 * g_width / 4 + 2 * window.g_leftMargin;
 
     window.g_numbersW = g_width / 10;
     window.g_sliderH = window.g_iconW / 2;
@@ -85,7 +85,7 @@ function initialise() {
 
     var txt = window.g_paper.text(window.g_iconW + window.g_leftMargin, 4.5 * window.g_iconH / 5, "When was the energy source switched on?");
     txt.attr({'text-anchor': "start", "font-size": "16px", "font-family": "TTRounds-Regular"});
-    var t = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, 4.5 * window.g_iconH / 5, "Total");
+    var t = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, 4.5 * window.g_iconH / 5, "Total");
     t.attr({'text-anchor': "star", "font-size": "14px", "font-family": "TTRounds-Regular"});
 
 
@@ -131,26 +131,26 @@ function Slider(_title, _icon, _iconW, _iconH, _x, _y, _min, _max, _interval, _v
     this.title = _title;
     var s = "0000000000";
     if (this.title === "light") {
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_lightTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_lightTotal);
         s = window.g_lightTotalString;
     }
     else if (this.title === "computer") {
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_computerTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_computerTotal);
         s = window.g_computerTotalString;
     }
     else if (this.title === "projector") {
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_projectorTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_projectorTotal);
         s = window.g_projectorTotalString;
     }
     else if (this.title === "heater") {
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_heaterTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, g_heaterTotal);
         s = window.g_heaterTotalString;
     }
     this.total.attr({'text-anchor': "middle", "font-size": "18px", "font-family": "TTRounds-Regular"});
-    this.iconImage = window.g_paper.image(this.iconSrc, window.g_leftMargin / 2 + this.startX, this.startY, this.iconW, this.iconW);
+    this.iconImage = window.g_paper.image(this.iconSrc, window.g_leftMargin  + this.startX, this.startY, this.iconW, this.iconW);
     var sliderSteps = (this.max - this.min) / this.interval;
     var stepsWidth = window.g_sliderW / sliderSteps;
-    var startSliderX = this.startX + window.g_iconW + window.g_leftMargin;
+    var startSliderX = this.startX + window.g_iconW + window.g_leftMargin*2;
     var status = false;
     console.log(s);
     for (var i = 0; i < sliderSteps; i++) {
@@ -168,7 +168,7 @@ function Slider(_title, _icon, _iconW, _iconH, _x, _y, _min, _max, _interval, _v
         }
         startSliderX += stepsWidth;
     }
-    var tlx = (this.startX + this.iconW + window.g_leftMargin);
+    var tlx = (this.startX + this.iconW + window.g_leftMargin*2);
     var trx = startSliderX;
     var ty = (this.startY + g_sliderTopMargin);
     var by = (this.startY + g_sliderTopMargin + window.g_sliderH);
@@ -182,25 +182,25 @@ Slider.prototype.updateTotal = function (_val) {
     if (this.title === "light") {
         this.total.remove();
         window.g_lightTotal += _val;
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_lightTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_lightTotal);
         updateSliderColor(window.g_lightButtons, window.g_lightTotal);
     }
     else if (this.title === "computer") {
         this.total.remove();
         window.g_computerTotal += _val;
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_computerTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_computerTotal);
         updateSliderColor(window.g_compButtons, window.g_computerTotal);
     }
     else if (this.title === "projector") {
         this.total.remove();
         window.g_projectorTotal += _val;
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_projectorTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_projectorTotal);
         updateSliderColor(window.g_projButtons, window.g_projectorTotal);
     }
     else if (this.title === "heater") {
         this.total.remove();
         window.g_heaterTotal += _val;
-        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 3 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_heaterTotal);
+        this.total = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, this.startY + window.g_sliderH / 2 + window.g_sliderTopMargin, window.g_heaterTotal);
         updateSliderColor(window.g_heaterButtons, window.g_heaterTotal);
     }
     this.total.attr({'text-anchor': "middle", "font-size": "18px"});
@@ -318,9 +318,10 @@ function updateDB() {
 //       "projector":g_projectorTotal}, function(result){
 //   console.log(result);
 //});
-    var url = "http://www.learningenergy.eca.ed.ac.uk/updateAppData.php";
+    var url = "http://www.learningenergy.eca.ed.ac.uk/appUpdateAppData.php";
     $.post(url,
             {
+                id: window.g_subjectId,
                 light: g_lightTotal,
                 computer: g_computerTotal,
                 heater: g_heaterTotal,
@@ -357,3 +358,7 @@ jQuery.each(["put", "delete"], function (i, method) {
 String.prototype.replaceAt = function (index, character) {
     return this.substr(0, index) + character + this.substr(index + character.length);
 };
+
+//drop function `LastMonday`;
+//CREATE FUNCTION `LastMonday`() RETURNS DATETIME RETURN date(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)) ;
+
