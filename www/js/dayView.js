@@ -77,7 +77,7 @@ function initialise() {
     var homeIcon = window.g_paper.image("img/icons/home-icon.png", window.g_width-window.g_heightUnit , window.g_heightUnit / 4, window.g_heightUnit / 2, window.g_heightUnit / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('touchstart', function(){
+    $("#homeIcon").bind('click', function(){
         window.location = "weekView.html";
     });
 //    homeIcon.node.parent = _id;
@@ -146,9 +146,9 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     rightArrow.node.setAttribute("class", "donthighlight pointerCursor");
     rightArrow.node.id = "subject" + _id + "_arrow";
     rightArrow.node.parent = _id;
-    $("#subject" + _id).bind('touchstart', subjectClicked);
-    $("#subject" + _id + "_arrow").bind('touchstart', subjectClicked);
-    $("#subject" + _id + "_text").bind('touchstart', subjectClicked);
+    $("#subject" + _id).bind('click', subjectClicked);
+    $("#subject" + _id + "_arrow").bind('click', subjectClicked);
+    $("#subject" + _id + "_text").bind('click', subjectClicked);
     var totalVal = map_range(this.total,0,180,10,790);
 //    console.log(this.total/20,window.g_colors[this.total/20]);
     var my_arc = window.g_paper.path().attr({
