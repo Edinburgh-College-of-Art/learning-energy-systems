@@ -21,11 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 @font-face {
-  font-family: 'TTRounds-Regular';
-  src: url('TTRounds-Regular.eot?#iefix') format('embedded-opentype'),  url('TTRounds-Regular.otf')  format('opentype'),
-	     url('TTRounds-Regular.woff') format('woff'), url('TTRounds-Regular.ttf')  format('truetype'), url('TTRounds-Regular.svg#TTRounds-Regular') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'TTRounds-Regular';
+    src: url('TTRounds-Regular.eot?#iefix') format('embedded-opentype'),  url('TTRounds-Regular.otf')  format('opentype'),
+        url('TTRounds-Regular.woff') format('woff'), url('TTRounds-Regular.ttf')  format('truetype'), url('TTRounds-Regular.svg#TTRounds-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 html, body {
@@ -36,8 +36,8 @@ html, body {
 
 }
 * {
-   margin: 0;
-   padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 #canvas_container {
@@ -51,18 +51,18 @@ html, body {
 }
 
 .donthighlight {
-       -moz-user-select: none;
-       -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
 .portrait_mode {
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-    }
-    
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
 /*    
     @media only screen and (orientation:portrait){
         html {
@@ -75,6 +75,11 @@ html, body {
 
 
 .donthighlight {
-       -moz-user-select: none;
-       -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+
+}
+
+.pointerCursor
+{cursor: pointer;
 }

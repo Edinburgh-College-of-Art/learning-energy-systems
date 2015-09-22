@@ -55,15 +55,17 @@ function initialise() {
     window.g_paper.setSize(window.g_width, window.g_height);
     window.g_heightUnit = window.g_height / 10;
     window.g_paper.image("img/backgrounds/Timetable_Green.png", 0, 0, window.g_width, window.g_height);
+    window.g_currDate = "2015-09-16";
 
-    var titleHeading = window.g_paper.text(window.g_width / 2, window.g_heightUnit/2, window.g_title);
+    var titleHeading = window.g_paper.text(window.g_width / 2, window.g_heightUnit / 2, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px"});
     var headLine = window.g_paper.path('M' + 50 + " " + (window.g_height / 10) + "L" + (window.g_width - 50) + " " + (window.g_height / 10));
+    loadSubjects();
 }
 
 
 function Subject(_title, _total) {
-    
+
 
 }
 
@@ -74,4 +76,17 @@ function detectPortrait(mainDiv) {
     else {
         $(mainDiv).removeClass("portrait_mode");
     }
+}
+
+
+function loadSubjects() {
+    var url = "http://www.learningenergy.eca.ed.ac.uk/appGetClassList.php";
+    $.get(url,
+            {
+                id: window.g_studentUID,
+                date: window.g_currDate
+            })
+            .always(function (data) {
+                console.log(data);
+            });
 }
