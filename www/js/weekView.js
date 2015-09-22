@@ -186,7 +186,7 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     titleHeading.node.parent = _id;
     titleHeading.node.id = _id + "_title";
-    $("#" + _id + "_title").bind('click', dayClicked);
+//    $("#" + _id + "_title").bind('click', dayClicked);
     if (!_status) {
         this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": 1});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
