@@ -280,7 +280,7 @@ function sliderOnClick() {
         window.g_clickFlag = true;
         setTimeout(function () {
             window.g_clickFlag = false;
-        }, 300);
+        }, 1000);
         this.status = !this.status;
 //        this.setAttribute("fill", this.status ? "#f00" : "#fff");
         var val = this.status ? 5 : -5;
