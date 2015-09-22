@@ -205,7 +205,7 @@ var g_clickFlag = false;
 function dayClicked() {
     if (!window.g_clickFlag) {
     window.g_clickFlag = true;
-    setTimeout(function(){ window.g_clickFlag = false; }, 100);
+    setTimeout(function(){window.g_clickFlag = false; }, 300);
     if (this.parent === window.g_currDay) {
         localStorage.setItem("currentDate", window.g_currDate);
         localStorage.setItem("currentDay", window.g_currDay);

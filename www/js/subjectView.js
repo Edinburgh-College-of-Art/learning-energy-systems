@@ -372,8 +372,6 @@ function updateDB() {
                 console.log(data);
             });
 }
-
-
 jQuery.each(["put", "delete"], function (i, method) {
     jQuery[ method ] = function (url, data, callback, type) {
         if (jQuery.isFunction(data)) {
@@ -391,11 +389,9 @@ jQuery.each(["put", "delete"], function (i, method) {
         });
     };
 });
-
 String.prototype.replaceAt = function (index, character) {
     return this.substr(0, index) + character + this.substr(index + character.length);
 };
-
 //drop function `LastMonday`;
 //CREATE FUNCTION `LastMonday`() RETURNS DATETIME RETURN date(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)) ;
 
