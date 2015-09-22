@@ -109,7 +109,7 @@ function initialise() {
     var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 40, window.g_iconH / 4, window.g_iconH / 6, window.g_iconH / 6);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('click', function () {
+    $("#homeIcon").bind('touchend', function () {
         window.location = "dayView.html";
     });
 //    var headLine = window.g_paper.path('M' + window.g_iconH / 3 + " " + (2 * window.g_iconH / 3) + "L" + (window.g_width - window.g_iconH / 3) + " " + (2 * window.g_iconH / 3));
@@ -244,7 +244,7 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
             break;
     }
     this.sliderBtn.attr({stroke: "#000", fill: this.status ? color : "#fff", 'stroke-dasharray': "--"});
-    $("#" + _id).bind('click', sliderOnClick);
+    $("#" + _id).bind('touchend', sliderOnClick);
 //    
 //            
 //    this.sliderBtn.node.onclick = function () {

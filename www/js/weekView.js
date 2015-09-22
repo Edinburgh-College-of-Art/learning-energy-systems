@@ -27,7 +27,7 @@ var g_studentUID = "1";
 var g_currDate = new Date().toISOString().substring(0, 10);
 var g_currDay = getDayName(new Date().getDay());
 
-console.log(g_currDay,g_currDate);
+console.log(g_currDay, g_currDate);
 
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
@@ -83,7 +83,7 @@ function initialise() {
     var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('click', function () {
+    $("#homeIcon").bind('touchend', function () {
 
         window.location = "dayView.html";
     });
@@ -107,11 +107,11 @@ function drawDays() {
     var fridY = window.g_daysTopMargin * 4 + window.g_headerHeight + (150 - window.g_friT) / window.g_daysYScale;
 
     drawLinesBetwDays(monX, monY, tueX, tueY, wedX, wedY, thurX, thurY, fridX, fridY);
-    window.g_monday = new daySection(monX, monY, window.g_daysRadius,  window.g_currDay==="monday", "M", "monday", window.g_monT);//!!!!!!!!!!!!!!!!!!!!!!
-    window.g_tuesday = new daySection(tueX, tueY, window.g_daysRadius, window.g_currDay==="tuesday", "T", "tuesday", window.g_tueT);
-    window.g_wednesday = new daySection(wedX, wedY, window.g_daysRadius, window.g_currDay==="wednesday", "W", "wednesday", window.g_wedT);
-    window.g_thursday = new daySection(thurX, thurY, window.g_daysRadius, window.g_currDay==="thursday", "T", "thursday", window.g_thurT);
-    window.g_friday = new daySection(fridX, fridY, window.g_daysRadius, window.g_currDay==="friday", "F", "friday", window.g_friT);
+    window.g_monday = new daySection(monX, monY, window.g_daysRadius, window.g_currDay === "monday", "M", "monday", window.g_monT);//!!!!!!!!!!!!!!!!!!!!!!
+    window.g_tuesday = new daySection(tueX, tueY, window.g_daysRadius, window.g_currDay === "tuesday", "T", "tuesday", window.g_tueT);
+    window.g_wednesday = new daySection(wedX, wedY, window.g_daysRadius, window.g_currDay === "wednesday", "W", "wednesday", window.g_wedT);
+    window.g_thursday = new daySection(thurX, thurY, window.g_daysRadius, window.g_currDay === "thursday", "T", "thursday", window.g_thurT);
+    window.g_friday = new daySection(fridX, fridY, window.g_daysRadius, window.g_currDay === "friday", "F", "friday", window.g_friT);
     var headLine = window.g_paper.path('M' + 10 + " " + (window.g_headerHeight + window.g_daysTopMargin * 8) + "L" + (window.g_width - 10) + " " + (window.g_headerHeight + window.g_daysTopMargin * 8));
     headLine.attr({"stroke": "#fff"});
 }
@@ -182,7 +182,7 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     this.dayBtn.node.id = _id;
     this.dayBtn.node.parent = _id;
 
-    $("#" + _id).bind('click', dayClicked);
+    $("#" + _id).bind('touchend', dayClicked);
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     titleHeading.node.parent = _id;
     titleHeading.node.id = _id + "_title";
@@ -204,42 +204,44 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
 var g_clickFlag = false;
 function dayClicked() {
     if (!window.g_clickFlag) {
-    window.g_clickFlag = true;
-    setTimeout(function(){window.g_clickFlag = false; }, 1000);
-    if (this.parent === window.g_currDay) {
-        localStorage.setItem("currentDate", window.g_currDate);
-        localStorage.setItem("currentDay", window.g_currDay);
-        window.location = "dayView.html";
-    } else {
-        var me = $("#" + this.parent)[0];
-        
-        me.status = !me.status;//update status
-        //updateing background color of the selected one. 
-        var other = $("#" + window.g_currDay)[0];
-        other.status=false;
-        other.setAttribute("fill", "#333");
-        other.setAttribute("stroke-opacity", 1);
-        other.setAttribute("fill-opacity", 0.1);
-        window.g_currDate = calculateDate(me.id);
-        window.g_currDay = this.parent;
-        if (!me.status) {
-            me.setAttribute("fill", "#333");
-            me.setAttribute("stroke-opacity", 1);
-            me.setAttribute("fill-opacity", 0.1);
-        }
-        else {
-            me.setAttribute("fill-opacity", 0.7);
-            me.setAttribute("fill", "#fff");
-            me.setAttribute("stroke-opacity", 1);
-        }
-        localStorage.setItem("currentDate", window.g_currDate);
-        localStorage.setItem("currentDay", window.g_currDay);
-        loadUpdateData(false);
-    }
-  }
+        window.g_clickFlag = true;
+        setTimeout(function () {
+            window.g_clickFlag = false;
+        }, 1000);
+        if (this.parent === window.g_currDay) {
+            localStorage.setItem("currentDate", window.g_currDate);
+            localStorage.setItem("currentDay", window.g_currDay);
+            window.location = "dayView.html";
+        } else {
+            var me = $("#" + this.parent)[0];
 
-  return false;
-    
+            me.status = !me.status;//update status
+            //updateing background color of the selected one. 
+            var other = $("#" + window.g_currDay)[0];
+            other.status = false;
+            other.setAttribute("fill", "#333");
+            other.setAttribute("stroke-opacity", 1);
+            other.setAttribute("fill-opacity", 0.1);
+            window.g_currDate = calculateDate(me.id);
+            window.g_currDay = this.parent;
+            if (!me.status) {
+                me.setAttribute("fill", "#333");
+                me.setAttribute("stroke-opacity", 1);
+                me.setAttribute("fill-opacity", 0.1);
+            }
+            else {
+                me.setAttribute("fill-opacity", 0.7);
+                me.setAttribute("fill", "#fff");
+                me.setAttribute("stroke-opacity", 1);
+            }
+            localStorage.setItem("currentDate", window.g_currDate);
+            localStorage.setItem("currentDay", window.g_currDay);
+            loadUpdateData(false);
+        }
+    }
+
+    return false;
+
 }
 
 function calculateDate(_day) {
