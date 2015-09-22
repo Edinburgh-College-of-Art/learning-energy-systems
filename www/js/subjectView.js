@@ -151,10 +151,10 @@ function Slider(_title, _icon, _iconW, _iconH, _x, _y, _min, _max, _interval, _v
         s = window.g_heaterTotalString;
     }
     this.total.attr({'text-anchor': "middle", "font-size": "18px", "font-family": "TTRounds-Regular"});
-    this.iconImage = window.g_paper.image(this.iconSrc, window.g_leftMargin  + this.startX, this.startY, this.iconW, this.iconW);
+    this.iconImage = window.g_paper.image(this.iconSrc, window.g_leftMargin + this.startX, this.startY, this.iconW, this.iconW);
     var sliderSteps = (this.max - this.min) / this.interval;
     var stepsWidth = window.g_sliderW / sliderSteps;
-    var startSliderX = this.startX + window.g_iconW + window.g_leftMargin*2;
+    var startSliderX = this.startX + window.g_iconW + window.g_leftMargin * 2;
     var status = false;
     console.log(s);
     for (var i = 0; i < sliderSteps; i++) {
@@ -172,7 +172,7 @@ function Slider(_title, _icon, _iconW, _iconH, _x, _y, _min, _max, _interval, _v
         }
         startSliderX += stepsWidth;
     }
-    var tlx = (this.startX + this.iconW + window.g_leftMargin*2);
+    var tlx = (this.startX + this.iconW + window.g_leftMargin * 2);
     var trx = startSliderX;
     var ty = (this.startY + g_sliderTopMargin);
     var by = (this.startY + g_sliderTopMargin + window.g_sliderH);
@@ -219,7 +219,7 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
     this.btnId = _id;
     this.sliderBtn = window.g_paper.rect(this.x, this.y, this.w, this.h);
     var color = "#f00";
-    
+
     this.sliderBtn.node.id = _id;
     this.sliderBtn.node.parent = _parent;
     this.sliderBtn.node.status = this.status;
@@ -229,23 +229,23 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
     switch (_parent) {
         case "light":
             window.g_lightButtons[_index] = this;
-            color=window.g_colors[window.g_lightTotal/5];
+            color = window.g_colors[window.g_lightTotal / 5];
             break;
         case "heater":
             window.g_heaterButtons[_index] = this;
-            color=window.g_colors[window.g_heaterTotal/5];
+            color = window.g_colors[window.g_heaterTotal / 5];
             break;
         case "projector":
             window.g_projButtons[_index] = this;
-            color = window.g_colors[window.g_projectorTotal/5];
+            color = window.g_colors[window.g_projectorTotal / 5];
             break;
         case "computer":
             window.g_compButtons[_index] = this;
-            color=window.g_colors[window.g_computerTotal/5];
+            color = window.g_colors[window.g_computerTotal / 5];
             break;
     }
     this.sliderBtn.attr({stroke: "#000", fill: this.status ? color : "#fff", 'stroke-dasharray': "--"});
-    $("#"+_id).bind('touchstart', sliderOnClick);
+    $("#" + _id).bind('touchstart click', sliderOnClick);
 //    
 //            
 //    this.sliderBtn.node.onclick = function () {
@@ -273,11 +273,16 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
 ////
 ////        updateDB();
 //    };
-    
-}
 
-function sliderOnClick(){
-    this.status = !this.status;
+}
+var g_clickFlag = false;
+function sliderOnClick() {
+    if (!window.g_clickFlag) {
+        window.g_clickFlag = true;
+        setTimeout(function () {
+            window.g_clickFlag = false;
+        }, 100);
+        this.status = !this.status;
 //        this.setAttribute("fill", this.status ? "#f00" : "#fff");
         var val = this.status ? 5 : -5;
         switch (this.parent) {
@@ -300,12 +305,14 @@ function sliderOnClick(){
         }
 
         updateDB();
+    }
+    return false;
 }
 
 function updateSliderColor(_which, _tot) {
-    
+
     var color = window.g_colors[_tot / 5];
-    console.log(_which[0].sliderBtn,color,_which[0].sliderBtn.node.status );
+    console.log(_which[0].sliderBtn, color, _which[0].sliderBtn.node.status);
     for (var i = 0; i < 9; i++) {
 //        _which[i].sliderBtn.attr({stroke: "#000", fill: this.status ? "#f00" : "#fff"
         _which[i].sliderBtn.node.setAttribute("fill", _which[i].sliderBtn.node.status ? color : "#fff");

@@ -182,11 +182,11 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     this.dayBtn.node.id = _id;
     this.dayBtn.node.parent = _id;
 
-    $("#" + _id).bind('touchstart', dayClicked);
+    $("#" + _id).bind('touchstart click', dayClicked);
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     titleHeading.node.parent = _id;
     titleHeading.node.id = _id + "_title";
-    $("#" + _id + "_title").bind('touchstart', dayClicked);
+    $("#" + _id + "_title").bind('touchstart click', dayClicked);
     if (!_status) {
         this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": 1});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
@@ -201,8 +201,11 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
 
 
 
-
+var g_clickFlag = false;
 function dayClicked() {
+    if (!window.g_clickFlag) {
+    window.g_clickFlag = true;
+    setTimeout(function(){ window.g_clickFlag = false; }, 100);
     if (this.parent === window.g_currDay) {
         localStorage.setItem("currentDate", window.g_currDate);
         localStorage.setItem("currentDay", window.g_currDay);
@@ -233,6 +236,10 @@ function dayClicked() {
         localStorage.setItem("currentDay", window.g_currDay);
         loadUpdateData(false);
     }
+  }
+
+  return false;
+    
 }
 
 function calculateDate(_day) {
