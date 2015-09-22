@@ -218,7 +218,7 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
     this.status = _status;
     this.btnId = _id;
     this.sliderBtn = window.g_paper.rect(this.x, this.y, this.w, this.h);
-    var color = "#f00"
+    var color = "#f00";
     
     this.sliderBtn.node.id = _id;
     this.sliderBtn.node.parent = _parent;
@@ -245,10 +245,39 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
             break;
     }
     this.sliderBtn.attr({stroke: "#000", fill: this.status ? color : "#fff", 'stroke-dasharray': "--"});
-    this.sliderBtn.node.onclick = function () {
-        localStorage.setItem("bar", "foo");
-        console.log(this.parent);
-        this.status = !this.status;
+    $("#"+_id).bind('touchstart', sliderOnClick);
+//    
+//            
+//    this.sliderBtn.node.onclick = function () {
+////        this.status = !this.status;
+//////        this.setAttribute("fill", this.status ? "#f00" : "#fff");
+////        var val = this.status ? 5 : -5;
+////        switch (this.parent) {
+////            case "light":
+////                window.g_lightSlider.updateTotal(val);
+////                window.g_lightTotalString = window.g_lightTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////            case "heater":
+////                window.g_heaterSlider.updateTotal(val);
+////                window.g_heaterTotalString = window.g_heaterTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////            case "projector":
+////                window.g_projectorSlider.updateTotal(val);
+////                window.g_projectorTotalString = window.g_projectorTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////            case "computer":
+////                window.g_computerSlider.updateTotal(val);
+////                window.g_computerTotalString = g_computerTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////        }
+////
+////        updateDB();
+//    };
+    
+}
+
+function sliderOnClick(){
+    this.status = !this.status;
 //        this.setAttribute("fill", this.status ? "#f00" : "#fff");
         var val = this.status ? 5 : -5;
         switch (this.parent) {
@@ -271,10 +300,6 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
         }
 
         updateDB();
-    };
-    this.sliderBtn.dblclick(function () {
-        alert("double clike");
-    });
 }
 
 function updateSliderColor(_which, _tot) {

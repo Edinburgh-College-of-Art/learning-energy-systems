@@ -25,13 +25,16 @@ var g_monT, g_tueT, g_wedT, g_thurT, g_friT;
 var g_daysYScale = 5;
 var g_studentUID = "1";
 var g_currDate = new Date().toISOString().substring(0, 10);
+var g_currDay = getDayName(new Date().getDay());
+
+console.log(g_currDay,g_currDate);
 
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
 window.onload = function () {
     loadUpdateData(true);
-    $.event.special.swipe.durationThreshold = 1000;
+//    $.event.special.swipe.durationThreshold = 1000;
     reset();
 
 };
@@ -59,7 +62,7 @@ function initialise() {
     window.g_daysHeight = window.g_height / 10;
     window.g_daysTopMargin = window.g_daysHeight / 5;
     window.g_daysRadius = window.g_daysHeight - 5 * window.g_daysHeight / 7;
-
+    localStorage.setItem("currentDay", window.g_currDate);
     window.g_daysLeftMargin = (window.g_width - (window.g_daysRadius * 5 + (window.g_daysRadius * 4 / 3))) / 5;
     window.g_daysMargin = (window.g_width - window.g_daysLeftMargin * 4 - window.g_daysRadius * 5) / 2;
 //    g_monT = Math.floor(Math.random() * 300);
@@ -77,9 +80,13 @@ function initialise() {
     var rec = window.g_paper.image("img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png", 0, 0, window.g_width, window.g_height);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_headerHeight / 2, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Regular"});
-    titleHeading.node.onclick = function () {
-        window.location = "index.html";
-    }
+    var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
+    homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    homeIcon.node.id = "homeIcon";
+    $("#homeIcon").bind('touchstart', function () {
+
+        window.location = "dayView.html";
+    });
     var headLine = window.g_paper.path('M' + 10 + " " + window.g_headerHeight + "L" + (window.g_width - 10) + " " + window.g_headerHeight);
     headLine.attr({"stroke": "#fff"});
 
@@ -89,7 +96,7 @@ function initialise() {
 
 function drawDays() {
     var monX = window.g_daysMargin;
-    var tueX = window.g_daysMargin + window.g_daysLeftMargin + window.g_daysRadius ;
+    var tueX = window.g_daysMargin + window.g_daysLeftMargin + window.g_daysRadius;
     var wedX = window.g_daysMargin + window.g_daysLeftMargin * 2 + window.g_daysRadius * 2;
     var thurX = window.g_daysMargin + window.g_daysLeftMargin * 3 + window.g_daysRadius * 3;
     var fridX = window.g_daysMargin + window.g_daysLeftMargin * 4 + window.g_daysRadius * 4;
@@ -100,11 +107,11 @@ function drawDays() {
     var fridY = window.g_daysTopMargin * 4 + window.g_headerHeight + (150 - window.g_friT) / window.g_daysYScale;
 
     drawLinesBetwDays(monX, monY, tueX, tueY, wedX, wedY, thurX, thurY, fridX, fridY);
-    window.g_monday = new daySection(monX, monY, window.g_daysRadius, true, "M", "monday", window.g_monT);
-    window.g_tuesday = new daySection(tueX, tueY, window.g_daysRadius, false, "T", "tuesday", window.g_tueT);
-    window.g_wednesday = new daySection(wedX, wedY, window.g_daysRadius, true, "W", "wednesday", window.g_wedT);
-    window.g_thursday = new daySection(thurX, thurY, window.g_daysRadius, false, "T", "thursday", window.g_thurT);
-    window.g_friday = new daySection(fridX, fridY, window.g_daysRadius, false, "F", "friday", window.g_friT);
+    window.g_monday = new daySection(monX, monY, window.g_daysRadius,  window.g_currDay==="monday", "M", "monday", window.g_monT);//!!!!!!!!!!!!!!!!!!!!!!
+    window.g_tuesday = new daySection(tueX, tueY, window.g_daysRadius, window.g_currDay==="tuesday", "T", "tuesday", window.g_tueT);
+    window.g_wednesday = new daySection(wedX, wedY, window.g_daysRadius, window.g_currDay==="wednesday", "W", "wednesday", window.g_wedT);
+    window.g_thursday = new daySection(thurX, thurY, window.g_daysRadius, window.g_currDay==="thursday", "T", "thursday", window.g_thurT);
+    window.g_friday = new daySection(fridX, fridY, window.g_daysRadius, window.g_currDay==="friday", "F", "friday", window.g_friT);
     var headLine = window.g_paper.path('M' + 10 + " " + (window.g_headerHeight + window.g_daysTopMargin * 8) + "L" + (window.g_width - 10) + " " + (window.g_headerHeight + window.g_daysTopMargin * 8));
     headLine.attr({"stroke": "#fff"});
 }
@@ -112,14 +119,16 @@ function drawDays() {
 
 
 function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
-    var x = _mx, y = _my, x1 = _tx, y1 = _ty, x2 = _wx, y2 = _wy, x3 = _thx, y3 = _thy, x4 = _fx, y4 = _fy;
+    var x = _mx + window.g_daysRadius, y = _my, x1 = _tx - window.g_daysRadius, y1 = _ty, x2 = _wx - window.g_daysRadius, y2 = _wy, x3 = _thx - window.g_daysRadius, y3 = _thy, x4 = _fx - window.g_daysRadius, y4 = _fy;
     console.log(x, y, x1, y1, x2, y2, x3, y3, x4, y4);
     var myPath = 'M' + x + " " + y +
             "L" + x1 + " " + y1 +
+            'M' + (x1 + 2 * window.g_daysRadius) + " " + y1 +
             "L" + x2 + " " + y2 +
+            'M' + (x2 + 2 * window.g_daysRadius) + " " + y2 +
             "L" + x3 + " " + y3 +
+            'M' + (x3 + 2 * window.g_daysRadius) + " " + y3 +
             "L" + x4 + " " + y4;
-    console.log(myPath);
     var headLine = window.g_paper.path(myPath);
     headLine.attr({"stroke": "#fff"});
 }
@@ -154,7 +163,8 @@ function drawConsumptions(_p, _l, _c, _h, _t) {
     total.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 1, "stroke-opacity": 1});
     var titleHeading = window.g_paper.text(window.g_width / 2, centY, _t);
     titleHeading.node.id = "totalHead";
-    titleHeading.attr({'text-anchor': "middle", "font-size": "48px", "fill": "#000", "font-family": "TTRounds-Regular"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "48px", "fill": "#000", "font-family": "TTRounds-Regular"}).node.setAttribute("class", "donthighlight");
+    ;
 }
 
 
@@ -166,48 +176,69 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     var st = window.g_paper.set();
 //    this.y += (150 - _total) / window.g_daysYScale;
     this.dayBtn = window.g_paper.circle(this.x, this.y, this.r);
-
+    this.dayBtn.node.setAttribute("class", "pointerCursor");
     this.dayBtn.node.status = _status;
     this.dayBtn.node.title = _title;
     this.dayBtn.node.id = _id;
     this.dayBtn.node.parent = _id;
 
-    $("#" + _id).addClass(_id);
-    $("#" + _id).bind('touchstart click', dayClicked);
+    $("#" + _id).bind('touchstart', dayClicked);
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     titleHeading.node.parent = _id;
     titleHeading.node.id = _id + "_title";
-    $("#" + _id + "_title").bind('touchstart click', dayClicked);
+    $("#" + _id + "_title").bind('touchstart', dayClicked);
     if (!_status) {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#333", "fill-opacity": 1, "stroke-opacity": 1});
-        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"}).node.setAttribute("class", "donthighlight");
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": 1});
+        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
     }
     else {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 1, "stroke-opacity": 1});
-        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#000", "font-family": "TTRounds-Regular"}).node.setAttribute("class", "donthighlight");
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 0.7, "stroke-opacity": 1});
+        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
     }
-    titleHeading.node.setAttribute("class", "donthighlight");
+    titleHeading.node.setAttribute("class", "donthighlight pointerCursor");
+    $(this.dayBtn.node).removeAttr("style");
 }
 
-function dayClicked() {
-    var me = $("#" + this.parent)[0];
-    console.log("oka", me);
-    me.status = !me.status;
-    if (!me.status) {
-        me.setAttribute("fill", "#333");
-        me.setAttribute("stroke-opacity", 1);
-        me.setAttribute("fill-opacity", 1);
-    }
-    else {
-        me.setAttribute("fill-opacity", 1);
-        me.setAttribute("fill", "#fff");
-        me.setAttribute("stroke-opacity", 1);
 
+
+
+function dayClicked() {
+    if (this.parent === window.g_currDay) {
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
+        window.location = "dayView.html";
+    } else {
+        var me = $("#" + this.parent)[0];
+        
+        me.status = !me.status;//update status
+        //updateing background color of the selected one. 
+        var other = $("#" + window.g_currDay)[0];
+        other.status=false;
+        other.setAttribute("fill", "#333");
+        other.setAttribute("stroke-opacity", 1);
+        other.setAttribute("fill-opacity", 0.1);
+        window.g_currDate = calculateDate(me.id);
+        window.g_currDay = this.parent;
+        if (!me.status) {
+            me.setAttribute("fill", "#333");
+            me.setAttribute("stroke-opacity", 1);
+            me.setAttribute("fill-opacity", 0.1);
+        }
+        else {
+            me.setAttribute("fill-opacity", 0.7);
+            me.setAttribute("fill", "#fff");
+            me.setAttribute("stroke-opacity", 1);
+        }
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
+        loadUpdateData(false);
     }
+}
+
+function calculateDate(_day) {
     var today = new Date(getMonday(new Date));
     var otherDay = new Date(today);
-
-    switch (me.id) {
+    switch (_day) {
         case "monday":
             break;
         case "tuesday":
@@ -223,8 +254,7 @@ function dayClicked() {
             otherDay.setDate(today.getDate() + 4);
             break;
     }
-    window.g_currDate = otherDay.toISOString().substring(0, 10);
-    loadUpdateData(false);
+    return otherDay.toISOString().substring(0, 10);
 }
 
 
@@ -277,7 +307,7 @@ function loadUpdateData(_loadOrUpdate) {
                 /*
                  * TODO: Check with smaller heights and make sure the range for y value is always right!
                  */
-                var h = $(window).height()/2-40;
+                var h = $(window).height() / 2 - 40;
 //                
                 window.g_monT = map_range(window.g_monT, 0, 1260, 20, h);
                 window.g_tueT = map_range(window.g_tueT, 0, 1260, 20, h);
@@ -310,4 +340,18 @@ function getMonday(d) {
     var day = d.getDay(),
             diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
     return new Date(d.setDate(diff));
+}
+
+
+function getDayName(_day) {
+    var weekday = new Array(7);
+    weekday[0] = "sunday";
+    weekday[1] = "monday";
+    weekday[2] = "tuesday";
+    weekday[3] = "wednesday";
+    weekday[4] = "thursday";
+    weekday[5] = "friday";
+    weekday[6] = "saturday";
+    return weekday[_day];
+
 }

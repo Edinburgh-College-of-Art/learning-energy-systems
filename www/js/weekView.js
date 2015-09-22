@@ -83,7 +83,7 @@ function initialise() {
     var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('touchstart click', function () {
+    $("#homeIcon").bind('touchstart', function () {
 
         window.location = "dayView.html";
     });
@@ -182,11 +182,11 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     this.dayBtn.node.id = _id;
     this.dayBtn.node.parent = _id;
 
-    $("#" + _id).bind('touchstart click', dayClicked);
+    $("#" + _id).bind('touchstart', dayClicked);
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     titleHeading.node.parent = _id;
     titleHeading.node.id = _id + "_title";
-    $("#" + _id + "_title").bind('touchstart click', dayClicked);
+    $("#" + _id + "_title").bind('touchstart', dayClicked);
     if (!_status) {
         this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": 1});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});

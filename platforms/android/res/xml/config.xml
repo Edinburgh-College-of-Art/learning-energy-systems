@@ -12,7 +12,7 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-    <content src="index.html" />
+    <content src="weekView.html" />
     <access origin="*" />
     <preference name="Fullscreen" value="true" />
 </widget>

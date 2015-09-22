@@ -25,7 +25,7 @@ var g_lightSlider, g_projectorSlider, g_computerSlider, g_heaterSlider;
 var g_lightButtons = new Array(10), g_compButtons = new Array(10), g_projButtons = new Array(10), g_heaterButtons = new Array(10);
 var g_colors = ["#fff", "#004A73", "#04757F", "#00A66E", "#A8D063", "#F5F199", "#EB9663", "#E5646B", "#ED1553", "#AA2951"];
 var g_subject = "computer science";
-var g_subjectId = 1;
+var g_subjectId = localStorage.getItem("subjectView");
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
@@ -106,9 +106,13 @@ function initialise() {
 
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_iconH / 3, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Regular"});
-    titleHeading.node.onclick = function () {
-        window.location = "weekView.html";
-    }
+    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 40, window.g_iconH / 4, window.g_iconH / 6, window.g_iconH / 6);
+    homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    homeIcon.node.id = "homeIcon";
+    $("#homeIcon").bind('touchstart click', function () {
+
+        window.location = "dayView.html";
+    });
 //    var headLine = window.g_paper.path('M' + window.g_iconH / 3 + " " + (2 * window.g_iconH / 3) + "L" + (window.g_width - window.g_iconH / 3) + " " + (2 * window.g_iconH / 3));
 
 //    var headLind = window.g_paper.path("M50 50L500 50 ");
@@ -214,7 +218,7 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
     this.status = _status;
     this.btnId = _id;
     this.sliderBtn = window.g_paper.rect(this.x, this.y, this.w, this.h);
-    var color = "#f00"
+    var color = "#f00";
     
     this.sliderBtn.node.id = _id;
     this.sliderBtn.node.parent = _parent;
@@ -241,10 +245,39 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
             break;
     }
     this.sliderBtn.attr({stroke: "#000", fill: this.status ? color : "#fff", 'stroke-dasharray': "--"});
-    this.sliderBtn.node.onclick = function () {
-        localStorage.setItem("bar", "foo");
-        console.log(this.parent);
-        this.status = !this.status;
+    $("#"+_id).bind('touchstart', sliderOnClick);
+//    
+//            
+//    this.sliderBtn.node.onclick = function () {
+////        this.status = !this.status;
+//////        this.setAttribute("fill", this.status ? "#f00" : "#fff");
+////        var val = this.status ? 5 : -5;
+////        switch (this.parent) {
+////            case "light":
+////                window.g_lightSlider.updateTotal(val);
+////                window.g_lightTotalString = window.g_lightTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////            case "heater":
+////                window.g_heaterSlider.updateTotal(val);
+////                window.g_heaterTotalString = window.g_heaterTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////            case "projector":
+////                window.g_projectorSlider.updateTotal(val);
+////                window.g_projectorTotalString = window.g_projectorTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////            case "computer":
+////                window.g_computerSlider.updateTotal(val);
+////                window.g_computerTotalString = g_computerTotalString.replaceAt(this.index, this.status ? "1" : "0");
+////                break;
+////        }
+////
+////        updateDB();
+//    };
+    
+}
+
+function sliderOnClick(){
+    this.status = !this.status;
 //        this.setAttribute("fill", this.status ? "#f00" : "#fff");
         var val = this.status ? 5 : -5;
         switch (this.parent) {
@@ -267,10 +300,6 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
         }
 
         updateDB();
-    };
-    this.sliderBtn.dblclick(function () {
-        alert("double clike");
-    });
 }
 
 function updateSliderColor(_which, _tot) {
@@ -298,6 +327,7 @@ function loadData() {
                 id: g_subjectId
             })
             .always(function (data) {
+                window.g_title = data[0].subject;
                 window.g_projectorTotal = parseInt(data[0].projector);
                 window.g_computerTotal = parseInt(data[0].computer);
                 window.g_lightTotal = parseInt(data[0].light);
