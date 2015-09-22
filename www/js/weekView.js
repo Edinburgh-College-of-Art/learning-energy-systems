@@ -25,14 +25,16 @@ var g_monT, g_tueT, g_wedT, g_thurT, g_friT;
 var g_daysYScale = 5;
 var g_studentUID = "1";
 var g_currDate = new Date().toISOString().substring(0, 10);
-var g_currDay = "monday";
+var g_currDay = getDayName(new Date().getDay());
+
+console.log(g_currDay,g_currDate);
 
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
 window.onload = function () {
     loadUpdateData(true);
-    $.event.special.swipe.durationThreshold = 1000;
+//    $.event.special.swipe.durationThreshold = 1000;
     reset();
 
 };
@@ -60,7 +62,7 @@ function initialise() {
     window.g_daysHeight = window.g_height / 10;
     window.g_daysTopMargin = window.g_daysHeight / 5;
     window.g_daysRadius = window.g_daysHeight - 5 * window.g_daysHeight / 7;
-
+    localStorage.setItem("currentDay", window.g_currDate);
     window.g_daysLeftMargin = (window.g_width - (window.g_daysRadius * 5 + (window.g_daysRadius * 4 / 3))) / 5;
     window.g_daysMargin = (window.g_width - window.g_daysLeftMargin * 4 - window.g_daysRadius * 5) / 2;
 //    g_monT = Math.floor(Math.random() * 300);
@@ -78,9 +80,13 @@ function initialise() {
     var rec = window.g_paper.image("img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png", 0, 0, window.g_width, window.g_height);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_headerHeight / 2, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Regular"});
-    titleHeading.node.onclick = function () {
-        window.location = "index.html";
-    }
+    var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
+    homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    homeIcon.node.id = "homeIcon";
+    $("#homeIcon").bind('touchstart click', function () {
+
+        window.location = "dayView.html";
+    });
     var headLine = window.g_paper.path('M' + 10 + " " + window.g_headerHeight + "L" + (window.g_width - 10) + " " + window.g_headerHeight);
     headLine.attr({"stroke": "#fff"});
 
@@ -101,11 +107,11 @@ function drawDays() {
     var fridY = window.g_daysTopMargin * 4 + window.g_headerHeight + (150 - window.g_friT) / window.g_daysYScale;
 
     drawLinesBetwDays(monX, monY, tueX, tueY, wedX, wedY, thurX, thurY, fridX, fridY);
-    window.g_monday = new daySection(monX, monY, window.g_daysRadius, false, "M", "monday", window.g_monT);
-    window.g_tuesday = new daySection(tueX, tueY, window.g_daysRadius, false, "T", "tuesday", window.g_tueT);
-    window.g_wednesday = new daySection(wedX, wedY, window.g_daysRadius, false, "W", "wednesday", window.g_wedT);
-    window.g_thursday = new daySection(thurX, thurY, window.g_daysRadius, false, "T", "thursday", window.g_thurT);
-    window.g_friday = new daySection(fridX, fridY, window.g_daysRadius, false, "F", "friday", window.g_friT);
+    window.g_monday = new daySection(monX, monY, window.g_daysRadius,  window.g_currDay==="monday", "M", "monday", window.g_monT);//!!!!!!!!!!!!!!!!!!!!!!
+    window.g_tuesday = new daySection(tueX, tueY, window.g_daysRadius, window.g_currDay==="tuesday", "T", "tuesday", window.g_tueT);
+    window.g_wednesday = new daySection(wedX, wedY, window.g_daysRadius, window.g_currDay==="wednesday", "W", "wednesday", window.g_wedT);
+    window.g_thursday = new daySection(thurX, thurY, window.g_daysRadius, window.g_currDay==="thursday", "T", "thursday", window.g_thurT);
+    window.g_friday = new daySection(fridX, fridY, window.g_daysRadius, window.g_currDay==="friday", "F", "friday", window.g_friT);
     var headLine = window.g_paper.path('M' + 10 + " " + (window.g_headerHeight + window.g_daysTopMargin * 8) + "L" + (window.g_width - 10) + " " + (window.g_headerHeight + window.g_daysTopMargin * 8));
     headLine.attr({"stroke": "#fff"});
 }
@@ -182,30 +188,36 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     titleHeading.node.id = _id + "_title";
     $("#" + _id + "_title").bind('touchstart click', dayClicked);
     if (!_status) {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": .7});
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": 1});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
-        titleHeading.node.setAttribute("class", "donthighlight pointerCursor");
     }
     else {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 1, "stroke-opacity": .7});
-        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#000", "font-family": "TTRounds-Regular"});
-        titleHeading.node.setAttribute("class", "sasadonthighlight pointerCursor");
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 0.7, "stroke-opacity": 1});
+        titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
     }
     titleHeading.node.setAttribute("class", "donthighlight pointerCursor");
     $(this.dayBtn.node).removeAttr("style");
 }
+
+
+
+
 function dayClicked() {
     if (this.parent === window.g_currDay) {
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
         window.location = "dayView.html";
     } else {
         var me = $("#" + this.parent)[0];
-
+        
         me.status = !me.status;//update status
         //updateing background color of the selected one. 
         var other = $("#" + window.g_currDay)[0];
+        other.status=false;
         other.setAttribute("fill", "#333");
         other.setAttribute("stroke-opacity", 1);
         other.setAttribute("fill-opacity", 0.1);
+        window.g_currDate = calculateDate(me.id);
         window.g_currDay = this.parent;
         if (!me.status) {
             me.setAttribute("fill", "#333");
@@ -217,28 +229,32 @@ function dayClicked() {
             me.setAttribute("fill", "#fff");
             me.setAttribute("stroke-opacity", 1);
         }
-        var today = new Date(getMonday(new Date));
-        var otherDay = new Date(today);
-
-        switch (me.id) {
-            case "monday":
-                break;
-            case "tuesday":
-                otherDay.setDate(today.getDate() + 1);
-                break;
-            case "wednesday":
-                otherDay.setDate(today.getDate() + 2);
-                break;
-            case "thursday":
-                otherDay.setDate(today.getDate() + 3);
-                break;
-            case "friday":
-                otherDay.setDate(today.getDate() + 4);
-                break;
-        }
-        window.g_currDate = otherDay.toISOString().substring(0, 10);
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
         loadUpdateData(false);
     }
+}
+
+function calculateDate(_day) {
+    var today = new Date(getMonday(new Date));
+    var otherDay = new Date(today);
+    switch (_day) {
+        case "monday":
+            break;
+        case "tuesday":
+            otherDay.setDate(today.getDate() + 1);
+            break;
+        case "wednesday":
+            otherDay.setDate(today.getDate() + 2);
+            break;
+        case "thursday":
+            otherDay.setDate(today.getDate() + 3);
+            break;
+        case "friday":
+            otherDay.setDate(today.getDate() + 4);
+            break;
+    }
+    return otherDay.toISOString().substring(0, 10);
 }
 
 
@@ -324,4 +340,18 @@ function getMonday(d) {
     var day = d.getDay(),
             diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
     return new Date(d.setDate(diff));
+}
+
+
+function getDayName(_day) {
+    var weekday = new Array(7);
+    weekday[0] = "sunday";
+    weekday[1] = "monday";
+    weekday[2] = "tuesday";
+    weekday[3] = "wednesday";
+    weekday[4] = "thursday";
+    weekday[5] = "friday";
+    weekday[6] = "saturday";
+    return weekday[_day];
+
 }

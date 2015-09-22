@@ -25,7 +25,7 @@ var g_lightSlider, g_projectorSlider, g_computerSlider, g_heaterSlider;
 var g_lightButtons = new Array(10), g_compButtons = new Array(10), g_projButtons = new Array(10), g_heaterButtons = new Array(10);
 var g_colors = ["#fff", "#004A73", "#04757F", "#00A66E", "#A8D063", "#F5F199", "#EB9663", "#E5646B", "#ED1553", "#AA2951"];
 var g_subject = "computer science";
-var g_subjectId = 1;
+var g_subjectId = localStorage.getItem("subjectView");
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
@@ -106,9 +106,13 @@ function initialise() {
 
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_iconH / 3, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Regular"});
-    titleHeading.node.onclick = function () {
-        window.location = "weekView.html";
-    }
+    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 40, window.g_iconH / 4, window.g_iconH / 6, window.g_iconH / 6);
+    homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    homeIcon.node.id = "homeIcon";
+    $("#homeIcon").bind('touchstart click', function () {
+
+        window.location = "dayView.html";
+    });
 //    var headLine = window.g_paper.path('M' + window.g_iconH / 3 + " " + (2 * window.g_iconH / 3) + "L" + (window.g_width - window.g_iconH / 3) + " " + (2 * window.g_iconH / 3));
 
 //    var headLind = window.g_paper.path("M50 50L500 50 ");
@@ -298,6 +302,7 @@ function loadData() {
                 id: g_subjectId
             })
             .always(function (data) {
+                window.g_title = data[0].subject;
                 window.g_projectorTotal = parseInt(data[0].projector);
                 window.g_computerTotal = parseInt(data[0].computer);
                 window.g_lightTotal = parseInt(data[0].light);
