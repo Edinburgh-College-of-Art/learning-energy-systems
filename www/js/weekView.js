@@ -21,22 +21,37 @@ var g_dataChanged = false;
 var g_title = "WEEK";
 var g_total, g_projectorTotal = 3, g_computerTotal = 2, g_heaterTotal = 10, g_lightTotal = 5;
 var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday;
-var g_monT, g_tueT, g_wedT, g_thurT, g_friT;
+var g_monT = 0, g_tueT = 0, g_wedT = 0, g_thurT = 0, g_friT = 0;
 var g_daysYScale = 5;
 var g_studentUID = "1";
 var g_currDate = new Date().toISOString().substring(0, 10);
 var g_currDay = getDayName(new Date().getDay());
-
-console.log(g_currDay, g_currDate);
+if (g_currDay === 'sunday')
+{
+    g_currDate = new Date();
+    g_currDate.setDate(g_currDate.getDate() - 2);
+    g_currDay = getDayName(g_currDate.getDay());
+    g_currDate = g_currDate.toISOString().substring(0, 10);
+}
+else if (g_currDay === 'saturday')
+{
+    g_currDate = new Date();
+    g_currDate.setDate(g_currDate.getDate() - 1);
+    g_currDay = getDayName(g_currDate.getDay());
+    g_currDate = g_currDate.toISOString().substring(0, 10);
+}
 
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
+$(function () {
+    FastClick.attach(document.body);
+});
 window.onload = function () {
+    window.g_studentUID = localStorage.getItem("studentId");
+    console.log(window.g_studentUID);
     loadUpdateData(true);
-//    $.event.special.swipe.durationThreshold = 1000;
     reset();
-
 };
 $(window).bind("resize", function () {
     reset();
@@ -53,43 +68,42 @@ function reset() {
         window.g_paper.remove();
     }
 }
+var g_background;
 function initialise() {
     window.g_width = $(window).width();
     window.g_height = $(window).height();
-
     window.g_headerHeight = window.g_height / 10;
-
     window.g_daysHeight = window.g_height / 10;
     window.g_daysTopMargin = window.g_daysHeight / 5;
     window.g_daysRadius = window.g_daysHeight - 5 * window.g_daysHeight / 7;
     localStorage.setItem("currentDay", window.g_currDate);
     window.g_daysLeftMargin = (window.g_width - (window.g_daysRadius * 5 + (window.g_daysRadius * 4 / 3))) / 5;
     window.g_daysMargin = (window.g_width - window.g_daysLeftMargin * 4 - window.g_daysRadius * 5) / 2;
-//    g_monT = Math.floor(Math.random() * 300);
-//    g_tueT = Math.floor(Math.random() * 300);
-//    g_wedT = Math.floor(Math.random() * 300);
-//    g_thurT = Math.floor(Math.random() * 300);
-//    g_friT = Math.floor(Math.random() * 300);
-
-
-//var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday; 
     window.g_paper = new Raphael('canvas_container');
     window.g_paper.setViewBox(0, 0, window.g_width, window.g_height, true);
     window.g_paper.setSize('100%', '100%');
+    g_background = window.g_paper.image("img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png", 0, 0, window.g_width, window.g_height);
+    g_background.node.id = "myBack";
+//    g_background.attr({href:"img/backgrounds/20.png"});
 
-    var rec = window.g_paper.image("img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png", 0, 0, window.g_width, window.g_height);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_headerHeight / 2, window.g_title);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Regular"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Bold"});
     var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('touchend', function () {
-
+    $("#homeIcon").bind('click', function () {
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
         window.location = "dayView.html";
     });
+    var helpIcon = window.g_paper.image("img/icons/help-icon.png", 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
+    helpIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    helpIcon.node.id = "helpIcon";
+    $("#helpIcon").bind('click', function () {
+        window.location = "editUser.html";
+    });
     var headLine = window.g_paper.path('M' + 10 + " " + window.g_headerHeight + "L" + (window.g_width - 10) + " " + window.g_headerHeight);
-    headLine.attr({"stroke": "#fff"});
-
+    headLine.attr({"stroke": "#fff", "stroke-opacity": .4, "stroke-width": 1});
     drawDays();
     drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
 }
@@ -113,27 +127,34 @@ function drawDays() {
     window.g_thursday = new daySection(thurX, thurY, window.g_daysRadius, window.g_currDay === "thursday", "T", "thursday", window.g_thurT);
     window.g_friday = new daySection(fridX, fridY, window.g_daysRadius, window.g_currDay === "friday", "F", "friday", window.g_friT);
     var headLine = window.g_paper.path('M' + 10 + " " + (window.g_headerHeight + window.g_daysTopMargin * 8) + "L" + (window.g_width - 10) + " " + (window.g_headerHeight + window.g_daysTopMargin * 8));
-    headLine.attr({"stroke": "#fff"});
+    headLine.attr({"stroke": "#fff", "stroke-opacity": .4, "stroke-width": 1});
 }
-
-
-
 function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
     var x = _mx + window.g_daysRadius, y = _my, x1 = _tx - window.g_daysRadius, y1 = _ty, x2 = _wx - window.g_daysRadius, y2 = _wy, x3 = _thx - window.g_daysRadius, y3 = _thy, x4 = _fx - window.g_daysRadius, y4 = _fy;
-    console.log(x, y, x1, y1, x2, y2, x3, y3, x4, y4);
-    var myPath = 'M' + x + " " + y +
-            "L" + x1 + " " + y1 +
-            'M' + (x1 + 2 * window.g_daysRadius) + " " + y1 +
-            "L" + x2 + " " + y2 +
-            'M' + (x2 + 2 * window.g_daysRadius) + " " + y2 +
-            "L" + x3 + " " + y3 +
-            'M' + (x3 + 2 * window.g_daysRadius) + " " + y3 +
-            "L" + x4 + " " + y4;
+    var myPath = "";
+    if (window.g_monT > 20 && window.g_tueT > 20)
+    {
+        myPath += 'M' + x + " " + y +
+                "L" + x1 + " " + y1;
+    }
+    if (window.g_tueT > 20 && window.g_wedT > 20)
+    {
+        myPath += 'M' + (x1 + 2 * window.g_daysRadius) + " " + y1 +
+                "L" + x2 + " " + y2;
+    }
+    if (window.g_wedT > 20 && window.g_thurT > 20)
+    {
+        myPath += 'M' + (x2 + 2 * window.g_daysRadius) + " " + y2 +
+                "L" + x3 + " " + y3;
+    }
+    if (window.g_thurT > 20 && window.g_friT > 20)
+    {
+        myPath += 'M' + (x3 + 2 * window.g_daysRadius) + " " + y3 +
+                "L" + x4 + " " + y4;
+    }
     var headLine = window.g_paper.path(myPath);
     headLine.attr({"stroke": "#fff"});
 }
-
-
 /*This function will draw the consumptions visualisation. 
  * it will get 5 inputs, projection time,
  *  computer use time, heater time, 
@@ -141,40 +162,54 @@ function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
  *  The size of icons will indicate the amount of energy being used.
  *  */
 function drawConsumptions(_p, _l, _c, _h, _t) {
-
-    var p = map_range(_p, 0, 315, 20, 150);
-    var c = map_range(_c, 0, 315, 20, 150);
-    var l = map_range(_l, 0, 315, 20, 150);
-    var h = map_range(_h, 0, 315, 20, 150);
+    var minRange = 70, maxRange = 150;
+    var p = map_range(_p, 0, 315, minRange, maxRange);
+    var c = map_range(_c, 0, 315, minRange, 150);
+    var l = map_range(_l, 0, 315, minRange, 150);
+    var h = map_range(_h, 0, 315, minRange, 150);
+    var pImage = "img/icons/projector-week-Icon.png";
+    var cImage = "img/icons/computer-week-Icon.png";
+    var lImage = "img/icons/lightBulb-week-icon.png";
+    var hImage = "img/icons/heater-week-Icon.png";
     var topStuff = window.g_headerHeight + window.g_daysTopMargin * 8;
     var restOfHeight = window.g_height - topStuff;
     var centY = restOfHeight / 2 + topStuff;
     var circR = window.g_width / 9;
-    var proj = window.g_paper.image("img/icons/projector-week-Icon.png", Math.max(p / 10, window.g_width / 15), window.g_height / 2 - 2 * p / 3, p, p);
+    if (p === minRange)
+    {
+        pImage = "img/icons/projector-icon-0.png";
+    }
+    if (c === minRange) {
+        cImage = "img/icons/computer-icon-0.png";
+    }
+    if (l === minRange) {
+        lImage = "img/icons/light-icon-0.png";
+    }
+    if (h === minRange) {
+        hImage = "img/icons/heater-icon-0.png";
+    }
+    var proj = window.g_paper.image(pImage, Math.max(p / 10, window.g_width / 15), window.g_height / 2 - 2 * p / 3, p, p);
     proj.node.id = "projector";
-    var comp = window.g_paper.image("img/icons/computer-week-Icon.png", window.g_width - Math.max(7 * c / 6, window.g_width / 6), window.g_height / 2 - 2 * c / 3, c, c);
+    var comp = window.g_paper.image(cImage, window.g_width - Math.max(7 * c / 6, window.g_width / 6), window.g_height / 2 - 2 * c / 3, c, c);
     comp.node.id = "computer";
-    var light = window.g_paper.image("img/icons/lightBulb-week-icon.png", Math.max(l / 10, window.g_width / 15), 4 * window.g_height / 5 - l / 2, l, l);
+    var light = window.g_paper.image(lImage, Math.max(l / 10, window.g_width / 15), 4 * window.g_height / 5 - l / 2, l, l);
     light.node.id = "light";
-    var heater = window.g_paper.image("img/icons/heater-week-Icon.png", window.g_width - Math.max(7 * h / 6, window.g_width / 6), 4 * window.g_height / 5 - h / 2, h, h);
+    var heater = window.g_paper.image(hImage, window.g_width - Math.max(7 * h / 6, window.g_width / 6), 4 * window.g_height / 5 - h / 2, h, h);
     heater.node.id = "heater";
     var total = window.g_paper.circle(window.g_width / 2, centY, circR);
     total.node.id = "total";
     total.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 1, "stroke-opacity": 1});
     var titleHeading = window.g_paper.text(window.g_width / 2, centY, _t);
     titleHeading.node.id = "totalHead";
-    titleHeading.attr({'text-anchor': "middle", "font-size": "48px", "fill": "#000", "font-family": "TTRounds-Regular"}).node.setAttribute("class", "donthighlight");
+    titleHeading.attr({'text-anchor': "middle", "font-size": "40px", "fill": "#000", "font-family": "TTRounds-Regular"}).node.setAttribute("class", "donthighlight");
     ;
 }
-
-
 //A class that keeps the attributes for each day. It has onclick event.
 function daySection(_x, _y, _r, _status, _title, _id, _total) {
     this.x = _x;
     this.y = _y;
     this.r = _r;
     var st = window.g_paper.set();
-//    this.y += (150 - _total) / window.g_daysYScale;
     this.dayBtn = window.g_paper.circle(this.x, this.y, this.r);
     this.dayBtn.node.setAttribute("class", "pointerCursor");
     this.dayBtn.node.status = _status;
@@ -182,24 +217,22 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     this.dayBtn.node.id = _id;
     this.dayBtn.node.parent = _id;
 
-    $("#" + _id).bind('touchend', dayClicked);
+    $("#" + _id).bind('click', dayClicked);
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     titleHeading.node.parent = _id;
     titleHeading.node.id = _id + "_title";
-//    $("#" + _id + "_title").bind('click', dayClicked);
+    $("#" + _id + "_title").bind('click', dayClicked);
     if (!_status) {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": 1});
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#333", "fill-opacity": .1, "stroke-opacity": .6});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
     }
     else {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 0.7, "stroke-opacity": 1});
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 0.3, "stroke-opacity": .1});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
     }
     titleHeading.node.setAttribute("class", "donthighlight pointerCursor");
     $(this.dayBtn.node).removeAttr("style");
 }
-
-
 
 var g_clickFlag = false;
 function dayClicked() {
@@ -207,41 +240,40 @@ function dayClicked() {
         window.g_clickFlag = true;
         setTimeout(function () {
             window.g_clickFlag = false;
-        }, 1000);
+        }, 100);
         if (this.parent === window.g_currDay) {
             localStorage.setItem("currentDate", window.g_currDate);
             localStorage.setItem("currentDay", window.g_currDay);
             window.location = "dayView.html";
         } else {
             var me = $("#" + this.parent)[0];
-
             me.status = !me.status;//update status
             //updateing background color of the selected one. 
             var other = $("#" + window.g_currDay)[0];
             other.status = false;
             other.setAttribute("fill", "#333");
-            other.setAttribute("stroke-opacity", 1);
+            other.setAttribute("stroke-opacity", .6);
             other.setAttribute("fill-opacity", 0.1);
             window.g_currDate = calculateDate(me.id);
             window.g_currDay = this.parent;
             if (!me.status) {
                 me.setAttribute("fill", "#333");
-                me.setAttribute("stroke-opacity", 1);
+                me.setAttribute("stroke-opacity", .6);
                 me.setAttribute("fill-opacity", 0.1);
             }
             else {
-                me.setAttribute("fill-opacity", 0.7);
+                me.setAttribute("fill-opacity", 0.3);
                 me.setAttribute("fill", "#fff");
-                me.setAttribute("stroke-opacity", 1);
+                me.setAttribute("stroke-opacity", .1);
             }
             localStorage.setItem("currentDate", window.g_currDate);
             localStorage.setItem("currentDay", window.g_currDay);
             loadUpdateData(false);
+            $("#myBack").attr("href", "img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png");
+
         }
     }
-
     return false;
-
 }
 
 function calculateDate(_day) {
@@ -266,7 +298,6 @@ function calculateDate(_day) {
     return otherDay.toISOString().substring(0, 10);
 }
 
-
 daySection.prototype.getX = function () {
     return this.x;
 };
@@ -274,9 +305,8 @@ daySection.prototype.getY = function () {
     return this.y;
 };
 
-
-
 function loadUpdateData(_loadOrUpdate) {
+    var minSize = 70;
     var url = "http://www.learningenergy.eca.ed.ac.uk/appGetWeekAll.php";
     $.get(url,
             {
@@ -284,6 +314,7 @@ function loadUpdateData(_loadOrUpdate) {
                 date: window.g_currDate
             })
             .always(function (data) {
+                window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
                 console.log(data);
                 window.g_projectorTotal = parseInt(data.day[0].projector !== null ? data.day[0].projector : 0),
                         window.g_computerTotal = parseInt(data.day[0].computer !== null ? data.day[0].computer : 0),
@@ -315,14 +346,15 @@ function loadUpdateData(_loadOrUpdate) {
                 }
                 /*
                  * TODO: Check with smaller heights and make sure the range for y value is always right!
+                 * FIX ME: Changing days doesn't refresh the background. 
                  */
                 var h = $(window).height() / 2 - 40;
 //                
-                window.g_monT = map_range(window.g_monT, 0, 1260, 20, h);
-                window.g_tueT = map_range(window.g_tueT, 0, 1260, 20, h);
-                window.g_wedT = map_range(window.g_wedT, 0, 1260, 20, h);
-                window.g_thurT = map_range(window.g_thurT, 0, 1260, 20, h);
-                window.g_friT = map_range(window.g_friT, 0, 1260, 20, h);
+                window.g_monT = map_range(window.g_monT, 0, 1260, minSize, h);
+                window.g_tueT = map_range(window.g_tueT, 0, 1260, minSize, h);
+                window.g_wedT = map_range(window.g_wedT, 0, 1260, minSize, h);
+                window.g_thurT = map_range(window.g_thurT, 0, 1260, minSize, h);
+                window.g_friT = map_range(window.g_friT, 0, 1260, minSize, h);
                 if (_loadOrUpdate)
                     initialise();
                 else {
@@ -335,7 +367,6 @@ function loadUpdateData(_loadOrUpdate) {
                     drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
                 }
             });
-
 }
 
 
