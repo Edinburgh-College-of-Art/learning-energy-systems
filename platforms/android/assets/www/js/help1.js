@@ -32,10 +32,14 @@ console.log(g_currDay, g_currDate);
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
+$(function () {
+    FastClick.attach(document.body);
+});
 window.onload = function () {
+    window.g_studentUID = localStorage.getItem("studentId");
     loadUpdateData(true);
 //    $.event.special.swipe.durationThreshold = 1000;
-    reset();
+//    reset();
 
 };
 $(window).bind("resize", function () {
@@ -83,7 +87,7 @@ function initialise() {
     var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('touchend', function () {
+    $("#homeIcon").bind('click', function () {
 
         window.location = "dayView.html";
     });
@@ -181,18 +185,15 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     this.dayBtn.node.title = _title;
     this.dayBtn.node.id = _id;
     this.dayBtn.node.parent = _id;
-
-    $("#" + _id).bind('touchend', dayClicked);
     var titleHeading = window.g_paper.text(this.x, this.y, this.dayBtn.node.title);
     titleHeading.node.parent = _id;
     titleHeading.node.id = _id + "_title";
-//    $("#" + _id + "_title").bind('click', dayClicked);
     if (!_status) {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#333", "fill-opacity": .1, "stroke-opacity": 1});
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#333", "fill-opacity": .1, "stroke-opacity": .6});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
     }
     else {
-        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 0.7, "stroke-opacity": 1});
+        this.dayBtn.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 0.3, "stroke-opacity": .1});
         titleHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
     }
     titleHeading.node.setAttribute("class", "donthighlight pointerCursor");
@@ -207,32 +208,31 @@ function dayClicked() {
         window.g_clickFlag = true;
         setTimeout(function () {
             window.g_clickFlag = false;
-        }, 1000);
+        }, 100);
         if (this.parent === window.g_currDay) {
             localStorage.setItem("currentDate", window.g_currDate);
             localStorage.setItem("currentDay", window.g_currDay);
             window.location = "dayView.html";
         } else {
             var me = $("#" + this.parent)[0];
-
             me.status = !me.status;//update status
             //updateing background color of the selected one. 
             var other = $("#" + window.g_currDay)[0];
             other.status = false;
             other.setAttribute("fill", "#333");
-            other.setAttribute("stroke-opacity", 1);
+            other.setAttribute("stroke-opacity", .6);
             other.setAttribute("fill-opacity", 0.1);
             window.g_currDate = calculateDate(me.id);
             window.g_currDay = this.parent;
             if (!me.status) {
                 me.setAttribute("fill", "#333");
-                me.setAttribute("stroke-opacity", 1);
+                me.setAttribute("stroke-opacity", .6);
                 me.setAttribute("fill-opacity", 0.1);
             }
             else {
-                me.setAttribute("fill-opacity", 0.7);
+                me.setAttribute("fill-opacity", 0.3);
                 me.setAttribute("fill", "#fff");
-                me.setAttribute("stroke-opacity", 1);
+                me.setAttribute("stroke-opacity", .1);
             }
             localStorage.setItem("currentDate", window.g_currDate);
             localStorage.setItem("currentDay", window.g_currDay);
@@ -277,47 +277,13 @@ daySection.prototype.getY = function () {
 
 
 function loadUpdateData(_loadOrUpdate) {
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appGetWeekAll.php";
-    $.get(url,
-            {
-                id: window.g_studentUID,
-                date: window.g_currDate
-            })
-            .always(function (data) {
-                console.log(data);
-                window.g_projectorTotal = parseInt(data.day[0].projector !== null ? data.day[0].projector : 0),
-                        window.g_computerTotal = parseInt(data.day[0].computer !== null ? data.day[0].computer : 0),
-                        window.g_heaterTotal = parseInt(data.day[0].heater !== null ? data.day[0].heater : 0),
-                        window.g_lightTotal = parseInt(data.day[0].light !== null ? data.day[0].light : 0);
-                window.g_total = ((window.g_projectorTotal + window.g_computerTotal + window.g_heaterTotal + window.g_lightTotal) / 60).toFixed(1);
+                window.g_projectorTotal = 20,
+                        window.g_computerTotal = 10,
+                        window.g_heaterTotal = 40,
+                        window.g_lightTotal = 68;
+                window.g_total = 8;
                 window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
-                for (var i = 0; i < data.week.length; i++) {
-                    var d = new Date(data.week[i].date);
-                    var n = d.getDay();
-                    switch (n) {
-                        case 1:
-                            window.g_monT = data.week[i].daySum;
-                            break;
-                        case 2:
-                            window.g_tueT = data.week[i].daySum;
-                            break;
-                        case 3:
-                            window.g_wedT = data.week[i].daySum;
-                            break;
-                        case 4:
-                            window.g_thurT = data.week[i].daySum;
-                            break;
-                        case 5:
-                            window.g_friT = data.week[i].daySum;
-                            break;
-
-                    }
-                }
-                /*
-                 * TODO: Check with smaller heights and make sure the range for y value is always right!
-                 */
                 var h = $(window).height() / 2 - 40;
-//                
                 window.g_monT = map_range(window.g_monT, 0, 1260, 20, h);
                 window.g_tueT = map_range(window.g_tueT, 0, 1260, 20, h);
                 window.g_wedT = map_range(window.g_wedT, 0, 1260, 20, h);
@@ -334,8 +300,6 @@ function loadUpdateData(_loadOrUpdate) {
                     $("#totalHead").remove();
                     drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
                 }
-            });
-
 }
 
 
