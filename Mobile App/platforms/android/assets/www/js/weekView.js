@@ -26,8 +26,6 @@ var g_daysYScale = 5;
 var g_studentUID = "1";
 var g_currDate = new Date().toISOString().substring(0, 10);
 var g_currDay = getDayName(new Date().getDay());
-
-
 if (g_currDay === 'sunday')
 {
     g_currDate = new Date();
@@ -89,11 +87,13 @@ function initialise() {
 //    g_background.attr({href:"img/backgrounds/20.png"});
 
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_headerHeight / 2, window.g_title);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Regular"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Bold"});
     var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
     $("#homeIcon").bind('click', function () {
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
         window.location = "dayView.html";
     });
     var helpIcon = window.g_paper.image("img/icons/help-icon.png", 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
@@ -162,11 +162,11 @@ function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
  *  The size of icons will indicate the amount of energy being used.
  *  */
 function drawConsumptions(_p, _l, _c, _h, _t) {
-    var minRange = 20, maxRange = 150;
+    var minRange = 70, maxRange = 150;
     var p = map_range(_p, 0, 315, minRange, maxRange);
-    var c = map_range(_c, 0, 315, 20, 150);
-    var l = map_range(_l, 0, 315, 20, 150);
-    var h = map_range(_h, 0, 315, 20, 150);
+    var c = map_range(_c, 0, 315, minRange, 150);
+    var l = map_range(_l, 0, 315, minRange, 150);
+    var h = map_range(_h, 0, 315, minRange, 150);
     var pImage = "img/icons/projector-week-Icon.png";
     var cImage = "img/icons/computer-week-Icon.png";
     var lImage = "img/icons/lightBulb-week-icon.png";
@@ -178,22 +178,16 @@ function drawConsumptions(_p, _l, _c, _h, _t) {
     if (p === minRange)
     {
         pImage = "img/icons/projector-icon-0.png";
-        p+=30;
     }
-    if (c === minRange){
+    if (c === minRange) {
         cImage = "img/icons/computer-icon-0.png";
-        c+=30;
     }
-    if (l === minRange){
+    if (l === minRange) {
         lImage = "img/icons/light-icon-0.png";
-        l+=30;
     }
-    if (h === minRange){
+    if (h === minRange) {
         hImage = "img/icons/heater-icon-0.png";
-        h+=30;
     }
-
-
     var proj = window.g_paper.image(pImage, Math.max(p / 10, window.g_width / 15), window.g_height / 2 - 2 * p / 3, p, p);
     proj.node.id = "projector";
     var comp = window.g_paper.image(cImage, window.g_width - Math.max(7 * c / 6, window.g_width / 6), window.g_height / 2 - 2 * c / 3, c, c);
@@ -216,7 +210,6 @@ function daySection(_x, _y, _r, _status, _title, _id, _total) {
     this.y = _y;
     this.r = _r;
     var st = window.g_paper.set();
-//    this.y += (150 - _total) / window.g_daysYScale;
     this.dayBtn = window.g_paper.circle(this.x, this.y, this.r);
     this.dayBtn.node.setAttribute("class", "pointerCursor");
     this.dayBtn.node.status = _status;
@@ -248,7 +241,6 @@ function dayClicked() {
         setTimeout(function () {
             window.g_clickFlag = false;
         }, 100);
-        console.log(this.parent, window.g_currDay);
         if (this.parent === window.g_currDay) {
             localStorage.setItem("currentDate", window.g_currDate);
             localStorage.setItem("currentDay", window.g_currDay);
@@ -314,6 +306,7 @@ daySection.prototype.getY = function () {
 };
 
 function loadUpdateData(_loadOrUpdate) {
+    var minSize = 70;
     var url = "http://www.learningenergy.eca.ed.ac.uk/appGetWeekAll.php";
     $.get(url,
             {
@@ -357,11 +350,11 @@ function loadUpdateData(_loadOrUpdate) {
                  */
                 var h = $(window).height() / 2 - 40;
 //                
-                window.g_monT = map_range(window.g_monT, 0, 1260, 20, h);
-                window.g_tueT = map_range(window.g_tueT, 0, 1260, 20, h);
-                window.g_wedT = map_range(window.g_wedT, 0, 1260, 20, h);
-                window.g_thurT = map_range(window.g_thurT, 0, 1260, 20, h);
-                window.g_friT = map_range(window.g_friT, 0, 1260, 20, h);
+                window.g_monT = map_range(window.g_monT, 0, 1260, minSize, h);
+                window.g_tueT = map_range(window.g_tueT, 0, 1260, minSize, h);
+                window.g_wedT = map_range(window.g_wedT, 0, 1260, minSize, h);
+                window.g_thurT = map_range(window.g_thurT, 0, 1260, minSize, h);
+                window.g_friT = map_range(window.g_friT, 0, 1260, minSize, h);
                 if (_loadOrUpdate)
                     initialise();
                 else {

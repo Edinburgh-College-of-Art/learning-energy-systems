@@ -21,14 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 @font-face {
-    font-family: 'TTRounds-Bold';
-    src: url('TTRounds-Bold.eot?#iefix') format('embedded-opentype'),  url('TTRounds-Bold.otf')  format('opentype'),
-        url('TTRounds-Bold.woff') format('woff'), url('TTRounds-Bold.ttf')  format('truetype'), url('TTRounds-Bold.svg#TTRounds--Bold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'TTRounds-Regular';
     src: url('TTRounds-Regular.eot?#iefix') format('embedded-opentype'),  url('TTRounds-Regular.otf')  format('opentype'),
         url('TTRounds-Regular.woff') format('woff'), url('TTRounds-Regular.ttf')  format('truetype'), url('TTRounds-Regular.svg#TTRounds-Regular') format('svg');
@@ -295,7 +287,6 @@ hr{
     float: left;
     margin-top: 10px;;
     padding-left: 10px;
-    cursor: pointer;
     
 }
 #rightArr{
@@ -304,7 +295,6 @@ hr{
     float: right;
     margin-top: 10px;;
     padding-right: 10px;
-    cursor: pointer;
     
 }
 
@@ -329,56 +319,4 @@ hr{
 }
 #help img{
     height: 50px;
-}
-
-#helpIcon{
-    height: 50px;
-    position: absolute;
-    top:10px;
-    left: 15px;
-    cursor: pointer;
-}
-
-
-#homeIcon{
-    height: 50px;
-    position: absolute;
-    top:10px;
-    right: 15px;
-    cursor: pointer;
-}
-
-#editingSubjects .input-group img{
-    width: 40px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    
-}
-@media (max-width:2000px){
-#editingSubjects .input-group input{
-    padding: 10px;
-    width: 80%;
-}
-}
-@media (max-width:500px){
-#editingSubjects .input-group input{
-    padding: 10px;
-    width: 60%;
-}
-}
-
-#updateSubjects{
-    font-family: "TTRounds-Bold";
-    background-color: transparent;
-    border-color: white;
-    border-style: solid;
-    padding: 5px;
-    color: white;
-    
-}
-
-#updateSubjects:hover{
-    background-color: white;
-    color: black;
 }
