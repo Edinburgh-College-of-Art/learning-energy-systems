@@ -29,9 +29,7 @@ var g_subjectId = localStorage.getItem("subjectView");
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
-$(function() {
-    FastClick.attach(document.body);
-});
+
 window.onload = function () {
     window.StatusBar && window.StatusBar.hide();
     $(".ui-loader").hide();
@@ -85,7 +83,7 @@ function initialise() {
 
 
 
-    var txt = window.g_paper.text(window.g_iconW + window.g_leftMargin * 2, 4.5 * window.g_iconH / 5, "When was the energy source switched on?");
+    var txt = window.g_paper.text(window.g_iconW + window.g_leftMargin, 4.5 * window.g_iconH / 5, "When was the energy source switched on?");
     txt.attr({'text-anchor': "start", "font-size": "16px", "font-family": "TTRounds-Regular"});
     var t = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, 4.5 * window.g_iconH / 5, "Total");
     t.attr({'text-anchor': "star", "font-size": "14px", "font-family": "TTRounds-Regular"});
@@ -108,10 +106,11 @@ function initialise() {
 
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_iconH / 3, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Regular"});
-    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 35, window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
+    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 40, window.g_iconH / 4, window.g_iconH / 6, window.g_iconH / 6);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('click', function () {
+    $("#homeIcon").bind('touchstart click', function () {
+
         window.location = "dayView.html";
     });
 //    var headLine = window.g_paper.path('M' + window.g_iconH / 3 + " " + (2 * window.g_iconH / 3) + "L" + (window.g_width - window.g_iconH / 3) + " " + (2 * window.g_iconH / 3));
@@ -152,10 +151,10 @@ function Slider(_title, _icon, _iconW, _iconH, _x, _y, _min, _max, _interval, _v
         s = window.g_heaterTotalString;
     }
     this.total.attr({'text-anchor': "middle", "font-size": "18px", "font-family": "TTRounds-Regular"});
-    this.iconImage = window.g_paper.image(this.iconSrc, window.g_leftMargin + this.startX, this.startY, this.iconW, this.iconW);
+    this.iconImage = window.g_paper.image(this.iconSrc, window.g_leftMargin  + this.startX, this.startY, this.iconW, this.iconW);
     var sliderSteps = (this.max - this.min) / this.interval;
     var stepsWidth = window.g_sliderW / sliderSteps;
-    var startSliderX = this.startX + window.g_iconW + window.g_leftMargin * 2;
+    var startSliderX = this.startX + window.g_iconW + window.g_leftMargin*2;
     var status = false;
     console.log(s);
     for (var i = 0; i < sliderSteps; i++) {
@@ -173,7 +172,7 @@ function Slider(_title, _icon, _iconW, _iconH, _x, _y, _min, _max, _interval, _v
         }
         startSliderX += stepsWidth;
     }
-    var tlx = (this.startX + this.iconW + window.g_leftMargin * 2);
+    var tlx = (this.startX + this.iconW + window.g_leftMargin*2);
     var trx = startSliderX;
     var ty = (this.startY + g_sliderTopMargin);
     var by = (this.startY + g_sliderTopMargin + window.g_sliderH);
@@ -220,7 +219,7 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
     this.btnId = _id;
     this.sliderBtn = window.g_paper.rect(this.x, this.y, this.w, this.h);
     var color = "#f00";
-
+    
     this.sliderBtn.node.id = _id;
     this.sliderBtn.node.parent = _parent;
     this.sliderBtn.node.status = this.status;
@@ -230,23 +229,23 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
     switch (_parent) {
         case "light":
             window.g_lightButtons[_index] = this;
-            color = window.g_colors[window.g_lightTotal / 5];
+            color=window.g_colors[window.g_lightTotal/5];
             break;
         case "heater":
             window.g_heaterButtons[_index] = this;
-            color = window.g_colors[window.g_heaterTotal / 5];
+            color=window.g_colors[window.g_heaterTotal/5];
             break;
         case "projector":
             window.g_projButtons[_index] = this;
-            color = window.g_colors[window.g_projectorTotal / 5];
+            color = window.g_colors[window.g_projectorTotal/5];
             break;
         case "computer":
             window.g_compButtons[_index] = this;
-            color = window.g_colors[window.g_computerTotal / 5];
+            color=window.g_colors[window.g_computerTotal/5];
             break;
     }
     this.sliderBtn.attr({stroke: "#000", fill: this.status ? color : "#fff", 'stroke-dasharray': "--"});
-    $("#" + _id).bind('click', sliderOnClick);
+    $("#"+_id).bind('touchstart', sliderOnClick);
 //    
 //            
 //    this.sliderBtn.node.onclick = function () {
@@ -274,16 +273,11 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
 ////
 ////        updateDB();
 //    };
-
+    
 }
-var g_clickFlag = false;
-function sliderOnClick() {
-    if (!window.g_clickFlag) {
-        window.g_clickFlag = true;
-        setTimeout(function () {
-            window.g_clickFlag = false;
-        }, 100);
-        this.status = !this.status;
+
+function sliderOnClick(){
+    this.status = !this.status;
 //        this.setAttribute("fill", this.status ? "#f00" : "#fff");
         var val = this.status ? 5 : -5;
         switch (this.parent) {
@@ -306,14 +300,12 @@ function sliderOnClick() {
         }
 
         updateDB();
-    }
-    return false;
 }
 
 function updateSliderColor(_which, _tot) {
-
+    
     var color = window.g_colors[_tot / 5];
-    console.log(_which[0].sliderBtn, color, _which[0].sliderBtn.node.status);
+    console.log(_which[0].sliderBtn,color,_which[0].sliderBtn.node.status );
     for (var i = 0; i < 9; i++) {
 //        _which[i].sliderBtn.attr({stroke: "#000", fill: this.status ? "#f00" : "#fff"
         _which[i].sliderBtn.node.setAttribute("fill", _which[i].sliderBtn.node.status ? color : "#fff");
@@ -373,6 +365,8 @@ function updateDB() {
                 console.log(data);
             });
 }
+
+
 jQuery.each(["put", "delete"], function (i, method) {
     jQuery[ method ] = function (url, data, callback, type) {
         if (jQuery.isFunction(data)) {
@@ -390,9 +384,11 @@ jQuery.each(["put", "delete"], function (i, method) {
         });
     };
 });
+
 String.prototype.replaceAt = function (index, character) {
     return this.substr(0, index) + character + this.substr(index + character.length);
 };
+
 //drop function `LastMonday`;
 //CREATE FUNCTION `LastMonday`() RETURNS DATETIME RETURN date(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)) ;
 

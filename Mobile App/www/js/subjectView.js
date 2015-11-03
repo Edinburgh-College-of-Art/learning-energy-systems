@@ -29,9 +29,7 @@ var g_subjectId = localStorage.getItem("subjectView");
 $(document).bind('mobileinit', function () {
     $.mobile.loadingMessage = false;
 });
-$(function() {
-    FastClick.attach(document.body);
-});
+
 window.onload = function () {
     window.StatusBar && window.StatusBar.hide();
     $(".ui-loader").hide();
@@ -71,27 +69,54 @@ function initialise() {
     window.g_numbersW = g_width / 10;
     window.g_sliderH = window.g_iconW / 2;
     window.g_sliderTopMargin = g_iconW / 4;
+
+
+
+
     window.g_paper = new Raphael('canvas_container');
     window.g_paper.setViewBox(0, 0, window.g_width, window.g_height, true);
     window.g_paper.setSize(window.g_width, window.g_height);
+
     window.g_paper.image("img/backgrounds/Detailview_body.png", 0, 0, window.g_width, window.g_height);
-    var txt = window.g_paper.text(window.g_iconW + window.g_leftMargin * 2, 4.5 * window.g_iconH / 5, "When was the energy source switched on?");
+
+
+
+
+
+    var txt = window.g_paper.text(window.g_iconW + window.g_leftMargin, 4.5 * window.g_iconH / 5, "When was the energy source switched on?");
     txt.attr({'text-anchor': "start", "font-size": "16px", "font-family": "TTRounds-Regular"});
     var t = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, 4.5 * window.g_iconH / 5, "Total");
     t.attr({'text-anchor': "star", "font-size": "14px", "font-family": "TTRounds-Regular"});
+
+
+//    g_paper.image("img/icons/lightBulb-icon.png",100,100,80,80);
+//    var circle = g_paper.circle(100, 100, 80);
+//    window.g_slider1 = new Slider(0, 100, 100, 100, "img/icons/lightBulb-icon.png", 40, 40, 0, 0);
     window.g_lightSlider = new Slider("light", "img/icons/lightBulb-subject-icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH, 0, 45, 5, 0);
     window.g_projectorSlider = new Slider("projector", "img/icons/projector-subject-Icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 2, 0, 45, 5, 0);
     window.g_computerSlider = new Slider("computer", "img/icons/computer-subject-icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 3, 0, 45, 5, 0);
     window.g_heaterSlider = new Slider("heater", "img/icons/heater-subject-Icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 4, 0, 45, 5, 0);
+//    var circle = window.g_paper.rect(0, 0, window.g_width,window.g_height);
+//    circle.attr({
+//      "fill": "200-#f00:10-#100:400",
+//      "fill-opacity": 0.1,
+//      "opacity": 0.1
+//    });
     window.g_paper.image("img/backgrounds/Detailview_head.png", 0, 0, window.g_width, 2 * window.g_iconH / 3);
+
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_iconH / 3, window.g_title);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Bold"});
-    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 35, window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
+    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Regular"});
+    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 40, window.g_iconH / 4, window.g_iconH / 6, window.g_iconH / 6);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
-    $("#homeIcon").bind('click', function () {
+    $("#homeIcon").bind('touchend', function () {
         window.location = "dayView.html";
     });
+//    var headLine = window.g_paper.path('M' + window.g_iconH / 3 + " " + (2 * window.g_iconH / 3) + "L" + (window.g_width - window.g_iconH / 3) + " " + (2 * window.g_iconH / 3));
+
+//    var headLind = window.g_paper.path("M50 50L500 50 ");
+
+//    headLine.attr({stroke: "#000"});
 }
 
 
@@ -219,7 +244,7 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
             break;
     }
     this.sliderBtn.attr({stroke: "#000", fill: this.status ? color : "#fff", 'stroke-dasharray': "--"});
-    $("#" + _id).bind('click', sliderOnClick);
+    $("#" + _id).bind('touchend', sliderOnClick);
 //    
 //            
 //    this.sliderBtn.node.onclick = function () {
@@ -255,7 +280,7 @@ function sliderOnClick() {
         window.g_clickFlag = true;
         setTimeout(function () {
             window.g_clickFlag = false;
-        }, 100);
+        }, 1000);
         this.status = !this.status;
 //        this.setAttribute("fill", this.status ? "#f00" : "#fff");
         var val = this.status ? 5 : -5;
