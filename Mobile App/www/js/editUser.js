@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,11 @@ window.onload = function () {
      $("#userName").val(localStorage.getItem("userName"));
      $("#schoolName").val(localStorage.getItem("schoolName"));
      $("#year").val(localStorage.getItem("year"));
-//    $("#getStarted").bind('click', onNextClick);
+   $("#footer").bind('click', onNextClick);
+   $("#updateUser").bind("click",function(){
+     if(validateUserInput())
+       updateUser();
+   });
 };
 
 
@@ -35,33 +39,38 @@ function validateUserInput() {
 
 
 function onNextClick() {
-    console.log("clicked!");
-    if (validateUserInput())
-        addNewUser();
-
-}
+  window.location="help1.html";
+    }
 
 //http://www.learningenergy.eca.ed.ac.uk/appAddNewUser.php?username=hadi&school=porty&year=1980
-function addNewUser() {
-    /*var url = "http://www.learningenergy.eca.ed.ac.uk/appAddNewUser.php"
+function updateUser() {
+    var url = "http://www.learningenergy.eca.ed.ac.uk/appUpdateUser.php"
     var uName = $("#userName").val();
     var schName = $("#schoolName").val();
     var year = $("#year").val();
-    var uniqueN = uName + "-" + year + "_" + guid();
+    $("#progImg").show();
+    var id = localStorage.getItem("studentId");
+    console.log(id);
     var dataToBeSent = {
         username: uName,
         school: schName,
-        year: year
+        year: year,
+        id:id
     };
     $.post(url, dataToBeSent)
             .success(function (data) {
-                var studentID = parseInt(data);
-                localStorage.setItem("studentId", studentID);
-                localStorage.setItem("usrSigned", true);
-                window.location = "help1.html";
+              localStorage.setItem("userName",uName);
+              localStorage.setItem("schoolName",schName);
+              localStorage.setItem("year",year);
+              $("#progImg").hide("slow");
             }
-            ).always(function (data){console.log(data);});
-    //window.location="help.html";*/
+            ).always(function (data){
+              localStorage.setItem("userName",uName);
+              localStorage.setItem("schoolName",schName);
+              localStorage.setItem("year",year);
+              $("#progImg").hide("slow");
+            });
+    //window.location="help.html";
 }
 
 

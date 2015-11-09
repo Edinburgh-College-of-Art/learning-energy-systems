@@ -27,10 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 $.mobile.loadingMessage = false;
                 $(".ui-loader").hide();
             })
-        </script> 
-        <link rel="stylesheet" href="css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <script type="text/javascript" src="js/bootstrap.js"></script>
+        </script>
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="font-awesome/font/raphael/raphael-min.js"></script>
         <script type="text/javascript" src="js/editUser.js"></script>
@@ -38,34 +35,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </head>
     <body>
         <div class="container-fluid signupBody" >
-            <h1 class="text-center">MY ENERGY DIARY</h1>
+          <div class="container center-block" >
+            <h1 class="text-center">INFO</h1>
             <hr>
             <!--TODO
             Add validation for only allow text and not special characters.
-            Add progress page when adding new user. 
+            Add progress page when adding new user.
             -->
             <div class="inputs">
-                <div class="input-group">
-                    <input type="text" id="userName" class="form-control" placeholder="Name">
-                </div>
-                <div class="input-group">
-                    <input type="text" id="schoolName" class="form-control" placeholder="School">
-                </div>
-                <div class="input-group">
-                    <input title="Please add year in four digits like 2000" id="year" type="text" class="form-control"  placeholder="Year" pattern="[1-2][0-9]{3}">
-                </div>
-                <div class="row"><button id="updateUser" type="button">Update details</button></div>
-            </div>
-            <hr>
-            <div id="appInfo" >
-                <h1>Energy audit app</h1>
-                <p>
-                    This application have been developed as part of a collaboration between University of Edinburgh and Edinburgh council.
-                </p>
-            </div>
-            <div id="help" >To access help click here
-            <a href="help1.html"><img src="img/icons/help-icon.png"></a></div>
+              <p class="userInfoP">Edit User Info</p>
 
+                <div class="input-group">
+                    <input type="text" id="userName" class="form-control userInfoInput" placeholder="Name">
+                </div>
+                <div class="input-group">
+                    <input type="text" id="schoolName" class="form-control userInfoInput" placeholder="School">
+                </div>
+                <div class="input-group">
+                    <input title="Please add year in four digits like 2000" id="year" type="text" class="userInfoInput form-control"  placeholder="Year" pattern="[1-2][0-9]{3}">
+                </div>
+
+            </div>
+            <div class="row"><button id="updateUser" class="simpleButton" type="button">Update User Data</button></div>
+            <hr/>
+
+            <div id="appInfo" >
+                <h1>Click below to view the manual</h1>
+              </div>
+            <div id="footer">
+              <p class="infoText">Get Started</p>
+              <img src="img/icons/rightArrow.png">
+            </div>
         </div>
+      </div>
     </body>
 </html>
