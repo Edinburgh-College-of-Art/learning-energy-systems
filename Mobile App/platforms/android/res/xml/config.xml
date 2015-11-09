@@ -5,12 +5,15 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="YoikScreenOrientation">
+        <param name="android-package" value="net.yoik.cordova.plugins.screenorientation.YoikScreenOrientation" />
+    </feature>
     <name>energy_diary</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Learning Energy Systems Project description. University of Edinburgh
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="h.mehrpouya@ed.ac.uk" href="http://hadi.link">
+        Learning Energy Systems Project. University of Edinburgh
     </author>
     <content src="index.html" />
     <access origin="*" />

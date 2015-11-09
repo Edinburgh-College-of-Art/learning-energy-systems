@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -220,8 +220,8 @@ function SliderSection(_x, _y, _w, _h, _status, _id, _parent, _index) {
     }
     this.sliderBtn.attr({stroke: "#000", fill: this.status ? color : "#fff", 'stroke-dasharray': "--"});
     $("#" + _id).bind('click', sliderOnClick);
-//    
-//            
+//
+//
 //    this.sliderBtn.node.onclick = function () {
 ////        this.status = !this.status;
 //////        this.setAttribute("fill", this.status ? "#f00" : "#fff");
@@ -368,4 +368,3 @@ String.prototype.replaceAt = function (index, character) {
 };
 //drop function `LastMonday`;
 //CREATE FUNCTION `LastMonday`() RETURNS DATETIME RETURN date(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)) ;
-
