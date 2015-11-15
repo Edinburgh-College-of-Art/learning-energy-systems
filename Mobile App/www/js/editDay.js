@@ -139,8 +139,7 @@ function okClicked() {
   };
   $.post(url, dataToBeSent)
   .always(function (data) {
-    console.log(data);
-    // window.location = "dayView.html";
+    window.location = "dayView.html";
   }
 );
 }
