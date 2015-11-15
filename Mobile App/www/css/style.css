@@ -263,21 +263,21 @@ hr{
     max-width: 60%;
     float: left;
     padding: 15px 10px 10px 20px;
-    line-height: 30px;
+    line-height: 25px;
   }
   #leftArr {
-    height: 80%;
+    height: 70px;
     position: relative;
     float: left;
     margin-top: 10px;;
     padding-left: 10px;
   }
   #rightArr{
-    height: 80px;
+    height: 70px;
     position: relative;
     float: right;
-    margin-top: 10px;;
-    padding-right: 10px;
+    margin-top: 15px;;
+    padding-right: 15px;
   }
   #updateUser{
     float: center;
@@ -328,6 +328,7 @@ hr{
   }
   .subjectsEdit input{
     padding:20px;
+    font-size:24px;
     width:80%;
   }
 .simpleButton{
