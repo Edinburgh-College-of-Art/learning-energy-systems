@@ -95,14 +95,19 @@ function loadSubjects() {
     });
   }
   function subjectDeleteClicked() {
+    /*
+    TODO:
+    Add progress to all updates, something the user will understands what's happening.
+    */
+    var parent = $(this).attr("parent");
     var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
     var dataToBeSent = {
       update: 'delete',
-      id: this.parent
+      id: parent
     };
     $.post(url, dataToBeSent)
     .success(function (data) {
-      window.location = "dayView.html";
+        window.location = "editDay.html";
     }
   );
 }
