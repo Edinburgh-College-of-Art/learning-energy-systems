@@ -38,7 +38,11 @@ $(function () {
         event.stopPropagation();
     });
     $("#addSubject").bind('click', function () {
-        if (!window.g_adding) {
+      /*
+      TODO:
+      Add pop up window when the user tries to add more than 7 subjects so they know the maximum is 7
+      */
+        if ((!window.g_adding) && g_numberOfSubjects<7) {
             window.g_adding = true;
             var r = window.g_heightUnit / 3;
             var w = window.g_width - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
@@ -133,7 +137,7 @@ function initialise() {
     helpIcon.node.setAttribute("class", "donthighlight pointerCursor");
     helpIcon.node.id = "helpIcon";
     $("#helpIcon").bind('click', function () {
-      if(g_hasSubjects){
+      if(g_numberOfSubjects>0){
         window.location = "editDay.html";}
     });
 //    homeIcon.node.parent = _id;
@@ -150,7 +154,7 @@ function detectPortrait(mainDiv) {
     }
 }
 var g_lastHeight;
-var g_hasSubjects;
+var g_numberOfSubjects=0;
 function loadSubjects() {
     var url = "http://www.learningenergy.eca.ed.ac.uk/appGetClassList.php";
     $.get(url,
@@ -162,10 +166,8 @@ function loadSubjects() {
                 var r = window.g_heightUnit / 3;
                 var w = window.g_width - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
                 var h = window.g_heightUnit - window.g_topMargin;
-                if(data.length>0){
-                  g_hasSubjects = true;
-                }
                 for (var i = 0; i < data.length; i++) {
+                  g_numberOfSubjects+=1;
                     var sub = new Subject(window.g_leftMargin + window.g_elementMargin, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].title, parseInt(data[i].total));
                 }
                 window.g_lastHeight = window.g_heightUnit * (data.length + 1);
