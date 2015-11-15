@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,11 +45,11 @@ $(function () {
             var h = window.g_heightUnit - window.g_topMargin;
             var top = window.g_lastHeight + r + window.g_topMargin;
             var tempItem = $("<img src='img/icons/tick-icon.png' id='tempOK' \n\
-                style='position: absolute; z-index: 1999;  top: " + (top + r / 2) + "px;   \n\
-                left: " + (w + 2 * r + window.g_elementMargin - (h - r) / 2) + "px; height: " + (h - r) + "px; border-radius:5px; cursor:pointer;   '>\n\
+                style='position: absolute; z-index: 1999;  top: " + (top+5) + "px;   \n\
+                left: " + (w + 2 * r + window.g_elementMargin - (h - r) / 2) + "px; height: 40px; border-radius:5px; cursor:pointer;   '>\n\
                 <img src='img/icons/cross-icon.png' id='tempDelete' \n\
-                style='position: absolute; z-index: 1999;  top: " + (top + r / 2) + "px;   \n\
-                left: " + (window.g_leftMargin + window.g_elementMargin - (h-r) / 2) + "px; height: " + (h - r) + "px; border-radius:5px;  cursor:pointer;'>\n\
+                style='position: absolute; z-index: 1999;  top: " + (top+5 ) + "px;   \n\
+                left: " + (window.g_leftMargin + window.g_elementMargin - (h-r) / 2) + "px; height: 40px; border-radius:5px;  cursor:pointer;'>\n\
                 <input type='text' id='tempText' placeholder='Class name' style='position: absolute; \n\
                 z-index: 999;  top: " + (top) + "px;   left: " + (window.g_leftMargin + 2 * window.g_elementMargin + 2 * r) + "px; \n\
                 width: " + (w - r - 5) + "px; border-radius:5px;   padding: " + 13 + "px; font-size:20px; appearance: none;  box-shadow: none;   outline: none; border-style: none;'>").hide();
@@ -285,7 +285,7 @@ var archFn = function (xloc, yloc, value, total, R) {
             path;
     path = [
         ["M", xloc, yloc - R],
-        ["A", R, R, 0, +(alpha > 180), 1, x, y] // 
+        ["A", R, R, 0, +(alpha > 180), 1, x, y] //
     ];
     return {
         path: path
@@ -306,5 +306,3 @@ var hoverOut = function () {
     this.attr({"fill": "#FFF"});
     this.attr({"fill-opacity": 1});
 };
-
-
