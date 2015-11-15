@@ -46,13 +46,14 @@ $(function () {
             var top = window.g_lastHeight + r + window.g_topMargin;
             var inputLeft=window.g_leftMargin + 2 * window.g_elementMargin + 2 * r;
             var tickLeft = inputLeft + w - r - 5;
+            var crossLeft = window.g_leftMargin + window.g_elementMargin - (h-r) / 2;
             var tempItem = $("<img src='img/icons/tick-icon.png' id='tempOK' \n\
                 style='position: absolute; z-index: 1999;  top: " + (top+5) + "px;   \n\
                 left: " + (tickLeft-30) + "px; height: 40px; border-radius:5px; cursor:pointer;   '>\n\
                 <img src='img/icons/cross-icon.png' id='tempDelete' \n\
                 style='position: absolute; z-index: 1999;  top: " + (top+5 ) + "px;   \n\
-                left: " + (window.g_leftMargin + window.g_elementMargin - (h-r) / 2) + "px; height: 40px; border-radius:5px;  cursor:pointer;'>\n\
-                <input type='text' id='tempText' placeholder='Class name' style='position: absolute; \n\
+                left: " + (crossLeft) + "px; height: 40px; border-radius:5px;  cursor:pointer;'>\n\
+                <input type='text' id='tempText' placeholder='Class name' style='height:40px; position: absolute; \n\
                 z-index: 999;  top: " + (top) + "px;   left: " + (inputLeft) + "px; \n\
                 width: " + (w - r - 5) + "px; border-radius:5px;   padding: " + 13 + "px; font-size:20px; appearance: none;  box-shadow: none;   outline: none; border-style: none;'>").hide();
             $("#canvas_container").append(tempItem);

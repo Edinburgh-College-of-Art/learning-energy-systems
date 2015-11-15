@@ -232,8 +232,6 @@ hr{
     display: table-cell;
     vertical-align: middle;
     }
-  #tempText{
-  }
   .helpText{
     display: inline-block;
     position: relative;

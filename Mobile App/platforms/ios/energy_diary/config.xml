@@ -14,9 +14,6 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
-    <feature name="YoikScreenOrientation">
-        <param name="ios-package" value="YoikScreenOrientation" />
-    </feature>
     <name>energy_diary</name>
     <description>
         Learning Energy Systems Project description. University of Edinburgh
@@ -27,4 +24,7 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="Fullscreen" value="true" />
+    <feature name="YoikScreenOrientation">
+        <param name="ios-package" value="YoikScreenOrientation" />
+    </feature>
 </widget>

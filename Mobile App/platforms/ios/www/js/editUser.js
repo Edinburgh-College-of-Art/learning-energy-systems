@@ -25,18 +25,17 @@ window.onload = function () {
      if(validateUserInput())
        updateUser();
    });
+   $("#homeIcon").bind("click",function(){
+     window.location="weekView.html";
+   });
 };
 
 
 function validateUserInput() {
     var result = false;
     result = true;
-
-
     return result;
 }
-
-
 
 function onNextClick() {
   window.location="help1.html";

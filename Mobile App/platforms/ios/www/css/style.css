@@ -232,8 +232,6 @@ hr{
     display: table-cell;
     vertical-align: middle;
     }
-  #tempText{
-  }
   .helpText{
     display: inline-block;
     position: relative;
@@ -317,6 +315,7 @@ hr{
     position:absolute;
     background-color:"#f00";
     display: block;
+    cursor: pointer;
   }
   .subjectsEdit img{
     height:40px;
