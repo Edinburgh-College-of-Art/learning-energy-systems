@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,9 @@ $(function () {
 window.onload = function () {
     $("#rightArr").bind("click",function(){
         window.location = "help2.html";
+    });
+    $("#leftArr").bind("click",function(){
+        window.location = "editUser.html";
     });
     window.g_studentUID = localStorage.getItem("studentId");
     loadUpdateData(true);
@@ -79,7 +82,7 @@ function initialise() {
 //    g_friT = Math.floor(Math.random() * 300);
 
 
-//var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday; 
+//var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday;
     window.g_paper = new Raphael('canvas_container');
     window.g_paper.setViewBox(0, 0, window.g_width, window.g_height, true);
     window.g_paper.setSize('100%', '100%');
@@ -141,9 +144,9 @@ function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
 }
 
 
-/*This function will draw the consumptions visualisation. 
+/*This function will draw the consumptions visualisation.
  * it will get 5 inputs, projection time,
- *  computer use time, heater time, 
+ *  computer use time, heater time,
  *  lighting time and finaly total energy use
  *  The size of icons will indicate the amount of energy being used.
  *  */
@@ -219,7 +222,7 @@ function dayClicked() {
         } else {
             var me = $("#" + this.parent)[0];
             me.status = !me.status;//update status
-            //updateing background color of the selected one. 
+            //updateing background color of the selected one.
             var other = $("#" + window.g_currDay)[0];
             other.status = false;
             other.setAttribute("fill", "#333");
