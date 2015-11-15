@@ -80,7 +80,6 @@ function tempTextChanged() {
     else
         $("#tempOK").hide();
 }
-
 window.onload = function () {
     window.StatusBar && window.StatusBar.hide();
     $(".ui-loader").hide();
@@ -134,15 +133,14 @@ function initialise() {
     helpIcon.node.setAttribute("class", "donthighlight pointerCursor");
     helpIcon.node.id = "helpIcon";
     $("#helpIcon").bind('click', function () {
-        window.location = "editDay.html";
+      if(g_hasSubjects){
+        window.location = "editDay.html";}
     });
 //    homeIcon.node.parent = _id;
     var headLine = window.g_paper.path('M' + 10 + " " + window.g_heightUnit + "L" + (window.g_width - 10) + " " + window.g_heightUnit);
     headLine.attr({"stroke": "#fff", "stroke-opacity": .4, "stroke-width": 1});
     loadSubjects();
 }
-
-
 function detectPortrait(mainDiv) {
     if (screen.width < screen.height) {
         $(mainDiv).addClass("portrait_mode");
@@ -151,8 +149,8 @@ function detectPortrait(mainDiv) {
         $(mainDiv).removeClass("portrait_mode");
     }
 }
-
 var g_lastHeight;
+var g_hasSubjects;
 function loadSubjects() {
     var url = "http://www.learningenergy.eca.ed.ac.uk/appGetClassList.php";
     $.get(url,
@@ -164,18 +162,17 @@ function loadSubjects() {
                 var r = window.g_heightUnit / 3;
                 var w = window.g_width - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
                 var h = window.g_heightUnit - window.g_topMargin;
+                if(data.length>0){
+                  g_hasSubjects = true;
+                }
                 for (var i = 0; i < data.length; i++) {
                     var sub = new Subject(window.g_leftMargin + window.g_elementMargin, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].title, parseInt(data[i].total));
                 }
                 window.g_lastHeight = window.g_heightUnit * (data.length + 1);
-
             });
 }
-
-
 //A class that keeps the attributes for each day. It has onclick event.
 function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
-
     this.id = _id;
     this.title = _title;
     this.total = _total;
@@ -189,9 +186,7 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     var recX = this.x + 2 * _r + window.g_elementMargin;
     this.subjectBtn = window.g_paper.rect(recX, this.y, _w, _h - window.g_topMargin, 5);
     this.subjectBtn.hover(hoverIn, hoverOut, this.subjectBtn, this.subjectBtn);
-
     this.subjectBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 1, "stroke-opacity": .7}).node.setAttribute("class", "donthighlight pointerCursor");
-    ;
     this.subjectBtn.node.id = "subject" + _id;
     this.subjectBtn.node.parent = _id;
     var titleHeading = window.g_paper.text(recX + 2 * window.g_elementMargin, this.y - 4 + _h / 2, this.title);
@@ -206,13 +201,10 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     $("#subject" + _id).bind('click', subjectClicked);
     $("#subject" + _id + "_arrow").bind('click', subjectClicked);
     $("#subject" + _id + "_text").bind('click', subjectClicked);
-
     $("#subject" + _id).bind('touchstart', subjectTouchStart);
     $("#subject" + _id + "_arrow").bind('touchstart', subjectTouchStart);
     $("#subject" + _id + "_text").bind('touchstart', subjectTouchStart);
     var totalVal = map_range(this.total, 0, 180, 10, 790);
-
-//    console.log(this.total/20,window.g_colors[this.total/20]);
     var my_arc = window.g_paper.path().attr({
         "stroke": window.g_colors[Math.round(this.total / 20)],
         "stroke-width": 3,
@@ -232,14 +224,12 @@ function subjectDeleteClicked() {
             }
             );
 }
-
 function cancelClicked() {
     window.g_adding = false;
     $("#tempDelete").fadeOut("slow").remove();
     $("#tempOK").fadeOut("slow").remove();
     $("#tempText").fadeOut("slow").remove();
 }
-
 function okClicked() {
     window.g_adding = false;
     if (window.g_status === "edit") {
@@ -268,7 +258,6 @@ function okClicked() {
                 );
     }
 }
-
 function subjectEditClicked() {
     console.log("edit clicked!");
 }
