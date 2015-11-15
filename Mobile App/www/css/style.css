@@ -317,6 +317,7 @@ hr{
     position:absolute;
     background-color:"#f00";
     display: block;
+    cursor: pointer;
   }
   .subjectsEdit img{
     height:40px;
