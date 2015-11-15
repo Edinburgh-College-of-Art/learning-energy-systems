@@ -270,7 +270,7 @@ function dayClicked() {
             localStorage.setItem("currentDate", window.g_currDate);
             localStorage.setItem("currentDay", window.g_currDay);
             loadUpdateData(false);
-            $("#myBack").attr("href", "img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png");
+
 
         }
     }
@@ -366,6 +366,7 @@ function loadUpdateData(_loadOrUpdate) {
                     $("#light").remove();
                     $("#totalHead").remove();
                     drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
+                    $("#myBack").attr("href", "img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png");
                 }
             });
 }
