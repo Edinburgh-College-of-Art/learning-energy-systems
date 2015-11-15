@@ -107,6 +107,7 @@ html {
   color:white;
   border-bottom: white;
   font-size: 26px;
+  font-family: 'TTRounds-Bold';
 
 }
 
@@ -403,6 +404,8 @@ cursor: pointer;
 }
 .infoHeader h1{
   line-height: 80px;
+  font-family: 'TTRounds-Bold';
+  font-size: 26px;
 }
 .iconImg{
   display: none;
