@@ -129,9 +129,7 @@ function okClicked() {
       value: $("#subjectTitle_"+changedItem).val()
     });
   }
-  console.log(JSON.stringify(jsonArr));
   //sending updated subjects to the server
-  // $("#tempOK").attr("src", "img/icons/loader.gif");
   var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
   var dataToBeSent = {
     update: true,
