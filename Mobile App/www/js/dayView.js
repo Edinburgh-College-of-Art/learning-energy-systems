@@ -45,12 +45,12 @@ $(function () {
         if ((!window.g_adding) && g_numberOfSubjects<7) {
             window.g_adding = true;
             var r = window.g_heightUnit / 3;
-            var w = window.g_width - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
+            var w = window.g_width-130;// - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
             var h = window.g_heightUnit - window.g_topMargin;
             var top = window.g_lastHeight + r + window.g_topMargin;
-            var inputLeft=10+window.g_leftMargin + 2 * window.g_elementMargin +  r;
+            var inputLeft=100;
             var tickLeft = inputLeft + w - r - 5;
-            var crossLeft = 20+window.g_leftMargin + window.g_elementMargin - (h-r) / 2;
+            var crossLeft = 50-20;
             var tempItem = $("<img src='img/icons/tick-icon.png' id='tempOK' \n\
                 style='position: absolute; z-index: 1999;  top: " + (top+10) + "px;   \n\
                 left: " + (tickLeft-30) + "px; height: 40px; border-radius:5px; cursor:pointer;   '>\n\
@@ -164,11 +164,11 @@ function loadSubjects() {
             })
             .always(function (data) {
                 var r = window.g_heightUnit / 3;
-                var w = window.g_width - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
+                var w = window.g_width-r-100;// - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
                 var h = window.g_heightUnit - window.g_topMargin;
                 for (var i = 0; i < data.length; i++) {
                   g_numberOfSubjects+=1;
-                    var sub = new Subject(window.g_leftMargin + window.g_elementMargin, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].title, parseInt(data[i].total));
+                    var sub = new Subject(50, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].title, parseInt(data[i].total));
                 }
                 window.g_lastHeight = window.g_heightUnit * (data.length + 1);
             });
@@ -178,14 +178,14 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     this.id = _id;
     this.title = _title;
     this.total = _total;
-    this.x = _x+10;
-    this.y = _y+10;
+    this.x = _x;
+    this.y = _y;
     this.subjectCircle = window.g_paper.circle(this.x, this.y + _r + window.g_topMargin, _r);
     this.subjectCircle.attr({stroke: "#FFF", "stroke-width": 3, fill: "#333", "fill-opacity": 0, "stroke-opacity": .7});
     var subjectHeading = window.g_paper.text(this.x, this.y + _r + window.g_topMargin, _num);
     subjectHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Bold"});
     subjectHeading.node.setAttribute("class", "donthighlight");
-    var recX = this.x + _r + window.g_elementMargin;
+    var recX = this.x +50;
     this.subjectBtn = window.g_paper.rect(recX, this.y, _w, _h - window.g_topMargin, 5);
     this.subjectBtn.hover(hoverIn, hoverOut, this.subjectBtn, this.subjectBtn);
     this.subjectBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 1, "stroke-opacity": .7}).node.setAttribute("class", "donthighlight pointerCursor");
