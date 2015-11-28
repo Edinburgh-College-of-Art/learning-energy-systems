@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,6 @@ function addNewUser() {
     var uName = $("#userName").val();
     var schName = $("#schoolName").val();
     var year = $("#year").val();
-    var uniqueN = uName + "-" + year + "_" + guid();
     var dataToBeSent = {
         username: uName,
         school: schName,
@@ -65,8 +64,11 @@ function addNewUser() {
                 localStorage.setItem("year", year);
                 window.location = "help1.html";
             }
-            ).always(function (data){console.log(data);});
-    //window.location="help.html";
+            ).always(function (data){
+              console.log(data);
+
+            });
+    // window.location="help1.html";
 }
 
 

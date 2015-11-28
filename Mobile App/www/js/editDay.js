@@ -33,10 +33,10 @@ $(document).bind('mobileinit', function () {
 $(function () {
   $("#titleHeader").text(window.g_title);
   FastClick.attach(document.body);
-  $("#helpIcon").bind('click', function () {
+  $("#helpIconn").bind('click', function () {
       window.location = "editUser.html";;
   });
-  $("#homeIcon").bind('click', function () {
+  $("#homeIconn").bind('click', function () {
       window.location = "weekView.html";
   });
 });

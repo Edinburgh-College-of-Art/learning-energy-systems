@@ -305,7 +305,7 @@ hr{
     height: 50px;
     float:left;
   }
-  #helpIcon{
+  #helpIconn{
     height: 50px;
     position:absolute;
     background-color:"#f00";
@@ -314,7 +314,7 @@ hr{
     display: block;
     float:left;
   }
-  #homeIcon{
+  #homeIconn{
     height: 50px;
     top:25px;
     right:20px;
@@ -331,7 +331,7 @@ hr{
   .subjectsEdit input{
     padding:20px;
     font-size:24px;
-    width:80%;
+    width:80%;homeIconn
   }
 .simpleButton{
   background-color:transparent;
