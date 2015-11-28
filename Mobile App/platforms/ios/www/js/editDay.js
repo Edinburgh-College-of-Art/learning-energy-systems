@@ -95,14 +95,19 @@ function loadSubjects() {
     });
   }
   function subjectDeleteClicked() {
+    /*
+    TODO:
+    Add progress to all updates, something the user will understands what's happening.
+    */
+    var parent = $(this).attr("parent");
     var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
     var dataToBeSent = {
       update: 'delete',
-      id: this.parent
+      id: parent
     };
     $.post(url, dataToBeSent)
     .success(function (data) {
-      window.location = "dayView.html";
+        window.location = "editDay.html";
     }
   );
 }
@@ -124,18 +129,15 @@ function okClicked() {
       value: $("#subjectTitle_"+changedItem).val()
     });
   }
-  console.log(jsonArr);
   //sending updated subjects to the server
-  // $("#tempOK").attr("src", "img/icons/loader.gif");
   var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
   var dataToBeSent = {
     update: true,
-    data: jsonArr
+    data: JSON.stringify(jsonArr)
   };
   $.post(url, dataToBeSent)
   .always(function (data) {
-    console.log(data);
-    // window.location = "dayView.html";
+    window.location = "dayView.html";
   }
 );
 }
