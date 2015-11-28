@@ -48,18 +48,18 @@ $(function () {
             var w = window.g_width - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
             var h = window.g_heightUnit - window.g_topMargin;
             var top = window.g_lastHeight + r + window.g_topMargin;
-            var inputLeft=window.g_leftMargin + 2 * window.g_elementMargin + 2 * r;
+            var inputLeft=10+window.g_leftMargin + 2 * window.g_elementMargin +  r;
             var tickLeft = inputLeft + w - r - 5;
-            var crossLeft = window.g_leftMargin + window.g_elementMargin - (h-r) / 2;
+            var crossLeft = 20+window.g_leftMargin + window.g_elementMargin - (h-r) / 2;
             var tempItem = $("<img src='img/icons/tick-icon.png' id='tempOK' \n\
-                style='position: absolute; z-index: 1999;  top: " + (top+5) + "px;   \n\
+                style='position: absolute; z-index: 1999;  top: " + (top+10) + "px;   \n\
                 left: " + (tickLeft-30) + "px; height: 40px; border-radius:5px; cursor:pointer;   '>\n\
                 <img src='img/icons/cross-icon.png' id='tempDelete' \n\
-                style='position: absolute; z-index: 1999;  top: " + (top+5 ) + "px;   \n\
+                style='position: absolute; z-index: 1999;  top: " + (top+10 ) + "px;   \n\
                 left: " + (crossLeft) + "px; height: 40px; border-radius:5px;  cursor:pointer;'>\n\
                 <input type='text' id='tempText' placeholder='Class name' style='height:40px; position: absolute; \n\
                 z-index: 999;  top: " + (top) + "px;   left: " + (inputLeft) + "px; \n\
-                width: " + (w - r - 5) + "px; border-radius:5px;   padding: " + 13 + "px; font-size:20px; appearance: none;  box-shadow: none;   outline: none; border-style: none;'>").hide();
+                width: " + (w - r+5 ) + "px; border-radius:5px;   padding: " + 13 + "px;  font-size:20px; font-family:  'TTRounds-Regular'; appearance: none;  box-shadow: none;   outline: none; border-style: none;'>").hide();
             $("#canvas_container").append(tempItem);
             tempItem.fadeIn("slow");
 
@@ -178,14 +178,14 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     this.id = _id;
     this.title = _title;
     this.total = _total;
-    this.x = _x;
-    this.y = _y;
+    this.x = _x+10;
+    this.y = _y+10;
     this.subjectCircle = window.g_paper.circle(this.x, this.y + _r + window.g_topMargin, _r);
     this.subjectCircle.attr({stroke: "#FFF", "stroke-width": 3, fill: "#333", "fill-opacity": 0, "stroke-opacity": .7});
     var subjectHeading = window.g_paper.text(this.x, this.y + _r + window.g_topMargin, _num);
-    subjectHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Regular"});
+    subjectHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Bold"});
     subjectHeading.node.setAttribute("class", "donthighlight");
-    var recX = this.x + 2 * _r + window.g_elementMargin;
+    var recX = this.x + _r + window.g_elementMargin;
     this.subjectBtn = window.g_paper.rect(recX, this.y, _w, _h - window.g_topMargin, 5);
     this.subjectBtn.hover(hoverIn, hoverOut, this.subjectBtn, this.subjectBtn);
     this.subjectBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 1, "stroke-opacity": .7}).node.setAttribute("class", "donthighlight pointerCursor");
@@ -268,6 +268,8 @@ function subjectTouchStart() {
 }
 function subjectClicked() {
     localStorage.setItem("subjectView", this.parent);
+    $(this).attr({"fill": "#eee"});
+    $(this).attr({"fill-opacity": 0});
     window.location = "subjectView.html";
 }
 

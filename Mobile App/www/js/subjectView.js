@@ -86,11 +86,20 @@ function initialise() {
     window.g_paper.image("img/backgrounds/Detailview_head.png", 0, 0, window.g_width, 2 * window.g_iconH / 3);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_iconH / 3, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Bold"});
-    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 35, window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
+    var leftIcon = window.g_paper.image("img/icons/leftArrow.png", 35,
+    window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
+    leftIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    leftIcon.node.id = "leftIcon";
+    $("#leftIcon").bind('click', function () {
+        window.location = "dayView.html";
+    });
+    var homeIcon = window.g_paper.image("img/icons/home-icon.png",
+    window.g_width - window.g_iconH / 4 - 30,
+    window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
     $("#homeIcon").bind('click', function () {
-        window.location = "dayView.html";
+        window.location = "weekView.html";
     });
 }
 

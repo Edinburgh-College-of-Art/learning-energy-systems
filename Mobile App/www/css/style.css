@@ -93,6 +93,7 @@ html {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 100%;
+  padding-top: 25px;
   text-align: center;
 }
 #helpBody{
@@ -104,18 +105,21 @@ html {
 }
 .signupBody h1{
   color:white;
-  border-bottom: white
+  border-bottom: white;
+  font-size: 26px;
+  font-family: 'TTRounds-Bold';
+
 }
 
 hr{
   color: white;
   border: none;
   height: 1px;
-  width: 95%;
+  width: 97%;
   float: center;
   display: inline-block;
   background-color: rgba(255,255,255,0.4);
-  margin: 10px;
+  /*margin: 10px;*/
   /*width:100%;*/
 }
 .inputs{
@@ -151,7 +155,7 @@ hr{
 }
 #addSubj{
   position: absolute;
-  bottom: 2%;
+  bottom: 4%;
   left: 50%;
   margin-left: -25px;
   text-align: center;
@@ -259,21 +263,23 @@ hr{
     max-width: 60%;
     float: left;
     padding: 15px 10px 10px 20px;
-    line-height: 30px;
+    line-height: 25px;
   }
   #leftArr {
-    height: 80%;
+    height: 70px;
     position: relative;
     float: left;
     margin-top: 10px;;
     padding-left: 10px;
+    cursor: pointer;
   }
   #rightArr{
-    height: 80px;
+    height: 70px;
     position: relative;
     float: right;
-    margin-top: 10px;;
-    padding-right: 10px;
+    margin-top: 15px;;
+    padding-right: 15px;
+    cursor: pointer;
   }
   #updateUser{
     float: center;
@@ -303,15 +309,15 @@ hr{
     height: 50px;
     position:absolute;
     background-color:"#f00";
-    top:10px;
-    left:10px;
+    top:25px;
+    left:20px;
     display: block;
     float:left;
   }
   #homeIcon{
     height: 50px;
-    top:10px;
-    right:10px;
+    top:25px;
+    right:20px;
     position:absolute;
     background-color:"#f00";
     display: block;
@@ -324,6 +330,7 @@ hr{
   }
   .subjectsEdit input{
     padding:20px;
+    font-size:24px;
     width:80%;
   }
 .simpleButton{
@@ -400,6 +407,8 @@ cursor: pointer;
 }
 .infoHeader h1{
   line-height: 80px;
+  font-family: 'TTRounds-Bold';
+  font-size: 26px;
 }
 .iconImg{
   display: none;

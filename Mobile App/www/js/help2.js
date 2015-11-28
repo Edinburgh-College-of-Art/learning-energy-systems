@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -82,25 +82,30 @@ function initialise() {
 //    g_friT = Math.floor(Math.random() * 300);
 
 
-//var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday; 
+//var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday;
     window.g_paper = new Raphael('canvas_container');
     window.g_paper.setViewBox(0, 0, window.g_width, window.g_height, true);
     window.g_paper.setSize('100%', '100%');
 
     var rec = window.g_paper.image("img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png", 0, 0, window.g_width, window.g_height);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_headerHeight / 2, window.g_title);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Regular"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Bold"});
     var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
     $("#homeIcon").bind('click', function () {
-
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
         window.location = "dayView.html";
     });
+    var helpIcon = window.g_paper.image("img/icons/help-icon.png", 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
+    helpIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    helpIcon.node.id = "helpIcon";
+    $("#helpIcon").bind('click', function () {
+        window.location = "editUser.html";
+    });
     var headLine = window.g_paper.path('M' + 10 + " " + window.g_headerHeight + "L" + (window.g_width - 10) + " " + window.g_headerHeight);
-    headLine.attr({"stroke": "#fff"});
-
-    drawDays();
+    headLine.attr({"stroke": "#fff", "stroke-opacity": .4, "stroke-width": 1});    drawDays();    drawDays();
     drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
 }
 
@@ -144,9 +149,9 @@ function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
 }
 
 
-/*This function will draw the consumptions visualisation. 
+/*This function will draw the consumptions visualisation.
  * it will get 5 inputs, projection time,
- *  computer use time, heater time, 
+ *  computer use time, heater time,
  *  lighting time and finaly total energy use
  *  The size of icons will indicate the amount of energy being used.
  *  */
@@ -222,7 +227,7 @@ function dayClicked() {
         } else {
             var me = $("#" + this.parent)[0];
             me.status = !me.status;//update status
-            //updateing background color of the selected one. 
+            //updateing background color of the selected one.
             var other = $("#" + window.g_currDay)[0];
             other.status = false;
             other.setAttribute("fill", "#333");
