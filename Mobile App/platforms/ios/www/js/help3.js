@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -79,13 +79,23 @@ function initialise() {
     window.g_paper.setSize(window.g_width, window.g_height);
     window.g_paper.image("img/backgrounds/Timetable_Green.png", 0, 0, window.g_width, window.g_height);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_heightUnit / 2, window.g_title);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff"});
-    var homeIcon = window.g_paper.image("img/icons/home-icon.png", window.g_width - window.g_heightUnit, window.g_heightUnit / 4, window.g_heightUnit / 2, window.g_heightUnit / 2);
+    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Bold"});
+    var homeIcon = window.g_paper.image("img/icons/home-icon.png", window.g_width - window.g_heightUnit / 2 - 10, window.g_heightUnit / 4, window.g_heightUnit / 2, window.g_heightUnit / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
+    $("#homeIcon").bind('click', function () {
+        window.location = "weekView.html";
+    });
+    var helpIcon = window.g_paper.image("img/icons/pencil-icon-white.png", 10, window.g_heightUnit / 4, window.g_heightUnit / 2, window.g_heightUnit / 2);
+    helpIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    helpIcon.node.id = "helpIcon";
+    $("#helpIcon").bind('click', function () {
+      if(g_numberOfSubjects>0){
+        window.location = "editDay.html";}
+    });
 //    homeIcon.node.parent = _id;
-    var headLine = window.g_paper.path('M' + window.g_leftMargin + " " + window.g_heightUnit + "L" + (window.g_width - window.g_leftMargin) + " " + window.g_heightUnit);
-    headLine.attr({"fill": "#fff", "stroke": "#FFF", "stroke-width": 2});
+    var headLine = window.g_paper.path('M' + 10 + " " + window.g_heightUnit + "L" + (window.g_width - 10) + " " + window.g_heightUnit);
+    headLine.attr({"stroke": "#fff", "stroke-opacity": .4, "stroke-width": 1});
     loadSubjects();
 }
 function detectPortrait(mainDiv) {
@@ -128,7 +138,7 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     titleHeading.node.setAttribute("class", "donthighlight pointerCursor");
     titleHeading.node.id = "subject" + _id + "_text";
     titleHeading.node.parent = _id;
-    var rightArrow = window.g_paper.image("img/icons/rightArrow.png", recX + _w - _h / 2, this.y + _h / 4, _h / 2, _h / 2);
+    var rightArrow = window.g_paper.image("img/icons/arrow-right-icon.png", recX + _w - _h / 1.7, this.y + _h / 5, _h / 3, _h / 2);
     rightArrow.node.setAttribute("class", "donthighlight pointerCursor");
     rightArrow.node.id = "subject" + _id + "_arrow";
     rightArrow.node.parent = _id;
@@ -152,7 +162,7 @@ var archFn = function (xloc, yloc, value, total, R) {
             path;
     path = [
         ["M", xloc, yloc - R],
-        ["A", R, R, 0, +(alpha > 180), 1, x, y] // 
+        ["A", R, R, 0, +(alpha > 180), 1, x, y] //
     ];
     return {
         path: path

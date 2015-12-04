@@ -33,10 +33,10 @@ $(document).bind('mobileinit', function () {
 $(function () {
   $("#titleHeader").text(window.g_title);
   FastClick.attach(document.body);
-  $("#helpIcon").bind('click', function () {
+  $("#helpIconn").bind('click', function () {
       window.location = "editUser.html";;
   });
-  $("#homeIcon").bind('click', function () {
+  $("#homeIconn").bind('click', function () {
       window.location = "weekView.html";
   });
 });
@@ -148,9 +148,9 @@ function addSubject(_x,_y,_id,_title) {
   var h = window.g_heightUnit - window.g_topMargin;
   var top = window.g_lastHeight + r + window.g_topMargin;
   var tempItem = $("<div class='subjectsEdit input-group'>\n\
-  <img class='crossImg'  src='img/icons/cross-icon.png' id='delete_"+ _id +"' parent='"+_id+"'>\n\
-  <input type='text' id='subjectTitle_" + _id  +  "' class='form-control' placeholder='Name' value='"+_title +"' parent='"+_id+"'>\n\
-  </div>").hide();
+  <div style='width:10%;float:left;'><img class='crossImg'  src='img/icons/cross-icon.png' id='delete_"+ _id +"' parent='"+_id+"'>\n\
+  </div><div style='width:90%; float:left;'><input type='text' id='subjectTitle_" + _id  +  "' class='form-control' placeholder='Name' value='"+_title +"' parent='"+_id+"'>\n\
+  </div></div>").hide();
   $("#editingSubjects").append(tempItem);
   tempItem.fadeIn("slow");
   $("#updateSubjects").bind("click", okClicked);

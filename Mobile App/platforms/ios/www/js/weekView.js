@@ -133,23 +133,23 @@ function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
     var x = _mx + window.g_daysRadius, y = _my, x1 = _tx - window.g_daysRadius, y1 = _ty, x2 = _wx - window.g_daysRadius, y2 = _wy, x3 = _thx - window.g_daysRadius, y3 = _thy, x4 = _fx - window.g_daysRadius, y4 = _fy;
     var myPath = "";
     var minVal=70
-    if (window.g_monT > minVal && window.g_tueT > minVal)
+    if (window.g_monT > minVal || window.g_tueT > minVal || window.g_wedT > minVal || window.g_thurT > minVal|| window.g_friT > minVal)
     {
         myPath += 'M' + x + " " + y +
                 "L" + x1 + " " + y1;
-    }
-    if (window.g_tueT > minVal && window.g_wedT > minVal)
-    {
+    // }
+    // if (window.g_tueT > minVal || window.g_wedT > minVal)
+    // {
         myPath += 'M' + (x1 + 2 * window.g_daysRadius) + " " + y1 +
                 "L" + x2 + " " + y2;
-    }
-    if (window.g_wedT > minVal && window.g_thurT > minVal)
-    {
+    // }
+    // if (window.g_wedT > minVal || window.g_thurT > minVal)
+    // {
         myPath += 'M' + (x2 + 2 * window.g_daysRadius) + " " + y2 +
                 "L" + x3 + " " + y3;
-    }
-    if (window.g_thurT > minVal && window.g_friT > minVal)
-    {
+    // }
+    // if (window.g_thurT > minVal || window.g_friT > minVal)
+    // {
         myPath += 'M' + (x3 + 2 * window.g_daysRadius) + " " + y3 +
                 "L" + x4 + " " + y4;
     }
@@ -270,7 +270,7 @@ function dayClicked() {
             localStorage.setItem("currentDate", window.g_currDate);
             localStorage.setItem("currentDay", window.g_currDay);
             loadUpdateData(false);
-            $("#myBack").attr("href", "img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png");
+
 
         }
     }
@@ -366,6 +366,7 @@ function loadUpdateData(_loadOrUpdate) {
                     $("#light").remove();
                     $("#totalHead").remove();
                     drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
+                    $("#myBack").attr("href", "img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png");
                 }
             });
 }

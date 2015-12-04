@@ -19,10 +19,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-screen-orientation": {
-            "PACKAGE_NAME": "com.coolappz.energy_diary"
+            "PACKAGE_NAME": "net.learningenergysystems.energy_diary"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.coolappz.energy_diary"
+            "PACKAGE_NAME": "net.learningenergysystems.energy_diary"
         }
     },
     "dependent_plugins": {}

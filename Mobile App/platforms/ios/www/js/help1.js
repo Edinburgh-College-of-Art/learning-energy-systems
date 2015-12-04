@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2015 Hadi Mehrpouya <http://www.hadi.link>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,9 @@ $(function () {
 window.onload = function () {
     $("#rightArr").bind("click",function(){
         window.location = "help2.html";
+    });
+    $("#leftArr").bind("click",function(){
+        window.location = "editUser.html";
     });
     window.g_studentUID = localStorage.getItem("studentId");
     loadUpdateData(true);
@@ -79,25 +82,30 @@ function initialise() {
 //    g_friT = Math.floor(Math.random() * 300);
 
 
-//var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday; 
+//var g_monday, g_tuesday, g_wednesday, g_thursday, g_friday;
     window.g_paper = new Raphael('canvas_container');
     window.g_paper.setViewBox(0, 0, window.g_width, window.g_height, true);
     window.g_paper.setSize('100%', '100%');
 
     var rec = window.g_paper.image("img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png", 0, 0, window.g_width, window.g_height);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_headerHeight / 2, window.g_title);
-    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Regular"});
+    titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "fill": "#fff", "font-family": "TTRounds-Bold"});
     var homeIcon = window.g_paper.image("img/icons/day-icon.png", window.g_width - window.g_headerHeight / 2 - 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
     $("#homeIcon").bind('click', function () {
-
+        localStorage.setItem("currentDate", window.g_currDate);
+        localStorage.setItem("currentDay", window.g_currDay);
         window.location = "dayView.html";
     });
+    var helpIcon = window.g_paper.image("img/icons/help-icon.png", 10, window.g_headerHeight / 4, window.g_headerHeight / 2, window.g_headerHeight / 2);
+    helpIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    helpIcon.node.id = "helpIcon";
+    $("#helpIcon").bind('click', function () {
+        window.location = "editUser.html";
+    });
     var headLine = window.g_paper.path('M' + 10 + " " + window.g_headerHeight + "L" + (window.g_width - 10) + " " + window.g_headerHeight);
-    headLine.attr({"stroke": "#fff"});
-
-    drawDays();
+    headLine.attr({"stroke": "#fff", "stroke-opacity": .4, "stroke-width": 1});    drawDays();
     drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
 }
 
@@ -113,7 +121,7 @@ function drawDays() {
     var thurY = window.g_daysTopMargin * 4 + window.g_headerHeight + (150 - window.g_thurT) / window.g_daysYScale;
     var fridY = window.g_daysTopMargin * 4 + window.g_headerHeight + (150 - window.g_friT) / window.g_daysYScale;
 
-    drawLinesBetwDays(monX, monY, tueX, tueY, wedX, wedY, thurX, thurY, fridX, fridY);
+  //  drawLinesBetwDays(monX, monY, tueX, tueY, wedX, wedY, thurX, thurY, fridX, fridY);
     window.g_monday = new daySection(monX, monY, window.g_daysRadius, window.g_currDay === "monday", "M", "monday", window.g_monT);//!!!!!!!!!!!!!!!!!!!!!!
     window.g_tuesday = new daySection(tueX, tueY, window.g_daysRadius, window.g_currDay === "tuesday", "T", "tuesday", window.g_tueT);
     window.g_wednesday = new daySection(wedX, wedY, window.g_daysRadius, window.g_currDay === "wednesday", "W", "wednesday", window.g_wedT);
@@ -141,37 +149,54 @@ function drawLinesBetwDays(_mx, _my, _tx, _ty, _wx, _wy, _thx, _thy, _fx, _fy) {
 }
 
 
-/*This function will draw the consumptions visualisation. 
+/*This function will draw the consumptions visualisation.
  * it will get 5 inputs, projection time,
- *  computer use time, heater time, 
+ *  computer use time, heater time,
  *  lighting time and finaly total energy use
  *  The size of icons will indicate the amount of energy being used.
  *  */
 function drawConsumptions(_p, _l, _c, _h, _t) {
-
-    var p = map_range(_p, 0, 315, 20, 150);
-    var c = map_range(_c, 0, 315, 20, 150);
-    var l = map_range(_l, 0, 315, 20, 150);
-    var h = map_range(_h, 0, 315, 20, 150);
-    var topStuff = window.g_headerHeight + window.g_daysTopMargin * 8;
-    var restOfHeight = window.g_height - topStuff;
-    var centY = restOfHeight / 2 + topStuff;
-    var circR = window.g_width / 9;
-    var proj = window.g_paper.image("img/icons/projector-week-Icon.png", Math.max(p / 10, window.g_width / 15), window.g_height / 2 - 2 * p / 3, p, p);
-    proj.node.id = "projector";
-    var comp = window.g_paper.image("img/icons/computer-week-Icon.png", window.g_width - Math.max(7 * c / 6, window.g_width / 6), window.g_height / 2 - 2 * c / 3, c, c);
-    comp.node.id = "computer";
-    var light = window.g_paper.image("img/icons/lightBulb-week-icon.png", Math.max(l / 10, window.g_width / 15), 4 * window.g_height / 5 - l / 2, l, l);
-    light.node.id = "light";
-    var heater = window.g_paper.image("img/icons/heater-week-Icon.png", window.g_width - Math.max(7 * h / 6, window.g_width / 6), 4 * window.g_height / 5 - h / 2, h, h);
-    heater.node.id = "heater";
-    var total = window.g_paper.circle(window.g_width / 2, centY, circR);
-    total.node.id = "total";
-    total.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 1, "stroke-opacity": 1});
-    var titleHeading = window.g_paper.text(window.g_width / 2, centY, _t);
-    titleHeading.node.id = "totalHead";
-    titleHeading.attr({'text-anchor': "middle", "font-size": "48px", "fill": "#000", "font-family": "TTRounds-Regular"}).node.setAttribute("class", "donthighlight");
-    ;
+  var minRange = 70, maxRange = 150;
+  var p = map_range(_p, 0, 315, minRange, maxRange);
+  var c = map_range(_c, 0, 315, minRange, 150);
+  var l = map_range(_l, 0, 315, minRange, 150);
+  var h = map_range(_h, 0, 315, minRange, 150);
+  var pImage = "img/icons/projector-week-Icon.png";
+  var cImage = "img/icons/computer-week-Icon.png";
+  var lImage = "img/icons/lightBulb-week-icon.png";
+  var hImage = "img/icons/heater-week-Icon.png";
+  var topStuff = window.g_headerHeight + window.g_daysTopMargin * 8;
+  var restOfHeight = window.g_height - topStuff;
+  var centY = restOfHeight / 2 + topStuff;
+  var circR = window.g_width / 9;
+  if (p === minRange)
+  {
+      pImage = "img/icons/projector-icon-0.png";
+  }
+  if (c === minRange) {
+      cImage = "img/icons/computer-icon-0.png";
+  }
+  if (l === minRange) {
+      lImage = "img/icons/light-icon-0.png";
+  }
+  if (h === minRange) {
+      hImage = "img/icons/heater-icon-0.png";
+  }
+  var proj = window.g_paper.image(pImage, Math.max(p / 10, window.g_width / 15), window.g_height / 2 - 2 * p / 3, p, p);
+  proj.node.id = "projector";
+  var comp = window.g_paper.image(cImage, window.g_width - Math.max(7 * c / 6, window.g_width / 6), window.g_height / 2 - 2 * c / 3, c, c);
+  comp.node.id = "computer";
+  var light = window.g_paper.image(lImage, Math.max(l / 10, window.g_width / 15), 4 * window.g_height / 5 - l / 2, l, l);
+  light.node.id = "light";
+  var heater = window.g_paper.image(hImage, window.g_width - Math.max(7 * h / 6, window.g_width / 6), 4 * window.g_height / 5 - h / 2, h, h);
+  heater.node.id = "heater";
+  var total = window.g_paper.circle(window.g_width / 2, centY, circR);
+  total.node.id = "total";
+  total.attr({stroke: "#FFF", "stroke-width": 3, fill: "#fff", "fill-opacity": 1, "stroke-opacity": 1});
+  var titleHeading = window.g_paper.text(window.g_width / 2, centY, _t);
+  titleHeading.node.id = "totalHead";
+  titleHeading.attr({'text-anchor': "middle", "font-size": "40px", "fill": "#000", "font-family": "TTRounds-Regular"}).node.setAttribute("class", "donthighlight");
+  ;
 }
 
 
@@ -219,7 +244,7 @@ function dayClicked() {
         } else {
             var me = $("#" + this.parent)[0];
             me.status = !me.status;//update status
-            //updateing background color of the selected one. 
+            //updateing background color of the selected one.
             var other = $("#" + window.g_currDay)[0];
             other.status = false;
             other.setAttribute("fill", "#333");
@@ -280,18 +305,19 @@ daySection.prototype.getY = function () {
 
 
 function loadUpdateData(_loadOrUpdate) {
-                window.g_projectorTotal = 20,
-                        window.g_computerTotal = 10,
+  var minSize = 70;
+                window.g_projectorTotal = minSize,
+                        window.g_computerTotal = 0,
                         window.g_heaterTotal = 40,
                         window.g_lightTotal = 68;
                 window.g_total = 8;
                 window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
                 var h = $(window).height() / 2 - 40;
-                window.g_monT = map_range(window.g_monT, 0, 1260, 20, h);
-                window.g_tueT = map_range(window.g_tueT, 0, 1260, 20, h);
-                window.g_wedT = map_range(window.g_wedT, 0, 1260, 20, h);
-                window.g_thurT = map_range(window.g_thurT, 0, 1260, 20, h);
-                window.g_friT = map_range(window.g_friT, 0, 1260, 20, h);
+                window.g_monT = map_range(window.g_monT, 0, 1260, minSize, h);
+                window.g_tueT = map_range(window.g_tueT, 0, 1260, minSize, h);
+                window.g_wedT = map_range(window.g_wedT, 0, 1260, minSize, h);
+                window.g_thurT = map_range(window.g_thurT, 0, 1260, minSize, h);
+                window.g_friT = map_range(window.g_friT, 0, 1260, minSize, h);
                 if (_loadOrUpdate)
                     initialise();
                 else {

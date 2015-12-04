@@ -93,6 +93,7 @@ html {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 100%;
+  padding-top: 25px;
   text-align: center;
 }
 #helpBody{
@@ -104,7 +105,10 @@ html {
 }
 .signupBody h1{
   color:white;
-  border-bottom: white
+  border-bottom: white;
+  font-size: 26px;
+  font-family: 'TTRounds-Bold';
+
 }
 
 hr{
@@ -115,7 +119,7 @@ hr{
   float: center;
   display: inline-block;
   background-color: rgba(255,255,255,0.4);
-  margin: 10px;
+  /*margin: 10px;*/
   /*width:100%;*/
 }
 .inputs{
@@ -151,7 +155,7 @@ hr{
 }
 #addSubj{
   position: absolute;
-  bottom: 2%;
+  bottom: 4%;
   left: 50%;
   margin-left: -25px;
   text-align: center;
@@ -258,22 +262,24 @@ hr{
     font-size: 14px;
     max-width: 60%;
     float: left;
-    padding: 15px 10px 10px 20px;
-    line-height: 30px;
+    padding: 20px 10px 10px 20px;
+    line-height: 20px;
   }
   #leftArr {
-    height: 80%;
+    height: 70px;
     position: relative;
     float: left;
     margin-top: 10px;;
     padding-left: 10px;
+    cursor: pointer;
   }
   #rightArr{
-    height: 80px;
+    height: 70px;
     position: relative;
     float: right;
-    margin-top: 10px;;
-    padding-right: 10px;
+    margin-top: 15px;;
+    padding-right: 15px;
+    cursor: pointer;
   }
   #updateUser{
     float: center;
@@ -281,50 +287,62 @@ hr{
   }
   #appInfo{
     background-color: transparent;
+    width: 100%;
     position: absolute;
     bottom: 100px;
     left:0;
     margin-bottom: 20px;
     margin-top: 40px;
+    text-align: center;
   }
   #appInfo p{
-    text-align: left;
+    text-align: center;
   }
   #appInfo h1{
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
     margin-left: 30px;
+    padding-top: 10px;
+    font-family: 'TTRounds-Regular';
   }
   #help img{
     height: 50px;
     float:left;
   }
-  #helpIcon{
+  #helpIconn{
     height: 50px;
     position:absolute;
     background-color:"#f00";
-    top:10px;
-    left:10px;
+    top:25px;
+    left:20px;
     display: block;
     float:left;
   }
-  #homeIcon{
-    height: 50px;
-    top:10px;
-    right:10px;
+  #homeIconn{
+    height: 40px;
+    top:20px;
+    right:20px;
     position:absolute;
     background-color:"#f00";
     display: block;
     cursor: pointer;
+
+  }
+  .subjectsEdit{
+    text-align: center;
   }
   .subjectsEdit img{
+    text-align: center;
+
     height:40px;
-    padding-bottom:10px;
+    padding-top: 10px;
+
     cursor:pointer;
   }
   .subjectsEdit input{
     padding:20px;
-    width:80%;
+    font-size:24px;
+    width:90%;homeIconn
   }
 .simpleButton{
   background-color:transparent;
@@ -364,15 +382,15 @@ cursor: pointer;
   color:black;
   line-height: 100px;
   cursor: pointer;
-
   Display: inline-block;
-  padding: 0;
+  padding-left: 20px;
   font-size: 2em;
 }
 #footer img{
   height: 40px;
   float: right;
   margin-top: 30px;
+  margin-right:20px;
   cursor: pointer;
 }
 .userInfoP{
@@ -389,22 +407,27 @@ cursor: pointer;
   padding: 10px;
   margin-top: 15px;
   color: rgba(20, 20, 20, 0.5);
-  font-size: 24px;
+  font-size: 20px;
+}
+#tempText{
+  border: 0;
+    padding: 0;
 }
 
 
 
 .infoHeader{
-  height: 80px;
 
 }
 .infoHeader h1{
-  line-height: 80px;
+  font-family: 'TTRounds-Bold';
+  font-size: 26px;
 }
 .iconImg{
   display: none;
-  height: 50px;
+  height: 40px;
   right: 0px;
 position: relative;
-top: 20px;
+top: 10px;
+
 }

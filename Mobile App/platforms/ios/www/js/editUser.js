@@ -25,7 +25,7 @@ window.onload = function () {
      if(validateUserInput())
        updateUser();
    });
-   $("#homeIcon").bind("click",function(){
+   $("#homeIconn").bind("click",function(){
      window.location="weekView.html";
    });
 };

@@ -64,7 +64,7 @@ function initialise() {
     window.g_width = $(window).width();
     window.g_height = $(window).height();
     window.g_leftMargin = g_width / 60;
-    window.g_iconW = g_width / 10;
+    window.g_iconW = g_width / 12;
     window.g_iconH = g_height / 5;
     window.g_sliderW = 3 * g_width / 4 + 2 * window.g_leftMargin;
 
@@ -79,18 +79,27 @@ function initialise() {
     txt.attr({'text-anchor': "start", "font-size": "16px", "font-family": "TTRounds-Regular"});
     var t = window.g_paper.text(window.g_sliderW + window.g_iconW + 4 * window.g_leftMargin, 4.5 * window.g_iconH / 5, "Total");
     t.attr({'text-anchor': "star", "font-size": "14px", "font-family": "TTRounds-Regular"});
-    window.g_lightSlider = new Slider("light", "img/icons/lightBulb-subject-icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH, 0, 45, 5, 0);
-    window.g_projectorSlider = new Slider("projector", "img/icons/projector-subject-Icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 2, 0, 45, 5, 0);
-    window.g_computerSlider = new Slider("computer", "img/icons/computer-subject-icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 3, 0, 45, 5, 0);
-    window.g_heaterSlider = new Slider("heater", "img/icons/heater-subject-Icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 4, 0, 45, 5, 0);
+    window.g_lightSlider = new Slider("light", "img/icons/lightBulb-week-icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH, 0, 45, 5, 0);
+    window.g_projectorSlider = new Slider("projector", "img/icons/projector-week-Icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 2, 0, 45, 5, 0);
+    window.g_computerSlider = new Slider("computer", "img/icons/computer-week-Icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 3, 0, 45, 5, 0);
+    window.g_heaterSlider = new Slider("heater", "img/icons/heater-week-Icon.png", window.g_iconW, window.g_iconW, 0, window.g_iconH * 4, 0, 45, 5, 0);
     window.g_paper.image("img/backgrounds/Detailview_head.png", 0, 0, window.g_width, 2 * window.g_iconH / 3);
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_iconH / 3, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Bold"});
-    var homeIcon = window.g_paper.image("img/icons/leftArrow.png", 35, window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
+    var leftIcon = window.g_paper.image("img/icons/arrow-left-icon.png", 35,
+    window.g_iconH / 6, window.g_iconH / 4, window.g_iconH / 3);
+    leftIcon.node.setAttribute("class", "donthighlight pointerCursor");
+    leftIcon.node.id = "leftIcon";
+    $("#leftIcon").bind('click', function () {
+        window.location = "dayView.html";
+    });
+    var homeIcon = window.g_paper.image("img/icons/home-grey.png",
+    window.g_width - window.g_iconH / 4 - 30,
+    window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
     homeIcon.node.setAttribute("class", "donthighlight pointerCursor");
     homeIcon.node.id = "homeIcon";
     $("#homeIcon").bind('click', function () {
-        window.location = "dayView.html";
+        window.location = "weekView.html";
     });
 }
 
@@ -130,7 +139,6 @@ function Slider(_title, _icon, _iconW, _iconH, _x, _y, _min, _max, _interval, _v
     var stepsWidth = window.g_sliderW / sliderSteps;
     var startSliderX = this.startX + window.g_iconW + window.g_leftMargin * 2;
     var status = false;
-    console.log(s);
     for (var i = 0; i < sliderSteps; i++) {
         status = s.charAt(i) === "1" ? true : false;
         console.log(status);
