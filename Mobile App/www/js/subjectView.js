@@ -87,7 +87,7 @@ function initialise() {
     var titleHeading = window.g_paper.text(window.g_width / 2, window.g_iconH / 3, window.g_title);
     titleHeading.attr({'text-anchor': "middle", "font-size": "26px", "font-family": "TTRounds-Bold"});
     var leftIcon = window.g_paper.image("img/icons/arrow-left-icon.png", 35,
-    window.g_iconH / 5, window.g_iconH / 4, window.g_iconH / 4);
+    window.g_iconH / 6, window.g_iconH / 4, window.g_iconH / 3);
     leftIcon.node.setAttribute("class", "donthighlight pointerCursor");
     leftIcon.node.id = "leftIcon";
     $("#leftIcon").bind('click', function () {

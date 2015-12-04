@@ -164,11 +164,11 @@ function loadSubjects() {
             })
             .always(function (data) {
                 var r = window.g_heightUnit / 3;
-                var w = window.g_width-r-100;// - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
+                var w = window.g_width-r-180;// - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
                 var h = window.g_heightUnit - window.g_topMargin;
                 for (var i = 0; i < data.length; i++) {
                   g_numberOfSubjects+=1;
-                    var sub = new Subject(50, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].title, parseInt(data[i].total));
+                    var sub = new Subject(80, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].title, parseInt(data[i].total));
                 }
                 window.g_lastHeight = window.g_heightUnit * (data.length + 1);
             });
@@ -185,7 +185,7 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     var subjectHeading = window.g_paper.text(this.x, this.y + _r + window.g_topMargin, _num);
     subjectHeading.attr({'text-anchor': "middle", "font-size": "20px", "fill": "#fff", "font-family": "TTRounds-Bold"});
     subjectHeading.node.setAttribute("class", "donthighlight");
-    var recX = this.x +50;
+    var recX = this.x +80;
     this.subjectBtn = window.g_paper.rect(recX, this.y, _w, _h - window.g_topMargin, 5);
     this.subjectBtn.hover(hoverIn, hoverOut, this.subjectBtn, this.subjectBtn);
     this.subjectBtn.attr({stroke: "#FFF", "stroke-width": 2, fill: "#fff", "fill-opacity": 1, "stroke-opacity": .7}).node.setAttribute("class", "donthighlight pointerCursor");

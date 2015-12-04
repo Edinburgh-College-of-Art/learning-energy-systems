@@ -287,14 +287,16 @@ hr{
   }
   #appInfo{
     background-color: transparent;
+    width: 100%;
     position: absolute;
     bottom: 100px;
     left:0;
     margin-bottom: 20px;
     margin-top: 40px;
+    text-align: center;
   }
   #appInfo p{
-    text-align: left;
+    text-align: center;
   }
   #appInfo h1{
     text-align: center;
