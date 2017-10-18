@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            body {
+                padding-top: 0px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+        <link rel="stylesheet" href="js/vendor/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="js/vendor/tooltipster/css/tooltipster.css"/>
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="js/vendor/jquery/jquery.js"></script>  
+        <!--<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>--> 
+        <!--<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">-->
+        <script src="js/vendor/d3/d3.js"></script>
+        <script src="js/vendor/moment.js/moment.js"></script>
+        <script src="js/vendor/raphael/raphael-min.js"></script>
+        <script src="js/vendor/jquery-csv/jquery.csv-0.71.min.js"></script>
+        <script src="js/vendor/tooltipster/js/jquery.tooltipster.js"></script>
+
+
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container ">
+            <!-- Example row of columns -->
+
+            <div id="graph">
+                <!--<img src="img/renewable_lineGraph.gif" alt="graphImage">-->
+            </div>
+            <div class="classroom ">
+
+                <div id="classroomList">
+                    <div id="geographyNav" class="classTitle selected" onclick="roomChanged('geography')">
+                    </div>
+                    <div id="artNav" class="classTitle" onclick="roomChanged('art')">
+                    </div>
+                    <div id="computerNav" class="classTitle" onclick="roomChanged('computer')">
+                    </div>
+                    <div id="scienceNav" class="classTitle" onclick="roomChanged('science')">
+                    </div>
+                </div>
+                <div class="iconsList">
+                    <img id="classImage" class="class-image" src="img/LES_images/geography/geog_0000.png"  alt="classroom">
+                    <img id="light"  class="lightOn roomIcon light fa-spin tooltip" title="Lights" onclick="iconClicked('light')" src="img/LES_icons/lights_on.png">
+                    <img id="blind" class="blindOn roomIcon blind fa-spin tooltip" onclick="iconClicked('blind')" title="room blinds" src="img/LES_icons/blind_on.png" >
+                    <img id="computer" class="computerOn roomIcon computer fa-spin tooltip" onclick="iconClicked('computer')" title="all computers in this room" src="img/LES_icons/computer_on.png">
+                    <img id="projector" class="projectorOn roomIcon projector fa-spin tooltip" onclick="iconClicked('projector')" title="projector" src="img/LES_icons/projector_on.png">
+                    <img id="vandegraff" class="vandegraff vandegraffOn roomIcon fa-spin tooltip" onclick="iconClicked('vandegraff')" title="Van De Graff machine" src="img/LES_icons/vandegraff_on.png">
+                    <img id="rgb" class="rgb rgbOn roomIcon fa-spin tooltip" onclick="iconClicked('rgb')" title="RGB lights" src="img/LES_icons/rgb_on.png">
+                    <div class="userstuff">Your name:   <input type="text" id="user"/>
+                        <button id="saveBut" title="save" onclick="saveData()">Save <i class="fa fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /container -->      
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+
+
+        <!--         Google Analytics: change UA-XXXXX-X to be your site's ID. 
+                <script>
+                    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+                    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+                    e.src='//www.google-analytics.com/analytics.js';
+                    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+                    ga('create','UA-XXXXX-X');ga('send','pageview');
+                </script>-->
+    </body>
+</html>

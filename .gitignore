@@ -27,3 +27,7 @@ admin-app/app/tmp/*
 admin-app/app/Config/core.php
 admin-app/app/Config/database.php
 admin-app/vendors/*
+
+# php-api
+
+php-methods/config.ini

@@ -1,0 +1,5 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/wwwlearningenerg/csv"
+PassengerBaseURI "/csv"
+PassengerPython "/home/wwwlearningenerg/virtualenv/csv/2.7/bin/python2.7"
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
