@@ -1,0 +1,70 @@
+[12-Oct-2015 16:13:43 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/wwwlearningenerg/public_html/dashboard/webroot/index.php on line 58
+[12-Oct-2015 16:27:15 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/wwwlearningenerg/public_html/dashboard/src/Controller/StaticController.php on line 56
+[14-Oct-2015 20:56:52 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:53 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:53 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:54 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:54 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:55 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:55 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:56 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:57 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:57 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:57 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:58 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:58 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:56:59 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:00 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:00 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:01 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:01 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:02 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:02 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:03 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:04 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:04 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:05 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:05 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 20:57:06 UTC] PHP Parse error:  syntax error, unexpected '$routes' (T_VARIABLE) in /home/wwwlearningenerg/public_html/dashboard/config/routes.php on line 57
+[14-Oct-2015 21:03:36 UTC] PHP Fatal error:  Trait 'Cake\Event' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 33
+[14-Oct-2015 21:04:11 UTC] PHP Fatal error:  Trait 'Cake\Event' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 32
+[14-Oct-2015 21:04:44 UTC] PHP Fatal error:  Trait 'App\Controller\Cake\Event' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 67
+[14-Oct-2015 21:04:56 UTC] PHP Fatal error:  Trait 'Cake\Event' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 67
+[14-Oct-2015 21:05:00 UTC] PHP Fatal error:  Trait 'Cake\Event' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 67
+[14-Oct-2015 21:05:38 UTC] PHP Fatal error:  App\Controller\AppController cannot use Cake\Event\Event - it is not a trait in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 67
+[15-Oct-2015 09:38:03 UTC] PHP Fatal error:  Class 'Debugger' not found in /home/wwwlearningenerg/public_html/dashboard/src/Template/Pages/login.ctp on line 11
+[15-Oct-2015 09:40:30 UTC] PHP Fatal error:  Call to undefined method App\View\AppView::loadModel() in /home/wwwlearningenerg/public_html/dashboard/src/Template/Pages/login.ctp on line 13
+[15-Oct-2015 10:48:20 UTC] PHP Fatal error:  Class 'App\Controller\ConnectionManager' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 108
+[15-Oct-2015 10:48:30 UTC] PHP Fatal error:  Class 'App\Controller\ConnectionManager' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 108
+[15-Oct-2015 10:49:34 UTC] PHP Fatal error:  Class 'App\Controller\ConnectionManager' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 108
+[15-Oct-2015 10:49:37 UTC] PHP Fatal error:  Class 'App\Controller\ConnectionManager' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 108
+[15-Oct-2015 10:49:41 UTC] PHP Fatal error:  Class 'App\Controller\ConnectionManager' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 108
+[15-Oct-2015 10:50:09 UTC] PHP Parse error:  syntax error, unexpected 'use' (T_USE) in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 108
+[15-Oct-2015 10:50:28 UTC] PHP Fatal error:  Call to undefined method Cake\Database\Connection::showLog() in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 111
+[15-Oct-2015 10:52:45 UTC] PHP Fatal error:  Call to undefined method Cake\Database\Connection::showLog() in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 111
+[15-Oct-2015 11:36:44 UTC] PHP Fatal error:  Call to a member function allow() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 55
+[15-Oct-2015 11:36:46 UTC] PHP Fatal error:  Call to a member function allow() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 55
+[15-Oct-2015 11:37:36 UTC] PHP Fatal error:  Call to a member function allow() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 55
+[15-Oct-2015 11:37:37 UTC] PHP Fatal error:  Call to a member function allow() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 55
+[15-Oct-2015 11:37:52 UTC] PHP Fatal error:  Call to a member function allow() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 55
+[15-Oct-2015 11:37:52 UTC] PHP Fatal error:  Call to a member function allow() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 55
+[15-Oct-2015 11:38:24 UTC] PHP Fatal error:  Call to a member function allow() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppController.php on line 55
+[18-Oct-2015 12:46:09 UTC] PHP Fatal error:  Call to a member function aliasField() on a non-object in /home/wwwlearningenerg/public_html/dashboard/vendor/cakephp/cakephp/src/Auth/BaseAuthenticate.php on line 136
+[18-Oct-2015 12:47:03 UTC] PHP Fatal error:  Call to a member function aliasField() on a non-object in /home/wwwlearningenerg/public_html/dashboard/vendor/cakephp/cakephp/src/Auth/BaseAuthenticate.php on line 136
+[18-Oct-2015 13:20:22 UTC] PHP Parse error:  syntax error, unexpected 'l' (T_STRING) in /home/wwwlearningenerg/public_html/dashboard/webroot/index.php on line 29
+[18-Oct-2015 13:20:37 UTC] PHP Fatal error:  Class 'App\Controller\PC' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 18
+[18-Oct-2015 14:08:27 UTC] PHP Fatal error:  Call to a member function aliasField() on a non-object in /home/wwwlearningenerg/public_html/dashboard/vendor/cakephp/cakephp/src/Auth/BaseAuthenticate.php on line 136
+[18-Oct-2015 14:10:31 UTC] PHP Fatal error:  Call to a member function error() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppSchoolController.php on line 157
+[18-Oct-2015 21:19:36 UTC] PHP Fatal error:  Call to a member function read() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Template/AppSchool/dash.ctp on line 4
+[19-Oct-2015 12:50:03 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 39
+[19-Oct-2015 12:50:35 UTC] PHP Fatal error:  Class 'PC' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 26
+[19-Oct-2015 12:53:05 UTC] PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR) in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 27
+[19-Oct-2015 13:20:59 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ']' in /home/wwwlearningenerg/public_html/dashboard/src/Model/Table/AppDataTable.php on line 34
+[19-Oct-2015 13:27:23 UTC] PHP Fatal error:  Class 'App\Controller\ConnectionManager' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 22
+[19-Oct-2015 13:58:08 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 32
+[19-Oct-2015 14:21:29 UTC] PHP Fatal error:  Call to a member function all() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 42
+[19-Oct-2015 14:36:43 UTC] PHP Fatal error:  Call to a member function find() on a non-object in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 27
+[19-Oct-2015 14:42:03 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 25
+[19-Oct-2015 15:08:21 UTC] PHP Fatal error:  Class 'App\Controller\NotFoundException' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppDataController.php on line 38
+[20-Oct-2015 14:08:28 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/wwwlearningenerg/public_html/dashboard/src/Template/Layout/default.ctp on line 15
+[12-Nov-2015 02:40:39 UTC] PHP Fatal error:  Class 'PC' not found in /home/wwwlearningenerg/public_html/dashboard/src/Controller/AppQuestionsController.php on line 35
