@@ -1,9 +1,29 @@
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-.nb-gradle/
+client-app/nbproject/private/
+client-app/build/
+client-app/nbbuild/
+client-app/dist/
+client-app/nbdist/
+client-app/nbactions.xml
+client-app/nb-configuration.xml
+client-app/.nb-gradle/
 
+# CakePHP Ignores
+
+backend/vendor/*
+backend/config/app.php
+backend/tmp/cache/models/*
+backend/!/tmp/cache/models/empty
+backend/tmp/cache/persistent/*
+backend/!/tmp/cache/persistent/empty
+backend/tmp/cache/views/*
+backend/!/tmp/cache/views/empty
+backend/tmp/sessions/*
+backend/!/tmp/sessions/empty
+backend/tmp/tests/*
+backend/!/tmp/tests/empty
+backend/logs/*
+backend/!/logs/empty
+backend/app/tmp/*
+backend/app/Config/core.php
+backend/app/Config/database.php
+backend/vendors/*
