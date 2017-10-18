@@ -9,21 +9,21 @@ client-app/.nb-gradle/
 
 # CakePHP Ignores
 
-backend/vendor/*
-backend/config/app.php
-backend/tmp/cache/models/*
-backend/!/tmp/cache/models/empty
-backend/tmp/cache/persistent/*
-backend/!/tmp/cache/persistent/empty
-backend/tmp/cache/views/*
-backend/!/tmp/cache/views/empty
-backend/tmp/sessions/*
-backend/!/tmp/sessions/empty
-backend/tmp/tests/*
-backend/!/tmp/tests/empty
-backend/logs/*
-backend/!/logs/empty
-backend/app/tmp/*
-backend/app/Config/core.php
-backend/app/Config/database.php
-backend/vendors/*
+admin-app/vendor/*
+admin-app/config/app.php
+admin-app/tmp/cache/models/*
+admin-app/!/tmp/cache/models/empty
+admin-app/tmp/cache/persistent/*
+admin-app/!/tmp/cache/persistent/empty
+admin-app/tmp/cache/views/*
+admin-app/!/tmp/cache/views/empty
+admin-app/tmp/sessions/*
+admin-app/!/tmp/sessions/empty
+admin-app/tmp/tests/*
+admin-app/!/tmp/tests/empty
+admin-app/logs/*
+admin-app/!/logs/empty
+admin-app/app/tmp/*
+admin-app/app/Config/core.php
+admin-app/app/Config/database.php
+admin-app/vendors/*
