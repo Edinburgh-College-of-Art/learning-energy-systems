@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang='en'>
+<meta charset='utf-8'>
+<head>
+    <title>Stirling Energy Dashboard</title>
+    <!--[if lt IE 9]>
+    <script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./fonts.css" />
+    <script src='./moment.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+    
+</head>
+    <body>
+
+        <div id="header" class="full-width">
+            <div id="header-core" class="mainCenter">
+                <span class="helper"></span><img class="logo" src="img/logo.png" alt="Learning Energy Systems Logo" height="100px" />
+                <span style="font-size: 24px; font-weight: bold; color: #29b473">Stirling Energy Dashboard (concept)</span>
+            </div>
+        </div>
+        <div id="chart" class="full-width">
+            <img src="img/fakeChart.png" id="fakeChart" width="900px" height="auto"/>
+        </div>
+        <div id="learningQuestions" class="mainCenter">
+            <h2>Energy Diary - Learning Questions</h2>
+            <form id="questionsForm" action="placeholder.php">
+                <textarea id="questionTextArea" class="qA" rows="10" cols="30" placeholder="Enter Question"></textarea> 
+                <textarea id="answerTextArea" class="qA" rows="10" cols="30" placeholder="Enter Answer"></textarea> 
+                <input type="submit" value="Add" class="addButton">
+            </form>
+            <div id="questionsWrapper" class="mainCenter">
+                
+            </div>
+        </div>
+        <script src='./d3.js'></script>
+        <script src='stirling.js'></script>
+    </body>
+</html>

@@ -1,0 +1,296 @@
+html, body
+{
+	padding:0;
+	margin:0;
+	height:100%;
+	width:100%;
+	font-family: 'TTRounds', sans-serif;
+	font-weight: normal;
+}
+
+*:focus {outline:0;}
+
+/* STRUCTURE */
+
+.full-width
+{
+	width:100%;
+}
+
+.mainCenter
+{
+	width:800px;
+	margin:0 auto;
+	text-align:center;
+}
+
+div#chart, div#legendOuter
+{
+	background-color: #f2f2f2;
+	text-align: center;
+	padding: 10px 0 10px 0;
+	height:auto;
+}
+
+div#chart
+{
+	margin-bottom: 10px;
+}
+
+div#canvasContainer
+{
+	height:400px;
+	width:90%;
+}
+
+div#header
+{
+	background-color: rgb(255,255,255);
+	height:200px;
+	text-align:center;
+}
+
+	div#header-core
+	{
+		height:100%;
+	}
+
+div#learningQuestions
+{
+	margin-top:90px;
+	min-height:175px;
+}
+	
+	form#questionsForm
+	{
+		margin-bottom: 25px;
+	}
+
+	.questionText
+	{
+		margin-left:15px;
+		max-width: 575px;
+	}
+
+	.questionRow
+	{
+		width: 100%;
+		text-align: left;
+		padding-left: 60px;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+		.revealButton
+		{
+			color:#29b473;
+			font-size: 12px;
+			text-decoration: underline;
+		}
+
+			.revealButton:hover
+			{
+				cursor:pointer;
+			}
+
+		.deleteButton
+		{
+			margin-left:40px;
+			position: relative;
+			top:5px;
+		}
+
+/* MISC */
+
+.helper
+{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.logo
+{
+	vertical-align: middle;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.floatLeft
+{
+	float:left;
+	margin:0;
+}
+
+/* UI */
+
+#energyIcons
+{
+	width:10%;
+	height:100%;
+	text-align: center;
+}
+	#energyIcons p.label
+	{
+		margin:0;
+		position:relative;
+		top:-7px;
+		visibility: hidden;
+	}
+	.energyIcon
+	{
+		width: 60%;
+		height: auto;
+		margin-bottom: 1px;
+		border-radius: 50%;
+	}
+
+.addButton {
+	background-color:#29b473;
+	text-indent:0;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:30px;
+	line-height:15px;
+	width:60px;
+	text-decoration:none;
+	text-align:center;
+	border:0;
+	position: relative;
+	top:-86px;
+}.classname:hover {
+	background-color:#26a366;
+}.classname:active {
+	position:relative;
+	top:1px;
+}
+
+.qA
+{
+	border-color: #29b473;
+	width:300px;
+	height:100px;
+	font-family: "TTRounds";
+	resize:none;
+}
+
+select
+{
+	width:200px;
+}
+	.ui-selectmenu-button
+	{
+		position: relative;
+		top:4px;
+		border-color: #BBBDBF;
+		border-style: solid;
+		border-width: 1px;
+		color: #8C8080;
+	}
+
+	.ui-state-default .ui-icon.select-icon-arrow {
+		width:22px;
+		height:22px;
+		margin-top:-11px;
+		right:0px;
+	    background-image: url('img/arrow_select.png');
+	    background-repeat: no-repeat;
+    	background-position: center; 
+    	background-size: contain;
+	}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label {
+    display: inline-block;
+    width: 23px; 
+    height: 23px;
+    background-image: url('img/checkbox.png');
+    background-repeat: no-repeat;
+	background-position: center; 
+	background-size: contain;
+    cursor: pointer;
+    margin: 0px 8px 0 8px;
+    position: relative;
+    top:5px;
+}
+input[type=checkbox]:checked + label {
+    background-image: url('img/checkbox_check.png');
+}
+
+span
+{
+	display:inline-block;
+}
+
+h1,h2,h3
+{
+	color:#29b473;
+}
+
+h3
+{
+	width:auto;
+	height:auto;
+	color: #A8A6A6;
+	clear:both;
+}
+
+.shadowed
+{
+	stroke:#000;
+	stroke-width: 3;
+}
+
+.isSelected
+{
+	background-color: #fff;
+}
+
+/* DROPDOWN */
+
+.nav-menu .nav-primary {
+   margin: 0 0 1.5em;
+   position: relative;
+   overflow: hidden;
+}
+.nav-menu .nav-primary a {
+   padding-right: 3em;
+}
+.nav-menu .nav-primary h3 {
+   position: absolute;
+   top: 0;
+   left: auto;
+   right: 0;
+   display: block;
+   width: 4em;
+   height: 4.5em; 
+   background: #ccc url(img/icons.png) no-repeat -205px 45%;
+   text-indent: -999em;
+   cursor: pointer;
+}
+.nav-menu .nav-primary.expanded h3 {
+   background-position: -169px 45%;
+}
+.nav-menu .nav-primary li {
+   clear: left;
+   display: none;
+}    
+.nav-menu .nav-primary.expanded li,
+.nav-menu .nav-primary li.nav-current {
+   display: list-item;
+} 
+.nav-menu .nav-primary li.nav-current {
+   border-bottom-width: 0;
+}
+.nav-menu .nav-primary.expanded li.nav-current {
+   border-bottom-width: 1px;
+}
+
+
