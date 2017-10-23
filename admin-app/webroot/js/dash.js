@@ -422,7 +422,7 @@ function getInitialData()
 	spinner.spin($('#canvasContainer')[0]);
 	$(".spinner").css('visibility', 'visible');
 	$.ajax({
-		url: 'http://www.learningenergy.eca.ed.ac.uk/dashboard/app_data/all.json',
+		url: 'http://localhost/dashboard/app_data/all.json',
 		type: 'GET',
 		dataType: 'json',
 		data: {}
@@ -597,7 +597,7 @@ function setupListeners()
 		}
 		// send
 		$.ajax({
-			url: 'http://www.learningenergy.eca.ed.ac.uk/dashboard/app_questions/add',
+			url: 'http://localhost/dashboard/app_questions/add',
 			type: 'POST',
 			dataType: 'json',
 			data: {school_id: 5, question: question, answer: answer}
@@ -654,7 +654,7 @@ function setupListeners()
 
 					// send query
 					$.ajax({
-						url: 'http://www.learningenergy.eca.ed.ac.uk/dashboard/app_questions/delete/'+questionID,
+						url: 'http://localhost/dashboard/app_questions/delete/'+questionID,
 						type: 'DELETE',
 						dataType: 'json',
 						data: {},
@@ -694,7 +694,7 @@ function setupListeners()
 function getQuestions()
 {
 	// all questions pertaining to a certain school
-	d3.json("http://www.learningenergy.eca.ed.ac.uk/dashboard/app_questions.json", function(error, json) {
+	d3.json("http://localhost/dashboard/app_questions.json", function(error, json) {
 		if (error) return console.log(error);
 		questionData = json.appQuestions;
 		displayQuestions();
@@ -855,7 +855,7 @@ function setupQuestionListeners()
 
 			// send query
 			$.ajax({
-				url: 'http://www.learningenergy.eca.ed.ac.uk/dashboard/app_questions/delete/'+questionID,
+				url: 'http://localhost/dashboard/app_questions/delete/'+questionID,
 				type: 'DELETE',
 				dataType: 'json',
 				data: {},

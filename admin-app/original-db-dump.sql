@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.28-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
 --
 -- Host: localhost    Database: wwwlearn_school
 -- ------------------------------------------------------
--- Server version	10.1.28-MariaDB
+-- Server version 5.7.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -102,7 +102,7 @@ CREATE TABLE `app_school` (
 
 LOCK TABLES `app_school` WRITE;
 /*!40000 ALTER TABLE `app_school` DISABLE KEYS */;
-INSERT INTO `app_school` VALUES (3,'ECA','$2y$10$wIRjGE4K4bn6JopJk7g/Ze2'),(5,'ExhibitionSchool','$2y$10$k6Q0mD0STXMLQq/uv4epyuh'),(7,'porty','$2y$10$/Jw248iv3epzKcYPSnnh9OoETiFB7bjEffT.0rErJe6Sgzc.BINwu'),(8,'ECA2','$2y$10$cgvlABJHAeKajnQxkKFfLufqChdyB39HEzS6MZJXTBT/A9b6IVWgC');
+INSERT INTO `app_school` VALUES (3,'ECA','$2y$10$a0NNAH8.iEUqEdA13RKn4.Nae1pd6GulBzsR/RMgVHVtGrW5CyRGO'),(5,'ExhibitionSchool','$2y$10$mkV4Kegy04SKjtscr/j4AeopJkkeXINGHGWd5ARUgLVc69pgOUPhC'),(7,'porty','$2y$10$wnaqYstg8LydV69np1xdnOPSR5ncNSI2cF6UpxPKLbryiS3P2d1Zi'),(8,'ECA2','$2y$10$ZU2NgkO.KYzXpel77JONY.pKPjiVA4xhZFJQwgFQBlI8qMoVu7yFK');
 /*!40000 ALTER TABLE `app_school` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `app_students` (
 
 LOCK TABLES `app_students` WRITE;
 /*!40000 ALTER TABLE `app_students` DISABLE KEYS */;
-INSERT INTO `app_students` VALUES (1,'hadi','porty',1980),(2,'hadi','porty',1980),(3,'hadi','porty',1980),(4,'hadi','porty',1980),(5,'hadi','porty',1980),(6,'hadi','porty',1980),(7,'hadi','porty',1980),(8,'hadi','porty',1980),(9,'hadi','porty',1980),(10,'hadi','porty',1980),(11,'hadi','porty',1980),(12,'hadi','porty',1980),(13,'hadi','porty',1980),(14,'hadi','porty',1980),(15,'hadi','porty',1980),(16,'hadi','porty',1980),(17,'hadi','porty',1980),(18,'hadi','porty',1980),(19,'hadi','porty',1980),(20,'hadi','porty',1980),(21,'hadi','porty',1980),(22,'hadi','porty',1980),(23,'hadi','porty',1980),(24,'hadi','porty',1980),(25,'hadi','porty',1980),(26,'hadi','porty',1980),(27,'hadi','porty',1980),(28,'hadi','porty',1980),(29,'hadi','porty',1980),(30,'hadi','porty',1980),(31,'hadi','porty',1980),(32,'hadi','porty',1980),(33,'hadi','porty',1980),(34,'hadi','porty',1980),(35,'hadi','porty',1980),(36,'hadi','porty',1980),(37,'hadi','porty',1980),(38,'hadi','porty',1980),(39,'hadi','porty',1980),(40,'hadi','porty',1980),(41,'hadi','porty',1980),(42,'hadi','porty',1980),(43,'hadi','porty',1980),(44,'hadi','porty',1980),(45,'hadi','porty',1980),(46,'l','l',1980),(47,'k','k',20),(48,'l','l',1),(49,'h','h',11),(50,'j','j',19),(51,'k','k',1),(52,'hadi','me',1880),(53,'hadi','me',1880),(54,'hadi','kk',1998),(55,'hadi','kk',1998),(56,'hadi','kk',1980),(57,'hadi','kk',1980),(58,'hhhh','ggg',1234),(59,'hhhh','ggg',1234),(60,'skgrkd','nsnsb',1923),(61,'skgrkd','nsnsb',1923),(62,'hadi','eca',2016),(63,'hadi','eca',2016),(64,'sigrid','vs bad hall',1995),(65,'sigrid','vs bad hall',1995),(66,'asfsdfsd','sdfsfsdfsdfsd',1980),(67,'asfsdfsd','sdfsfsdfsdfsd',1980),(68,'asfsdfsd','sdfsfsdfsdfsd',1980),(69,'h','h',1230),(70,'tt','tt',1980),(71,'test','ff',1990),(72,'hadi','test',1980),(73,'baba','bb',1920),(74,'test','tt',1988),(75,'hadi','h',1990),(76,'k','k',1980),(77,'j','j',1980),(78,'j','j',1985),(79,'kj','kj',1977),(80,'kaka','kaka',1880),(81,'hadk','hh',1999),(82,'aa','bb',3125552),(83,'lkj','lkj',1234),(84,'hhhhhh','h',1980),(85,'haduckjhkjhkjh','dukdukkjhjkh',2222),(86,'Hadiiii','Aaa',2099),(87,'xzzxz','jkjk',1990),(88,'Hh','Cbcbc',1929),(89,'Ggg','Fhfng',1990),(90,'Netherrhrhrhr','Magnet',1234),(91,'aaa','aa',1982),(92,'Sigrid','Bad hall',1900),(93,'Chris Barkovich','Stirling',2015),(94,'hh','hh',1980),(95,'Hadi','Ss',1920),(96,'loki','Edinburgh College of art',1920),(97,'hadi','h',1919),(98,'had','hh',1912),(99,'hh','hh',1920),(100,'hh','hh',1020),(101,'t','tt',1999),(102,'Testte','Test',1999),(103,'Uh','Ggg',1234),(104,'Mark','Design Informatics',1),(105,'Annika','Design Informatics',1),(106,'Luis','UNLZ',2015),(107,'Luis','UNLZ',2015),(108,'Afshin','Mehr',2016),(109,'Kate carter','',1),(110,'B.rees','Olchfa',1987),(111,'Jude','',2016),(112,'Fiona','General McLane',2017),(113,'Yy','Dh',2016),(114,'Gonzalo MatÃ­as','Universidad tecnolÃ³gica metropolitana',5),(115,'Suzy Tran','BIS',9),(116,'hadi','abertay',3),(117,'A','B',2016),(118,'Leon Lin','National Taiwan University of Science',2016),(119,'Moro','Ghg',1995),(120,'Orlandis','New vision academy',2016),(121,'Test','Test',2015),(122,'geoff','test 2017',1980),(123,'Test person','St. Tams',2017),(124,'test','St Trinians',2007),(125,'Rory','ECA',2017);
+INSERT INTO `app_students` VALUES (1,'hadi','porty',1980),(2,'hadi','porty',1980),(3,'hadi','porty',1980),(4,'hadi','porty',1980),(5,'hadi','porty',1980),(6,'hadi','porty',1980),(7,'hadi','porty',1980),(8,'hadi','porty',1980),(9,'hadi','porty',1980),(10,'hadi','porty',1980),(11,'hadi','porty',1980),(12,'hadi','porty',1980),(13,'hadi','porty',1980),(14,'hadi','porty',1980),(15,'hadi','porty',1980),(16,'hadi','porty',1980),(17,'hadi','porty',1980),(18,'hadi','porty',1980),(19,'hadi','porty',1980),(22,'hadi','porty',1980),(23,'hadi','porty',1980),(24,'hadi','porty',1980),(25,'hadi','porty',1980),(26,'hadi','porty',1980),(27,'hadi','porty',1980),(28,'hadi','porty',1980),(29,'hadi','porty',1980),(30,'hadi','porty',1980),(31,'hadi','porty',1980),(32,'hadi','porty',1980),(33,'hadi','porty',1980),(34,'hadi','porty',1980),(35,'hadi','porty',1980),(36,'hadi','porty',1980),(37,'hadi','porty',1980),(38,'hadi','porty',1980),(39,'hadi','porty',1980),(40,'hadi','porty',1980),(41,'hadi','porty',1980),(42,'hadi','porty',1980),(43,'hadi','porty',1980),(44,'hadi','porty',1980),(45,'hadi','porty',1980),(46,'l','l',1980),(47,'k','k',20),(48,'l','l',1),(49,'h','h',11),(50,'j','j',19),(51,'k','k',1),(52,'hadi','me',1880),(53,'hadi','me',1880),(54,'hadi','kk',1998),(55,'hadi','kk',1998),(56,'hadi','kk',1980),(57,'hadi','kk',1980),(58,'hhhh','ggg',1234),(59,'hhhh','ggg',1234),(60,'skgrkd','nsnsb',1923),(61,'skgrkd','nsnsb',1923),(62,'hadi','eca',2016),(63,'hadi','eca',2016),(64,'sigrid','vs bad hall',1995),(65,'sigrid','vs bad hall',1995),(66,'asfsdfsd','sdfsfsdfsdfsd',1980),(67,'asfsdfsd','sdfsfsdfsdfsd',1980),(68,'asfsdfsd','sdfsfsdfsdfsd',1980),(69,'h','h',1230),(70,'tt','tt',1980),(71,'test','ff',1990),(72,'hadi','test',1980),(73,'baba','bb',1920),(74,'test','tt',1988),(75,'hadi','h',1990),(76,'k','k',1980),(77,'j','j',1980),(78,'j','j',1985),(79,'kj','kj',1977),(80,'kaka','kaka',1880),(81,'hadk','hh',1999),(82,'aa','bb',3125552),(83,'lkj','lkj',1234),(84,'hhhhhh','h',1980),(85,'haduckjhkjhkjh','dukdukkjhjkh',2222),(86,'Hadiiii','Aaa',2099),(87,'xzzxz','jkjk',1990),(88,'Hh','Cbcbc',1929),(89,'Ggg','Fhfng',1990),(90,'Netherrhrhrhr','Magnet',1234),(91,'aaa','aa',1982),(92,'Sigrid','Bad hall',1900),(93,'Chris Barkovich','Stirling',2015),(94,'hh','hh',1980),(95,'Hadi','Ss',1920),(96,'loki','Edinburgh College of art',1920),(97,'hadi','h',1919),(98,'had','hh',1912),(99,'hh','hh',1920),(100,'hh','hh',1020),(101,'t','tt',1999),(102,'Testte','Test',1999),(103,'Uh','Ggg',1234),(104,'Mark','Design Informatics',1),(105,'Annika','Design Informatics',1),(106,'Luis','UNLZ',2015),(107,'Luis','UNLZ',2015),(108,'Afshin','Mehr',2016),(109,'Kate carter','',1),(110,'B.rees','Olchfa',1987),(111,'Jude','',2016),(112,'Fiona','General McLane',2017),(113,'Yy','Dh',2016),(114,'Gonzalo MatÃ­as','Universidad tecnolÃ³gica metropolitana',5),(115,'Suzy Tran','BIS',9),(116,'hadi','abertay',3),(117,'A','B',2016),(118,'Leon Lin','National Taiwan University of Science',2016),(119,'Moro','Ghg',1995),(120,'Orlandis','New vision academy',2016),(121,'Test','Test',2015),(122,'geoff','test 2017',1980),(123,'Test person','St. Tams',2017),(124,'test','St Trinians',2007),(125,'Rory','ECA',2017);
 /*!40000 ALTER TABLE `app_students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,6 +235,14 @@ CREATE TABLE `sensors` (
 ) ENGINE=InnoDB AUTO_INCREMENT=202536 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `sensors`
+--
+
+LOCK TABLES `sensors` WRITE;
+/*!40000 ALTER TABLE `sensors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sensors` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -245,4 +253,4 @@ CREATE TABLE `sensors` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-18 17:51:15
+-- Dump completed on 2017-10-23 15:34:33
