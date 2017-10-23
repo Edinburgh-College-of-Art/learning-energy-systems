@@ -29,4 +29,4 @@ sleep 20s
 echo "Creating tables from .sql file"
 docker exec -i admin-mysql mysql -uwwwlearningenerg -pchange_me wwwlearn_school < original-db-dump.sql
 
-echo "Done."
+echo "Done. Visit http://localhost/ to view app"
