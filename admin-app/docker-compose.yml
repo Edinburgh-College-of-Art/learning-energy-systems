@@ -1,0 +1,17 @@
+admin-app: 
+  image: eca/admin-app-image
+  links:
+    - "admin-mysql"
+  ports:
+    - "80:80"
+  environment:
+    DATABASE_URL: "mysql://root:change_me_too@admin-mysql/wwwlearn_school?encoding=utf8&timezone=UTC&cacheMetadata=true"
+    SESSION_DEFAULTS: "database"
+
+admin-mysql:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: "change_me_too"
+    MYSQL_DATABASE: "wwwlearn_school"
+    MYSQL_USER: "wwwlearningenerg"
+    MYSQL_PASSWORD: "change_me"
