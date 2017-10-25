@@ -53,6 +53,8 @@ Router::scope('/', function ($routes) {
     $routes->connect('/logout', ['controller' => 'AppSchool', 'action' => 'logout']);
     $routes->connect('/dash', ['controller' => 'AppSchool', 'action' => 'dash']);
 
+    $routes->connect('/test', ['controller' => 'AppSchool', 'action' => 'muhtest']);
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

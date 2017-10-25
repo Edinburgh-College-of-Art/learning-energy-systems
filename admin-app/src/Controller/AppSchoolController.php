@@ -60,6 +60,12 @@ class AppSchoolController extends AppController
         $this->set('_serialize', ['appSchool']);
     }
 
+    public function muhtest()
+    {
+        $this->layout = false;
+        $this->RequestHandler->respondAs('text');
+    }
+
     /**
      * View method
      *
