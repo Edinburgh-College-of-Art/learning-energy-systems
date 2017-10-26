@@ -24,3 +24,10 @@ docker exec -i admin-mysql mysql -uwwwlearningenerg -pchange_me wwwlearn_school 
 To stop containers: 
 
 docker stop <container name>
+
+Inspecting db in admin-mysql container:
+
+docker exec -it admin-mysql bash
+mysql -u wwwlearningenerg --password=change_me
+use wwwlearn_school;
+show tables;
