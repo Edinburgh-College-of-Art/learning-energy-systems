@@ -16,9 +16,8 @@
         <legend><?= __('Edit App Student') ?></legend>
         <?php
             echo $this->Form->input('name');
-            echo $this->Form->input('app_school_id');
+            echo $this->Form->input('school_name');
             echo $this->Form->input('year');
-            echo $this->Form->input('unique_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

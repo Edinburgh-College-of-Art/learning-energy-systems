@@ -10,9 +10,8 @@
         <tr>
             <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
-            <th><?= $this->Paginator->sort('app_school_id') ?></th>
+            <th><?= $this->Paginator->sort('school_name') ?></th>
             <th><?= $this->Paginator->sort('year') ?></th>
-            <th><?= $this->Paginator->sort('unique_id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
     </thead>
@@ -21,9 +20,8 @@
         <tr>
             <td><?= $this->Number->format($appStudent->id) ?></td>
             <td><?= h($appStudent->name) ?></td>
-            <td><?= $this->Number->format($appStudent->app_school_id) ?></td>
+            <td><?= h($appStudent->school_name) ?></td>
             <td><?= $this->Number->format($appStudent->year) ?></td>
-            <td><?= h($appStudent->unique_id) ?></td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $appStudent->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $appStudent->id]) ?>

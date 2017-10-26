@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
  * AppStudents Model
  *
  * @property \Cake\ORM\Association\BelongsTo $AppSchools
- * @property \Cake\ORM\Association\BelongsTo $Uniques
  */
 class AppStudentsTable extends Table
 {
@@ -69,8 +68,7 @@ class AppStudentsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['app_school_id'], 'AppSchools'));
-        $rules->add($rules->existsIn(['unique_id'], 'Uniques'));
+        $rules->add($rules->existsIn(['school_name'], 'AppSchools'));
         return $rules;
     }
 }

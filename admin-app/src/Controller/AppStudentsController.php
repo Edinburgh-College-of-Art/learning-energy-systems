@@ -59,8 +59,7 @@ class AppStudentsController extends AppController
             }
         }
         $appSchools = $this->AppStudents->AppSchools->find('list', ['limit' => 200]);
-        $uniques = $this->AppStudents->Uniques->find('list', ['limit' => 200]);
-        $this->set(compact('appStudent', 'appSchools', 'uniques'));
+        $this->set(compact('appStudent', 'appSchools'));
         $this->set('_serialize', ['appStudent']);
     }
 
@@ -86,8 +85,7 @@ class AppStudentsController extends AppController
             }
         }
         $appSchools = $this->AppStudents->AppSchools->find('list', ['limit' => 200]);
-        $uniques = $this->AppStudents->Uniques->find('list', ['limit' => 200]);
-        $this->set(compact('appStudent', 'appSchools', 'uniques'));
+        $this->set(compact('appStudent', 'appSchools'));
         $this->set('_serialize', ['appStudent']);
     }
 
