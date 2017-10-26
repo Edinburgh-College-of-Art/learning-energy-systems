@@ -52,6 +52,10 @@ class AppStudentsTable extends Table
             ->notEmpty('name');
 
         $validator
+            ->requirePresence('school_name', 'create')
+            ->notEmpty('school_name');
+
+        $validator
             ->add('year', 'valid', ['rule' => 'numeric'])
             ->requirePresence('year', 'create')
             ->notEmpty('year');
@@ -68,7 +72,6 @@ class AppStudentsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['school_name'], 'AppSchools'));
         return $rules;
     }
 }
