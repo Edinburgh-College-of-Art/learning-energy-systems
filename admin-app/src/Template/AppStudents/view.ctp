@@ -13,14 +13,12 @@
         <div class="large-5 columns strings">
             <h6 class="subheader"><?= __('Name') ?></h6>
             <p><?= h($appStudent->name) ?></p>
-            <h6 class="subheader"><?= __('Unique Id') ?></h6>
-            <p><?= h($appStudent->unique_id) ?></p>
         </div>
         <div class="large-2 columns numbers end">
             <h6 class="subheader"><?= __('Id') ?></h6>
             <p><?= $this->Number->format($appStudent->id) ?></p>
-            <h6 class="subheader"><?= __('App School Id') ?></h6>
-            <p><?= $this->Number->format($appStudent->app_school_id) ?></p>
+            <h6 class="subheader"><?= __('App School Name') ?></h6>
+            <p><?= h($appStudent->school_name) ?></p>
             <h6 class="subheader"><?= __('Year') ?></h6>
             <p><?= $this->Number->format($appStudent->year) ?></p>
         </div>
