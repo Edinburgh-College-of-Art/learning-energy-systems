@@ -45,13 +45,13 @@ function onNextClick() {
 
 //http://www.learningenergy.eca.ed.ac.uk/appAddNewUser.php?username=hadi&school=porty&year=1980
 function addNewUser() {
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appAddNewUser.php"
+    var url = "http://localhost/app_students/add"
     var uName = $("#userName").val();
     var schName = $("#schoolName").val();
     var year = $("#year").val();
     var dataToBeSent = {
-        username: uName,
-        school: schName,
+        name: uName,
+        school_name: schName,
         year: year
     };
     $.post(url, dataToBeSent)
