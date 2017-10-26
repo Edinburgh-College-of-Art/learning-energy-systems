@@ -8,6 +8,10 @@ docker stop admin-app
 docker rm admin-mysql
 docker rm admin-app
 
+echo "Removing unused volumes"
+
+docker volume prune -f
+
 echo "Rebuilding image"
 
 docker build -t eca/admin-app-image .
