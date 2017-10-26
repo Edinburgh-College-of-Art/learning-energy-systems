@@ -45,7 +45,7 @@ class AppSchoolController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add', 'index']);
+        $this->Auth->allow(['add', 'index', 'muhtest']);
     }
     
 
@@ -62,8 +62,17 @@ class AppSchoolController extends AppController
 
     public function muhtest()
     {
-        $this->layout = false;
-        $this->RequestHandler->respondAs('text');
+        $data = Array(
+            "name" => "Saad Imran",
+            "age" => 19
+        );
+
+        $isJson = $this->request->is('json');
+        $response = $this->response;
+        $response->body("muh response" . $isJson);
+        
+        //$response->body('IT Is json: '+$isJson);
+        return $response;
     }
 
     /**
