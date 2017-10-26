@@ -21,7 +21,9 @@ echo "Runnning app container"
 
 docker run -d -p 80:80 --name admin-app \
   -e "DATABASE_URL=mysql://root:change_me_too@admin-mysql/wwwlearn_school?encoding=utf8&timezone=UTC&cacheMetadata=true" \
-  -e "SESSION_DEFAULTS=database" --link admin-mysql:mysql eca/admin-app-image
+  -e "SESSION_DEFAULTS=database" \
+  --mount type=bind,source="$(pwd)"/src,target=/var/www/html/src \
+  --link admin-mysql:mysql eca/admin-app-image
 
 echo "Waiting on container to be ready."
 sleep 20s
