@@ -4,6 +4,9 @@
         <li><?= $this->Html->link(__('List App Students'), ['action' => 'index']) ?></li>
     </ul>
 </div>
+
+<?= $this->Flash->render() ?>
+
 <div class="appStudents form large-10 medium-9 columns">
     <?= $this->Form->create($appStudent) ?>
     <fieldset>
