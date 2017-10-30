@@ -20,7 +20,7 @@
         <tr>
             <td><?= $this->Number->format($appStudent->id) ?></td>
             <td><?= h($appStudent->name) ?></td>
-            <td><?= h($appStudent->school_name) ?></td>
+            <td><?= h($appStudent->school->school_name) ?></td>
             <td><?= $this->Number->format($appStudent->year) ?></td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $appStudent->id]) ?>
