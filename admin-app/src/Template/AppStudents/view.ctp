@@ -18,6 +18,8 @@
             <h6 class="subheader"><?= __('Id') ?></h6>
             <p><?= $this->Number->format($appStudent->id) ?></p>
             <h6 class="subheader"><?= __('App School Name') ?></h6>
+            <h6 class="subheader"><?= __('School ID') ?></h6>
+            <p><?= $this->Number->format($appStudent->app_school_id) ?></p>
             <p><?= h($appStudent->school_name) ?></p>
             <h6 class="subheader"><?= __('Year') ?></h6>
             <p><?= $this->Number->format($appStudent->year) ?></p>

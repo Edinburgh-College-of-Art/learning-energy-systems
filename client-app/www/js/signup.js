@@ -50,9 +50,11 @@ function addNewUser() {
     var url = "http://localhost/app_students/add";
     var uName = $("#userName").val();
     var schName = $("#schoolName").val();
+    var schId = $("#app-school-id").val();
     var year = $("#year").val();
     var dataToBeSent = {
         name: uName,
+        app_school_id: schId,
         school_name: schName,
         year: year
     };
@@ -62,6 +64,7 @@ function addNewUser() {
                 localStorage.setItem("studentId", data.appStudent.id);
                 localStorage.setItem("usrSigned", true);
                 localStorage.setItem("userName", uName);
+                localStorage.setItem("app_school_id", schId);
                 localStorage.setItem("schoolName", schName);
                 localStorage.setItem("year", year);
                 window.location = "help1.html";

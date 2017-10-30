@@ -29,10 +29,11 @@ class AppStudentsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
-        $this->belongsTo('AppSchools', [
-            'foreignKey' => 'school_name',
-            'className' => 'AppSchool'
+        $this->belongsTo('AppSchool', [
+            'foreignKey' => 'app_school_id',
+            'joinType' => 'INNER'
             ]);
+
         $this->hasMany('AppData');
     }
 
@@ -52,8 +53,8 @@ class AppStudentsTable extends Table
             ->notEmpty('name');
 
         $validator
-            ->requirePresence('school_name', 'create')
-            ->notEmpty('school_name');
+            ->requirePresence('app_school_id', 'create')
+            ->notEmpty('app_school_id');
 
         $validator
             ->add('year', 'valid', ['rule' => 'numeric'])
