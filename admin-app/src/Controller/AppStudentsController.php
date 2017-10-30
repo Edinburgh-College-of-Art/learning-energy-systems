@@ -62,7 +62,7 @@ class AppStudentsController extends AppController
                 $this->set('_serialize', ['appStudent', 'errors']);
             }
         } else {
-            $appSchools = $this->AppStudents->AppSchools->find('list', ['limit' => 200]);
+            $appSchools = $this->AppStudents->AppSchool->find('list', ['limit' => 200]);
             $this->set(compact('appStudent', 'appSchools'));
             $this->set('_serialize', ['appStudent']);
         }
@@ -89,7 +89,7 @@ class AppStudentsController extends AppController
                 $this->Flash->error(__('The app student could not be saved. Please, try again.'));
             }
         }
-        $appSchools = $this->AppStudents->AppSchools->find('list', ['limit' => 200]);
+        $appSchools = $this->AppStudents->AppSchool->find('list', ['limit' => 200]);
         $this->set(compact('appStudent', 'appSchools'));
         $this->set('_serialize', ['appStudent']);
     }

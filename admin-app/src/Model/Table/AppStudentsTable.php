@@ -31,7 +31,8 @@ class AppStudentsTable extends Table
 
         $this->belongsTo('AppSchool', [
             'foreignKey' => 'app_school_id',
-            'joinType' => 'INNER'
+            'joinType' => 'INNER',
+            'propertyName' => 'school'
             ]);
 
         $this->hasMany('AppData');
