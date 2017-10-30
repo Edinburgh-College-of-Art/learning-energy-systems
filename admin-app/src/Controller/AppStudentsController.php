@@ -19,7 +19,7 @@ class AppStudentsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['AppSchools']
+            'contain' => ['AppSchool']
         ];
         $this->set('appStudents', $this->paginate($this->AppStudents));
         $this->set('_serialize', ['appStudents']);
