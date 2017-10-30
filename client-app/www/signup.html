@@ -37,12 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     </head>
     <body>
-        <script type="text/javascript">
-            if (localStorage.getItem("studentId") !== undefined && localStorage.getItem("studentId") !== null)
-            {
-                window.location = "weekView.html";
-            }
-        </script>
         <div class="container-fluid signupBody" >
             <h1 class="text-center">MY ENERGY DIARY</h1>
             <hr>
@@ -54,9 +48,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <div class="input-group">
                     <input type="text" id="userName" class="form-control" placeholder="Name">
                 </div>
+                
                 <div class="input-group">
                     <input type="text" id="schoolName" class="form-control" placeholder="School">
                 </div>
+
+                <div class="input-group">
+                    <select style="width: 96.5%;" name="app_school_id" id="app-school-id" class="form-control">
+                    </select>
+                </div>
+
                 <div class="input-group">
                     <input title="Please add year in four digits like 2000" id="year" type="text" class="form-control"  placeholder="Year" pattern="[1-2][0-9]{3}">
                 </div>
