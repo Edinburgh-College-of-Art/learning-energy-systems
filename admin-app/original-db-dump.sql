@@ -44,6 +44,15 @@ CREATE TABLE `app_data` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `app_data`
+--
+
+LOCK TABLES `app_data` WRITE;
+/*!40000 ALTER TABLE `app_data` DISABLE KEYS */;
+/*!40000 ALTER TABLE `app_data` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `app_questions`
 --
 
@@ -106,12 +115,11 @@ DROP TABLE IF EXISTS `app_students`;
 CREATE TABLE `app_students` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
-  `school_name` varchar(100) NOT NULL,
   `year` int(11) NOT NULL,
   `app_school_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `app_school_id` (`app_school_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +128,7 @@ CREATE TABLE `app_students` (
 
 LOCK TABLES `app_students` WRITE;
 /*!40000 ALTER TABLE `app_students` DISABLE KEYS */;
-INSERT INTO `app_students` VALUES (1,'hadi','porty',1980,7),(2,'Alice','ECA',2015,3),(3,'geoff','ECA2',2001,8),(4,'Bob','ECA',2017,3);
+INSERT INTO `app_students` VALUES (1,'hadi',1980,7),(2,'Alice',2015,3),(3,'geoff',2001,8),(4,'Bob',2017,3),(126,'Rory',1999,5);
 /*!40000 ALTER TABLE `app_students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-23 15:34:33
+-- Dump completed on 2017-10-30 16:21:24

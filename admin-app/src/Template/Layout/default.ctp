@@ -24,7 +24,7 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
-<body>
+<body style="padding:1%">
 
 <?= $this->fetch('content') ?>
 
