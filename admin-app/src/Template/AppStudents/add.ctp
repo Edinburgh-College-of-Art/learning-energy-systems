@@ -14,6 +14,7 @@
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('school_name');
+            echo $this->Form->input('app_school_id');
             echo $this->Form->input('year');
         ?>
     </fieldset>
