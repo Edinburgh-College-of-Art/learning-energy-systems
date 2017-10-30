@@ -29,8 +29,6 @@ window.onload = function () {
 function validateUserInput() {
     var result = false;
     result = true;
-
-
     return result;
 }
 
@@ -45,7 +43,7 @@ function onNextClick() {
 
 //http://www.learningenergy.eca.ed.ac.uk/appAddNewUser.php?username=hadi&school=porty&year=1980
 function addNewUser() {
-    var url = "http://localhost/app_students/add"
+    var url = "http://localhost/app_students/add";
     var uName = $("#userName").val();
     var schName = $("#schoolName").val();
     var year = $("#year").val();
@@ -54,21 +52,19 @@ function addNewUser() {
         school_name: schName,
         year: year
     };
-    $.post(url, dataToBeSent)
-            .success(function (data) {
-                var studentID = parseInt(data);
-                localStorage.setItem("studentId", studentID);
+    $.ajax({ type: 'POST', url: url, data: dataToBeSent, dataType: 'json' })
+        .success(function (data) {
+            if ((data.appStudent) && (data.appStudent.id)) {
+                localStorage.setItem("studentId", data.appStudent.id);
                 localStorage.setItem("usrSigned", true);
                 localStorage.setItem("userName", uName);
                 localStorage.setItem("schoolName", schName);
                 localStorage.setItem("year", year);
                 window.location = "help1.html";
             }
-            ).always(function (data){
-              console.log(data);
-
-            });
-    // window.location="help1.html";
+        }).always(function (data){
+          console.log(data);
+        });
 }
 
 
