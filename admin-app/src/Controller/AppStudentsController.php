@@ -84,14 +84,18 @@ class AppStudentsController extends AppController
             $appStudent = $this->AppStudents->patchEntity($appStudent, $this->request->data);
             if ($this->AppStudents->save($appStudent)) {
                 $this->Flash->success(__('The app student has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $appStudent->id]);
             } else {
-                $this->Flash->error(__('The app student could not be saved. Please, try again.'));
+                $errors = $appStudent->errors();
+                $this->Flash->error(__("The student couldn't be saved"));
+                $this->set(compact('appStudent', 'errors'));
+                $this->set('_serialize', ['appStudent', 'errors']);
             }
-        }
-        $appSchools = $this->AppStudents->AppSchool->find('list', ['limit' => 200]);
-        $this->set(compact('appStudent', 'appSchools'));
-        $this->set('_serialize', ['appStudent']);
+        } else {
+            $appSchools = $this->AppStudents->AppSchool->find('list', ['limit' => 200]);
+            $this->set(compact('appStudent', 'appSchools'));
+            $this->set('_serialize', ['appStudent']);    
+        }        
     }
 
     /**

@@ -62,7 +62,7 @@ function addNewUser() {
                 localStorage.setItem("studentId", data.appStudent.id);
                 localStorage.setItem("usrSigned", true);
                 localStorage.setItem("userName", uName);
-                localStorage.setItem("app_school_id", schId);
+                localStorage.setItem("schoolId", schId);
                 localStorage.setItem("year", year);
                 window.location = "help1.html";
             }

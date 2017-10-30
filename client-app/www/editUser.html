@@ -28,10 +28,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     $(".ui-loader").hide();
   })
   </script>
+
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
   <script type="text/javascript" src="font-awesome/font/raphael/raphael-min.js"></script>
   <script type="text/javascript" src="js/editUser.js"></script>
-
 </head>
 <body>
   <div class="container-fluid signupBody" >
@@ -51,13 +54,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div class="inputs">
       <p class="userInfoP">Edit User Info</p>
       <div class="input-group">
-        <input type="text" id="userName" class="form-control userInfoInput" placeholder="Name">
+        <input type="text" id="userName" class="form-control" placeholder="Name">
       </div>
       <div class="input-group">
-        <input type="text" id="schoolName" class="form-control userInfoInput" placeholder="School">
+          <select style="width: 96.5%;" name="app_school_id" id="app-school-id" class="form-control">
+          </select>
       </div>
       <div class="input-group">
-        <input title="Please add year in four digits like 2000" id="year" type="text" class="userInfoInput form-control"  placeholder="Year" pattern="[1-2][0-9]{3}">
+        <input title="Please add year in four digits like 2000" id="year" type="text" class="form-control"  placeholder="Year" pattern="[1-2][0-9]{3}">
       </div>
     </div>
     <div class="row">

@@ -15,64 +15,62 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+$(document).ready(function(){
+  $("#userName").val(localStorage.getItem("userName"));
+  $("#year").val(localStorage.getItem("year"));
+  
+  $("#footer").bind('click', onNextClick);
+  $("#updateUser").bind("click",function(){
+    if(validateUserInput())
+      updateUser();
+  });
 
-window.onload = function () {
-     $("#userName").val(localStorage.getItem("userName"));
-     $("#schoolName").val(localStorage.getItem("schoolName"));
-     $("#year").val(localStorage.getItem("year"));
-   $("#footer").bind('click', onNextClick);
-   $("#updateUser").bind("click",function(){
-     if(validateUserInput())
-       updateUser();
-   });
-   $("#homeIconn").bind("click",function(){
-     window.location="weekView.html";
-   });
-};
+  $("#homeIconn").bind("click",function(){
+    window.location="weekView.html";
+  });
 
+  $.get('http://localhost/app_school.json').success(function(data){
+    $.each(data.appSchool, function(i,s){ console.log(s); $("#app-school-id").append('<option value="'+s.id+'">'+s.school_name+'</option>'); });
+    $("#app-school-id").val(localStorage.getItem("schoolId").toString());
+  });
+
+});
 
 function validateUserInput() {
-    var result = false;
-    result = true;
-    return result;
+  var result = false;
+  result = true;
+  return result;
 }
 
 function onNextClick() {
   window.location="help1.html";
-    }
-
-//http://www.learningenergy.eca.ed.ac.uk/appAddNewUser.php?username=hadi&school=porty&year=1980
-function updateUser() {
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appUpdateUser.php"
-    var uName = $("#userName").val();
-    var schName = $("#schoolName").val();
-    var year = $("#year").val();
-    $("#progImg").show();
-    var id = localStorage.getItem("studentId");
-    console.log(id);
-    var dataToBeSent = {
-        username: uName,
-        school: schName,
-        year: year,
-        id:id
-    };
-    $.post(url, dataToBeSent)
-            .success(function (data) {
-              localStorage.setItem("userName",uName);
-              localStorage.setItem("schoolName",schName);
-              localStorage.setItem("year",year);
-              $("#progImg").hide("slow");
-            }
-            ).always(function (data){
-              localStorage.setItem("userName",uName);
-              localStorage.setItem("schoolName",schName);
-              localStorage.setItem("year",year);
-              $("#progImg").hide("slow");
-            });
-    //window.location="help.html";
 }
 
+function updateUser() {
+  var id = localStorage.getItem("studentId");
+  var url = "http://localhost/app_students/edit/"+id+".json"
+  var uName = $("#userName").val();
+  var schId = $("#app-school-id").val();
+  var year = $("#year").val();
+  $("#progImg").show();
+  
+  var dataToBeSent = {
+    name: uName,
+    app_school_id: schId,
+    year: year,
+    id:id
+  };
 
+  $.ajax({ type: 'POST', url: url, data: dataToBeSent, dataType: 'json' })
+    .success(function (data) {
+      localStorage.setItem("userName", uName);
+      localStorage.setItem("schoolId", schId);
+      localStorage.setItem("year", year);
+    }).always(function (data){
+      console.log(data);
+      $("#progImg").hide("slow");
+    });
+}
 
 function guid() {
     function s4() {
