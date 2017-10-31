@@ -92,10 +92,6 @@ class AppDataTable extends Table
             ->requirePresence('date', 'create')
             ->notEmpty('date');
 
-        $validator
-            ->requirePresence('time_inserted', 'create')
-            ->notEmpty('time_inserted');
-
         return $validator;
     }
 }

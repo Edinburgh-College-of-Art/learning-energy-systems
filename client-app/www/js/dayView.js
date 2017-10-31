@@ -157,24 +157,23 @@ function detectPortrait(mainDiv) {
 }
 var g_lastHeight;
 var g_numberOfSubjects=0;
+
 function loadSubjects() {
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appGetClassList.php";
-    $.get(url,
-            {
-                id: window.g_studentUID,
-                date: window.g_currDate
-            })
-            .always(function (data) {
-                var r = window.g_heightUnit / 3;
-                var w = window.g_width-r-180;// - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
-                var h = window.g_heightUnit - window.g_topMargin;
-                for (var i = 0; i < data.length; i++) {
-                  g_numberOfSubjects+=1;
-                    var sub = new Subject(80, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].title, parseInt(data[i].total));
-                }
-                window.g_lastHeight = window.g_heightUnit * (data.length + 1);
-            });
+    var url = "http://localhost/app_students/"+window.g_studentUID+"/subjects.json";
+    $.ajax({ type: 'GET', url: url, data: { date: window.g_currDate }, dataType: 'json' })
+        .always(function (result) {
+            var data = result.subjects;
+            var r = window.g_heightUnit / 3;
+            var w = window.g_width-r-180;// - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
+            var h = window.g_heightUnit - window.g_topMargin;
+            for (var i = 0; i < data.length; i++) {
+              g_numberOfSubjects+=1;
+                var sub = new Subject(80, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, r, w, h, (i + 1), data[i].id, data[i].subject, parseInt(data[i].total));
+            }
+            window.g_lastHeight = window.g_heightUnit * (data.length + 1);
+        });
 }
+
 //A class that keeps the attributes for each day. It has onclick event.
 function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
     this.id = _id;
@@ -242,24 +241,24 @@ function okClicked() {
     else {
         $("#tempDelete").remove();
         $("#tempOK").attr("src", "img/icons/loader.gif");
-        var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
+        
         var uId = window.g_studentUID;
-        console.log(uId, window.g_currDate);
+        var url = "http://localhost/app_students/"+uId+"/subjects/add.json";
+        
         var dataToBeSent = {
-            userId: uId,
             update: false,
             subject: $("#tempText").val(),
             date: window.g_currDate
         };
-        $.post(url, dataToBeSent)
-                .success(function (data) {
-                    console.log(data);
-                    $("#tempDelete").fadeOut("slow").remove();
-                    $("#tempOK").fadeOut("slow").remove();
-                    $("#tempText").fadeOut("slow").remove();
-                    window.location = "dayView.html";
-                }
-                );
+
+        $.ajax({ type: 'POST', url: url, data: dataToBeSent, dataType: 'json' })
+            .success(function (data) {
+                console.log(data);
+                $("#tempDelete").fadeOut("slow").remove();
+                $("#tempOK").fadeOut("slow").remove();
+                $("#tempText").fadeOut("slow").remove();
+                window.location = "dayView.html";
+            });
     }
 }
 function subjectEditClicked() {
