@@ -94,21 +94,15 @@ function loadSubjects() {
 }
 
 function subjectDeleteClicked() {
-    /*
-    TODO:
-    Add progress to all updates, something the user will understands what's happening.
-    */
-    var parent = $(this).attr("parent");
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
-    var dataToBeSent = {
-      update: 'delete',
-      id: parent
-    };
-    $.post(url, dataToBeSent)
-    .success(function (data) {
-        window.location = "editDay.html";
-    }
-  );
+  /*
+  TODO:
+  Add progress to all updates, something the user will understands what's happening.
+  */
+  var subjectId = $(this).attr("parent");
+  var url = "http://localhost/app_students/"+window.g_studentUID+"/subjects/delete/"+subjectId+".json";
+  $.ajax({ type: 'POST', url: url, dataType: 'json' }).success(function (data) {
+    if (data.success){ window.location = "editDay.html"; } else { window.location = "editDay.html"; }
+  });
 }
 
 function cancelClicked() {

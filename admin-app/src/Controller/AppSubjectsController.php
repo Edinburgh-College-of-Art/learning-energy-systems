@@ -53,13 +53,19 @@ class AppSubjectsController extends AppController {
         }
     }
 
-
-    /*
-      . "`light`, `computer`, `heater`, `projector`, `lightString`, "
-      . "`computerString`, `heaterString`, `projectorString`, `date`) "
-      "',0,0,0,0,'000000000','000000000','000000000','000000000','" . $_POST['date'] . "')";
+    public function delete($id = null) {
+        $this->request->allowMethod(['post', 'delete']);
+        $appData = $this->AppData->get($id);
+        if ($this->AppData->delete($appData)) {
+            $success = true;
+            $message = 'Subject deleted';
+        } else {
+            $success = false;
+            $message = 'Unable to delete';
+        }
+        $this->set(compact('success', 'message'));
+        $this->set('_serialize', ['success', 'message']);
     }
-    */
 }
 
 ?>
