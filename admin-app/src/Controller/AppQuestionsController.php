@@ -48,6 +48,7 @@ class AppQuestionsController extends AppController
      */
     public function view($id = null)
     {
+        $appQuestion = $this->AppQuestions->get($id, []);
         $this->set('appQuestion', $appQuestion);
         $this->set('_serialize', ['appQuestion']);
     }
@@ -82,9 +83,9 @@ class AppQuestionsController extends AppController
      */
     public function edit($id = null)
     {
-        $appQuestion = $this->AppQuestions->get($id, [
-            'contain' => []
-        ]);
+        $appQuestion = $this->AppQuestions->get($id, []);
+        $this->set('appQuestion', $appQuestion);
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
             $appQuestion = $this->AppQuestions->patchEntity($appQuestion, $this->request->data);
             if ($this->AppQuestions->save($appQuestion)) {
