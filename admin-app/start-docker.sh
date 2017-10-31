@@ -27,6 +27,7 @@ docker run -d -p 80:80 --name admin-app \
   -e "DATABASE_URL=mysql://root:change_me_too@admin-mysql/wwwlearn_school?encoding=utf8&timezone=UTC&cacheMetadata=true" \
   -e "SESSION_DEFAULTS=database" \
   --mount type=bind,source="$(pwd)"/src,target=/var/www/html/src \
+  --mount type=bind,source="$(pwd)"/config/routes.php,target=/var/www/html/config/routes.php \
   --link admin-mysql:mysql eca/admin-app-image
 
 echo "Waiting on container to be ready."
