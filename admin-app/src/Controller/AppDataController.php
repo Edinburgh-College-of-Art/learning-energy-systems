@@ -77,7 +77,8 @@ class AppDataController extends AppController
      */
     public function view($id = null)
     {
-        $this->set('appData', $this->$appData);
+        $appData = $this->AppData->get($id, []);
+        $this->set('appData', $appData);
         $this->set('_serialize', ['appData']);
     }
 
@@ -113,6 +114,7 @@ class AppDataController extends AppController
         $appData = $this->AppData->get($id, [
             'contain' => []
         ]);
+        $this->set('appData', $appData);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $appData = $this->AppData->patchEntity($appData, $this->request->data);
             if ($this->AppData->save($appData)) {
@@ -122,6 +124,7 @@ class AppDataController extends AppController
                 $this->Flash->error(__('The app data could not be saved. Please, try again.'));
             }
         }
+
         $this->set('_serialize', ['appData']);
     }
 
