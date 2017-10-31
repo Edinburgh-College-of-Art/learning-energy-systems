@@ -59,6 +59,7 @@ Router::scope('/', function ($routes) {
         $routes->connect('/subjects', ['controller' => 'AppSubjects', 'action' => 'index']);
         $routes->connect('/subjects/add', ['controller' => 'AppSubjects', 'action' => 'add']);
         $routes->connect('/subjects/delete/*', ['controller' => 'AppSubjects', 'action' => 'delete']);
+        $routes->connect('/subjects/edit/*', ['controller' => 'AppSubjects', 'action' => 'edit']);
     });
 
     /**

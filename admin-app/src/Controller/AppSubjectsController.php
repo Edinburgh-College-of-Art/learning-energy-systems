@@ -53,10 +53,30 @@ class AppSubjectsController extends AppController {
         }
     }
 
+    public function edit($id = null)
+    {
+        $subject = $this->AppData->get($id);
+        $this->set('appData', $subject);
+        
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $subject = $this->AppData->patchEntity($subject, $this->request->data);
+            if ($this->AppData->save($subject)) {
+                $this->set(compact('subject', 'errors'));
+                $this->set('_serialize', ['subject']);
+            } else {
+                $errors = $subject->errors();
+                $this->set(compact('subject', 'errors'));
+                $this->set('_serialize', ['subject', 'errors']);
+            }
+        }
+
+        $this->set('_serialize', ['subject']);
+    }
+
     public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
-        $appData = $this->AppData->get($id);
-        if ($this->AppData->delete($appData)) {
+        $subject = $this->AppData->get($id);
+        if ($this->AppData->delete($subject)) {
             $success = true;
             $message = 'Subject deleted';
         } else {

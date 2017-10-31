@@ -40,11 +40,13 @@ $(function () {
       window.location = "weekView.html";
   });
 });
-window.onload = function () {
+
+$(document).ready(function(){
   window.StatusBar && window.StatusBar.hide();
   reset();
   initialise();
-};
+});
+
 $(window).bind("resize", function () {
   reset();
   initialise();
@@ -90,6 +92,7 @@ function loadSubjects() {
         addSubject(window.g_leftMargin + window.g_elementMargin, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, data[i].id, data[i].subject, parseInt(data[i].total));
       }
       window.g_lastHeight = window.g_heightUnit * (data.length + 1);
+      $("#updateSubjects").bind("click", okClicked);
     });
 }
 
@@ -111,29 +114,37 @@ function cancelClicked() {
   $("#tempOK").fadeOut("slow").remove();
   $("#tempText").fadeOut("slow").remove();
 }
-function okClicked() {
-  var changedItem;
+
+var dopostqueue = $({});
+function joinUpdateQueue(url, data, callback){ 
+  dopostqueue.queue(function(){
+      $.ajax({type: 'POST', url: url, datatype: 'json', data: data})
+        .success(function(result){ dopostqueue.dequeue(); callback(result); });
+  });
+};
+
+function okClicked(){
+  var subjectId;
   var jsonArr = [];
-  //Adding all the updated subjects to a json array.
-  for(var index=0 ; index<g_changedSubjects.length ; index++){
-    changedItem = parseInt(g_changedSubjects[index]);
-    jsonArr.push({
-      id: changedItem,
-      value: $("#subjectTitle_"+changedItem).val()
-    });
-  }
-  //sending updated subjects to the server
-  var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
-  var dataToBeSent = {
-    update: true,
-    data: JSON.stringify(jsonArr)
+  var url;
+  var data;
+  
+  var cb = function(data) {
+    console.log(data);
+    //if (dopostqueue.queue().length == 0) { window.location = "editDay.html";  }
   };
-  $.post(url, dataToBeSent)
-  .always(function (data) {
-    window.location = "dayView.html";
+
+  console.log(g_changedSubjects);
+
+  for(var index=0; index<g_changedSubjects.length; index++){
+    subjectId = parseInt(g_changedSubjects[index]);
+    data = { subject: $("#subjectTitle_"+subjectId).val() };
+    url = "http://localhost/app_students/"+window.g_studentUID+"/subjects/edit/"+subjectId+".json";
+    joinUpdateQueue(url, data, cb);
   }
-);
-}
+};
+
+
 function addSubject(_x,_y,_id,_title) {
   window.g_adding = true;
   var r = window.g_heightUnit / 3;
@@ -146,7 +157,6 @@ function addSubject(_x,_y,_id,_title) {
   </div></div>").hide();
   $("#editingSubjects").append(tempItem);
   tempItem.fadeIn("slow");
-  $("#updateSubjects").bind("click", okClicked);
   $("#subjectTitle_"+_id).bind("keyup", subjectTitleChanged);
   $("#delete_"+_id).bind("click", subjectDeleteClicked);
 }
