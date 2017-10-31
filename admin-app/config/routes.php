@@ -55,6 +55,10 @@ Router::scope('/', function ($routes) {
 
     $routes->connect('/test', ['controller' => 'AppSchool', 'action' => 'muhtest']);
 
+    $routes->resources('AppStudents', function ($routes) {
+        $routes->connect('/subjects', ['controller' => 'AppSubjects', 'action' => 'index']);
+    });
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
