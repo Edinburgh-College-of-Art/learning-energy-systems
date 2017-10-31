@@ -64,21 +64,9 @@ class AppSchoolController extends AppController
 
     public function muhtest()
     {
-        $data = Array(
-            "name" => "Saad Imran",
-            "age" => 19
-        );
-
-        $isJson = $this->request->is('json');
+        //$isJson = $this->request->is('json');
         $response = $this->response;
-        $response->body("muh response" . $isJson);
-        
-        //$response->body('IT Is json: '+$isJson);
-        /*
-        $response = $this->response;
-        $response->body("<b>Params</b> " . join('<br>', $this->request->params) . "<b>Query</b><br> " . );
-        return $response;
-        */
+        $response->body("<b>Params</b> " . join('<br>', $this->request->params));
         return $response;
     }
 
