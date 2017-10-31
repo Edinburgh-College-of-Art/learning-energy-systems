@@ -74,6 +74,11 @@ class AppSchoolController extends AppController
         $response->body("muh response" . $isJson);
         
         //$response->body('IT Is json: '+$isJson);
+        /*
+        $response = $this->response;
+        $response->body("<b>Params</b> " . join('<br>', $this->request->params) . "<b>Query</b><br> " . );
+        return $response;
+        */
         return $response;
     }
 
