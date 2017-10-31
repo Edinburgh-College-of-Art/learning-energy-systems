@@ -76,25 +76,24 @@ function initialise() {
   loadSubjects();
 }
 var g_lastHeight;
+
 function loadSubjects() {
   $("#editingSubjects").html("");
-  var url = "http://www.learningenergy.eca.ed.ac.uk/appGetClassList.php";
-  $.get(url,
-    {
-      id: window.g_studentUID,
-      date: window.g_currDate
-    })
-    .always(function (data) {
+  var url = "http://localhost/app_students/"+window.g_studentUID+"/subjects.json";
+  $.ajax({ type: 'GET', url: url, data: { date: window.g_currDate }, dataType: 'json' })
+    .always(function (result) {
+      var data = result.subjects;
       var r = window.g_heightUnit / 3;
       var w = window.g_width - 2 * window.g_leftMargin - 2 * window.g_elementMargin - 2 * r;
       var h = window.g_heightUnit - window.g_topMargin;
       for (var i = 0; i < data.length; i++) {
-        addSubject(window.g_leftMargin + window.g_elementMargin, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, data[i].id, data[i].title, parseInt(data[i].total));
+        addSubject(window.g_leftMargin + window.g_elementMargin, window.g_heightUnit * (i + 1) + window.g_topMargin * 4, data[i].id, data[i].subject, parseInt(data[i].total));
       }
       window.g_lastHeight = window.g_heightUnit * (data.length + 1);
     });
-  }
-  function subjectDeleteClicked() {
+}
+
+function subjectDeleteClicked() {
     /*
     TODO:
     Add progress to all updates, something the user will understands what's happening.
