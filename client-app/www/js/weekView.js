@@ -47,12 +47,13 @@ $(document).bind('mobileinit', function () {
 $(function () {
     FastClick.attach(document.body);
 });
-window.onload = function () {
+
+$(document).ready(function(){
     window.g_studentUID = localStorage.getItem("studentId");
-    console.log(window.g_studentUID);
     loadUpdateData(true);
     reset();
-};
+});
+
 $(window).bind("resize", function () {
     reset();
     initialise();

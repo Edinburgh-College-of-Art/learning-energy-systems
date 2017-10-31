@@ -84,7 +84,8 @@ function tempTextChanged() {
     else
         $("#tempOK").hide();
 }
-window.onload = function () {
+
+$(document).ready(function (){
     window.StatusBar && window.StatusBar.hide();
     $(".ui-loader").hide();
     detectPortrait("#mainView");
@@ -92,7 +93,8 @@ window.onload = function () {
     $.mobile.loadingMessage = false;
     reset();
     initialise();
-};
+});
+
 $(window).bind("resize", function () {
     detectPortrait("#mainView");
     reset();
