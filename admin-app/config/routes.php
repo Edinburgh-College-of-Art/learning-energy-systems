@@ -56,6 +56,7 @@ Router::scope('/', function ($routes) {
     $routes->connect('/test', ['controller' => 'AppSchool', 'action' => 'muhtest']);
 
     $routes->resources('AppStudents', function ($routes) {
+        $routes->connect('/week/*', ['controller' => 'AppData', 'action' => 'week']);
         $routes->connect('/subjects', ['controller' => 'AppSubjects', 'action' => 'index']);
         $routes->connect('/subjects/add', ['controller' => 'AppSubjects', 'action' => 'add']);
         $routes->connect('/subjects/delete/*', ['controller' => 'AppSubjects', 'action' => 'delete']);

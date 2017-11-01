@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Datasource\ConnectionManager as ConnectionManager;
 use Cake\Event\Event as Event;
+use Cake\Collection\Collection;
+use Cake\I18n\Time;
 
 /**
  * AppData Controller
@@ -62,10 +64,42 @@ class AppDataController extends AppController
      *
      * @return void
      */
-    public function all()
-    {
+    public function all() {
         $this->set('appData', $this->AppData->find('all'));
         $this->set('_serialize', ['appData']);
+    }
+
+    public function week($date = null) {
+        $studentId = $this->studentId = $this->request->params['app_student_id'];
+        
+        $query = $this->AppData->find()->select(['light', 'projector', 'heater', 'computer'])
+            ->where(['date =' => $date,'app_students_unique_id =' => $studentId]);
+
+        $dayT = strtotime($date);
+        $monday = strtotime("last monday", $dayT);
+        $friday = strtotime("next friday", $dayT);
+        if (date("w", $dayT) == "1") { $monday = $dayT; }
+        if (date("w", $dayT) == "5") { $friday = $dayT; }
+
+        $weekQuery = $this->AppData->find()->select(['light', 'projector', 'heater', 'computer'])->
+            where(['date >= ' => $monday, 'date <= ' => $friday, 'app_students_unique_id =' => $studentId]);
+
+        $collection = new Collection($query->toArray());
+        $weekCollection = new Collection($weekQuery->toArray());
+
+        $week = ["day" => [
+            "light" => $collection->sumOf("light"),
+            "projector" => $collection->sumOf("projector"),
+            "heater" => $collection->sumOf("heater"),
+            "computer" => $collection->sumOf("computer")
+        ], "week" => [ 
+                "daySum" => $weekCollection->sumOf("light") + $weekCollection->sumOf("projector") + $weekCollection->sumOf("heater") + $weekCollection->sumOf("computer"), 
+                "date" => $date
+            ]
+        ];
+
+        $this->set('week', $week);
+        $this->set('_serialize', 'week');
     }
 
     /**
@@ -75,8 +109,7 @@ class AppDataController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $appData = $this->AppData->get($id, []);
         $this->set('appData', $appData);
         $this->set('_serialize', ['appData']);
@@ -87,8 +120,7 @@ class AppDataController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $appData = $this->AppData->newEntity();
         if ($this->request->is('post')) {
             $appData = $this->AppData->patchEntity($appData, $this->request->data);
@@ -109,8 +141,7 @@ class AppDataController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $appData = $this->AppData->get($id, [
             'contain' => []
         ]);
@@ -135,8 +166,7 @@ class AppDataController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $appData = $this->AppData->get($id);
         if ($this->AppData->delete($appData)) {

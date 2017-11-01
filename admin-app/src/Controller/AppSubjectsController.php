@@ -28,7 +28,7 @@ class AppSubjectsController extends AppController {
 
     public function index() {
         $dat = $this->request->query['date'];
-         $this->set('subjects', $this->AppData->find()->select(['id', 'date', 'subject', 'app_students_unique_id'])->where(['date =' => $dat, 'app_students_unique_id =' => $this->studentId]));
+        $this->set('subjects', $this->AppData->find()->select(['id', 'date', 'subject', 'app_students_unique_id'])->where(['date =' => $dat, 'app_students_unique_id =' => $this->studentId]));
         $this->set('_serialize', ['subjects']);
     }
 
