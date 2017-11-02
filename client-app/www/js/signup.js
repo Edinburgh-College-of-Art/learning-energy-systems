@@ -45,7 +45,6 @@ function onNextClick() {
 
 }
 
-//http://www.learningenergy.eca.ed.ac.uk/appAddNewUser.php?username=hadi&school=porty&year=1980
 function addNewUser() {
     var url = "http://localhost/app_students/add";
     var uName = $("#userName").val();
