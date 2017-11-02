@@ -23,7 +23,9 @@ class AppSubjectsController extends AppController {
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        $this->studentId = $this->request->params['app_student_id'];
+        if (array_key_exists('app_student_id', $this->request->params)) {
+            $this->studentId = $this->request->params['app_student_id'];
+        };
     }
 
     public function index() {
@@ -53,8 +55,13 @@ class AppSubjectsController extends AppController {
         }
     }
 
-    public function edit($id = null)
-    {
+    public function view($id = null) {
+        $subject = $this->AppData->find()->select(['subject', 'light', 'computer', 'heater', 'projector', 'lightString', 'computerString', 'heaterString', 'projectorString'])->where(['id =' => $id])->first();
+        $this->set('subject', $subject);
+        $this->set('_serialize', 'subject');
+    }
+
+    public function edit($id = null) {
         $subject = $this->AppData->get($id);
         $this->set('appData', $subject);
         

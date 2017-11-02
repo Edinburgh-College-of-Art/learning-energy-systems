@@ -63,6 +63,8 @@ Router::scope('/', function ($routes) {
         $routes->connect('/subjects/edit/*', ['controller' => 'AppSubjects', 'action' => 'edit']);
     });
 
+    $routes->connect('/subjects/view/*', ['controller' => 'AppSubjects', 'action' => 'view']);
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

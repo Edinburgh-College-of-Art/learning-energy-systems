@@ -310,23 +310,20 @@ function detectPortrait(mainDiv) {
     }
 }
 function loadData() {
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appGetSubjectData.php";
-    $.get(url,
-            {
-                id: g_subjectId
-            })
-            .always(function (data) {
-                window.g_title = data[0].subject;
-                window.g_projectorTotal = parseInt(data[0].projector);
-                window.g_computerTotal = parseInt(data[0].computer);
-                window.g_lightTotal = parseInt(data[0].light);
-                window.g_heaterTotal = parseInt(data[0].heater);
-                window.g_projectorTotalString = data[0].projectorString;
-                window.g_computerTotalString = data[0].computerString;
-                window.g_lightTotalString = data[0].lightString;
-                window.g_heaterTotalString = data[0].heaterString;
-                initialise();
-            });
+    
+    var url = "http://localhost/subjects/view/"+g_subjectId+".json";
+    $.ajax({ type: 'GET', url: url, dataType: 'json' }).always(function (data) {
+        window.g_title = data.subject;
+        window.g_projectorTotal = parseInt(data.projector);
+        window.g_computerTotal = parseInt(data.computer);
+        window.g_lightTotal = parseInt(data.light);
+        window.g_heaterTotal = parseInt(data.heater);
+        window.g_projectorTotalString = data.projectorString;
+        window.g_computerTotalString = data.computerString;
+        window.g_lightTotalString = data.lightString;
+        window.g_heaterTotalString = data.heaterString;
+        initialise();
+    });
 
 }
 
