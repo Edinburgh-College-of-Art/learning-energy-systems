@@ -309,67 +309,62 @@ daySection.prototype.getY = function () {
 
 function loadUpdateData(_loadOrUpdate) {
     var minSize = 70;
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appGetWeekAll.php";
-    $.get(url,
-            {
-                id: window.g_studentUID,
-                date: window.g_currDate
-            })
-            .always(function (data) {
-                window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
-                console.log(data);
-                window.g_projectorTotal = parseInt(data.day[0].projector !== null ? data.day[0].projector : 0),
-                        window.g_computerTotal = parseInt(data.day[0].computer !== null ? data.day[0].computer : 0),
-                        window.g_heaterTotal = parseInt(data.day[0].heater !== null ? data.day[0].heater : 0),
-                        window.g_lightTotal = parseInt(data.day[0].light !== null ? data.day[0].light : 0);
-                window.g_total = ((window.g_projectorTotal + window.g_computerTotal + window.g_heaterTotal + window.g_lightTotal) / 60).toFixed(1);
-                window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
-                for (var i = 0; i < data.week.length; i++) {
-                    var d = new Date(data.week[i].date);
-                    var n = d.getDay();
-                    switch (n) {
-                        case 1:
-                            window.g_monT = data.week[i].daySum;
-                            break;
-                        case 2:
-                            window.g_tueT = data.week[i].daySum;
-                            break;
-                        case 3:
-                            window.g_wedT = data.week[i].daySum;
-                            break;
-                        case 4:
-                            window.g_thurT = data.week[i].daySum;
-                            break;
-                        case 5:
-                            window.g_friT = data.week[i].daySum;
-                            break;
+    var url = "http://localhost/app_students/"+window.g_studentUID+"/week/"+window.g_currDate+".json";
+    $.ajax({ type: 'GET', url: url, dataType: 'json' }).always(function (data) {
+        window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
+        console.log(data);
+        window.g_projectorTotal = parseInt(data.day.projector !== null ? data.day.projector : 0),
+                window.g_computerTotal = parseInt(data.day.computer !== null ? data.day.computer : 0),
+                window.g_heaterTotal = parseInt(data.day.heater !== null ? data.day.heater : 0),
+                window.g_lightTotal = parseInt(data.day.light !== null ? data.day.light : 0);
+        window.g_total = ((window.g_projectorTotal + window.g_computerTotal + window.g_heaterTotal + window.g_lightTotal) / 60).toFixed(1);
+        window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
+        for (var i = 0; i < data.week.length; i++) {
+            var d = new Date(data.week[i].date);
+            var n = d.getDay();
+            switch (n) {
+                case 1:
+                    window.g_monT = data.week[i].daySum;
+                    break;
+                case 2:
+                    window.g_tueT = data.week[i].daySum;
+                    break;
+                case 3:
+                    window.g_wedT = data.week[i].daySum;
+                    break;
+                case 4:
+                    window.g_thurT = data.week[i].daySum;
+                    break;
+                case 5:
+                    window.g_friT = data.week[i].daySum;
+                    break;
 
-                    }
-                }
-                /*
-                 * TODO: Check with smaller heights and make sure the range for y value is always right!
-                 * FIX ME: Changing days doesn't refresh the background.
-                 */
-                var h = $(window).height() / 2 - 40;
+            }
+        }
+        /*
+         * TODO: Check with smaller heights and make sure the range for y value is always right!
+         * FIX ME: Changing days doesn't refresh the background.
+         */
+        var h = $(window).height() / 2 - 40;
 //
-                window.g_monT = map_range(window.g_monT, 0, 1260, minSize, h);
-                window.g_tueT = map_range(window.g_tueT, 0, 1260, minSize, h);
-                window.g_wedT = map_range(window.g_wedT, 0, 1260, minSize, h);
-                window.g_thurT = map_range(window.g_thurT, 0, 1260, minSize, h);
-                window.g_friT = map_range(window.g_friT, 0, 1260, minSize, h);
-                if (_loadOrUpdate)
-                    initialise();
-                else {
-                    $("#total").remove();
-                    $("#computer").remove();
-                    $("#projector").remove();
-                    $("#heater").remove();
-                    $("#light").remove();
-                    $("#totalHead").remove();
-                    drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
-                    $("#myBack").attr("href", "img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png");
-                }
-            });
+        window.g_monT = map_range(window.g_monT, 0, 1260, minSize, h);
+        window.g_tueT = map_range(window.g_tueT, 0, 1260, minSize, h);
+        window.g_wedT = map_range(window.g_wedT, 0, 1260, minSize, h);
+        window.g_thurT = map_range(window.g_thurT, 0, 1260, minSize, h);
+        window.g_friT = map_range(window.g_friT, 0, 1260, minSize, h);
+        if (_loadOrUpdate)
+            initialise();
+        else {
+            $("#total").remove();
+            $("#computer").remove();
+            $("#projector").remove();
+            $("#heater").remove();
+            $("#light").remove();
+            $("#totalHead").remove();
+            drawConsumptions(window.g_projectorTotal, window.g_lightTotal, window.g_computerTotal, window.g_heaterTotal, window.g_total);
+            $("#myBack").attr("href", "img/backgrounds/" + (window.g_total - window.g_total % 2) + ".png");
+        }
+    });
 }
 
 

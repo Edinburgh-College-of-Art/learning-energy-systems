@@ -80,22 +80,32 @@ class AppDataController extends AppController
         $friday = strtotime("next friday", $dayT);
         if (date("w", $dayT) == "1") { $monday = $dayT; }
         if (date("w", $dayT) == "5") { $friday = $dayT; }
+        
+        $weekQuery = $this->AppData->find()->where(['date >= ' => $monday, 'date <= ' => $friday, 'app_students_unique_id =' => $studentId])->group('date');
 
-        $weekQuery = $this->AppData->find()->select(['light', 'projector', 'heater', 'computer'])->
-            where(['date >= ' => $monday, 'date <= ' => $friday, 'app_students_unique_id =' => $studentId]);
+        $weekQuery = $weekQuery->select(['date',
+            'lsum' => $query->func()->sum('light'),
+            'psum' => $query->func()->sum('projector'),
+            'hsum' => $query->func()->sum('heater'),
+            'csum' => $query->func()->sum('computer')
+        ]);
+
+        $week = [];
+        foreach ($weekQuery->toArray() as $row) {
+           $week[] = [
+                "daySum" => $row->lsum + $row->psum + $row->hsum + $row->csum, 
+                "date" => $row->date->jsonSerialize()
+            ];
+        }
 
         $collection = new Collection($query->toArray());
-        $weekCollection = new Collection($weekQuery->toArray());
-
+        
         $week = ["day" => [
-            "light" => $collection->sumOf("light"),
-            "projector" => $collection->sumOf("projector"),
-            "heater" => $collection->sumOf("heater"),
-            "computer" => $collection->sumOf("computer")
-        ], "week" => [ 
-                "daySum" => $weekCollection->sumOf("light") + $weekCollection->sumOf("projector") + $weekCollection->sumOf("heater") + $weekCollection->sumOf("computer"), 
-                "date" => $date
-            ]
+                "light" => $collection->sumOf("light"),
+                "projector" => $collection->sumOf("projector"),
+                "heater" => $collection->sumOf("heater"),
+                "computer" => $collection->sumOf("computer")
+            ], "week" => $week
         ];
 
         $this->set('week', $week);
