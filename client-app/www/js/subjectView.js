@@ -309,8 +309,9 @@ function detectPortrait(mainDiv) {
         $(mainDiv).removeClass("portrait_mode");
     }
 }
+
 function loadData() {
-    
+
     var url = "http://localhost/subjects/view/"+g_subjectId+".json";
     $.ajax({ type: 'GET', url: url, dataType: 'json' }).always(function (data) {
         window.g_title = data.subject;
@@ -328,29 +329,25 @@ function loadData() {
 }
 
 function updateDB() {
-//    $.put('http://www.learningenergy.eca.ed.ac.uk/backend/app_data/edit/1', {"light":g_lightTotal,
-//       "computer":g_computerTotal,
-//       "heater":g_heaterTotal,
-//       "projector":g_projectorTotal}, function(result){
-//   console.log(result);
-//});
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appUpdateAppData.php";
-    $.post(url,
-            {
-                id: window.g_subjectId,
-                light: g_lightTotal,
-                computer: g_computerTotal,
-                heater: g_heaterTotal,
-                projector: g_projectorTotal,
-                lightString: window.g_lightTotalString,
-                computerString: window.g_computerTotalString,
-                heaterString: window.g_heaterTotalString,
-                projectorString: window.g_projectorTotalString
-            })
-            .always(function (data) {
-                console.log(data);
-            });
+    var url = 'http://localhost/app_data/edit/'+window.g_subjectId;
+
+    var data = {
+        light: g_lightTotal,
+        computer: g_computerTotal,
+        heater: g_heaterTotal,
+        projector: g_projectorTotal,
+        lightString: window.g_lightTotalString,
+        computerString: window.g_computerTotalString,
+        heaterString: window.g_heaterTotalString,
+        projectorString: window.g_projectorTotalString
+    };
+
+    $.ajax({ type: 'POST', url: url, data: data, dataType: 'json' }).always(function(data) {
+        console.log(data);
+    });
+
 }
+
 jQuery.each(["put", "delete"], function (i, method) {
     jQuery[ method ] = function (url, data, callback, type) {
         if (jQuery.isFunction(data)) {
@@ -368,6 +365,7 @@ jQuery.each(["put", "delete"], function (i, method) {
         });
     };
 });
+
 String.prototype.replaceAt = function (index, character) {
     return this.substr(0, index) + character + this.substr(index + character.length);
 };
