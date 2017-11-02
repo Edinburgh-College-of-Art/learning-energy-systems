@@ -33,6 +33,9 @@ docker run -d -p 80:80 --name admin-app \
 echo "Waiting on container to be ready."
 sleep 20s
 
+echo "Set MySQL config"
+docker exec admin-mysql bash -c "mysql -uroot -pchange_me_too wwwlearn_school -e 'SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,\"ONLY_FULL_GROUP_BY\",\"\"));'"
+
 echo "Creating tables from .sql file"
 docker exec -i admin-mysql mysql -uwwwlearningenerg -pchange_me wwwlearn_school < original-db-dump.sql
 
