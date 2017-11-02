@@ -214,25 +214,14 @@ function Subject(_x, _y, _r, _w, _h, _num, _id, _title, _total) {
         arc: [this.x, this.y + _r + window.g_topMargin, totalVal, 400, _r] // x, y, valore su, totale, raggio
     });
 }
-function subjectDeleteClicked() {
-    var url = "http://www.learningenergy.eca.ed.ac.uk/appAddUpdateSubject.php";
-    console.log(this.parent);
-    var dataToBeSent = {
-        update: 'delete',
-        id: this.parent
-    };
-    $.post(url, dataToBeSent)
-            .success(function (data) {
-                window.location = "dayView.html";
-            }
-            );
-}
+
 function cancelClicked() {
     window.g_adding = false;
     $("#tempDelete").fadeOut("slow").remove();
     $("#tempOK").fadeOut("slow").remove();
     $("#tempText").fadeOut("slow").remove();
 }
+
 function okClicked() {
     window.g_adding = false;
     if (window.g_status === "edit") {
