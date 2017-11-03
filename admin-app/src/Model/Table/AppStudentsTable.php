@@ -38,6 +38,10 @@ class AppStudentsTable extends Table
         $this->hasMany('AppData');
     }
 
+    public function beforeSave($event, $entity, $options) {
+        if ($entity->isNew()){ $entity->secret = hash('md5',time()); }
+    }
+
     /**
      * Default validation rules.
      *

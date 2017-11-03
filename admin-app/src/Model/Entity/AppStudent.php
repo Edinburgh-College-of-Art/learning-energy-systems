@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property int $app_school_id
  * @property \App\Model\Entity\AppSchool $app_school
  * @property int $year
- * @property string $unique_id
+ * @property string $secret
  * @property \App\Model\Entity\Unique $unique
  */
 class AppStudent extends Entity
@@ -29,5 +29,6 @@ class AppStudent extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
+        'secret' => false,
     ];
 }

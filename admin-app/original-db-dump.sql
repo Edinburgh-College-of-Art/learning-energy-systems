@@ -114,9 +114,10 @@ DROP TABLE IF EXISTS `app_students`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `app_students` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `year` int(11) NOT NULL,
   `app_school_id` bigint(20) NOT NULL,
+  `secret` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `app_school_id` (`app_school_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
@@ -128,7 +129,7 @@ CREATE TABLE `app_students` (
 
 LOCK TABLES `app_students` WRITE;
 /*!40000 ALTER TABLE `app_students` DISABLE KEYS */;
-INSERT INTO `app_students` VALUES (1,'hadi',1980,7),(2,'Alice',2015,3),(3,'geoff',2001,8),(4,'Bob',2017,3),(126,'Rory',1999,5);
+INSERT INTO `app_students` VALUES (1,'hadi',1980,7,'42ce3c106ba960d051eb8382e921ac19'),(2,'Alice',2015,3,'42ce3c106ba960d051eb8382e921ac19'),(3,'geoff',2001,8,'42ce3c106ba960d051eb8382e921ac19'),(4,'Bob',2017,3,'42ce3c106ba960d051eb8382e921ac19'),(126,'Rory',1999,5,'42ce3c106ba960d051eb8382e921ac19');
 /*!40000 ALTER TABLE `app_students` ENABLE KEYS */;
 UNLOCK TABLES;
 
