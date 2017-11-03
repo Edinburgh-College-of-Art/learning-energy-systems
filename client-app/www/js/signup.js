@@ -19,7 +19,7 @@
 window.onload = function () {
     $("#getStarted").bind('click', onNextClick);
     if (localStorage.getItem("studentId") !== undefined && localStorage.getItem("studentId") !== null){
-        alert(localStorage.getItem(usrSigned));
+        alert("User is already signed in.");
         window.location = "weekView.html";
     }
 };
@@ -63,6 +63,7 @@ function addNewUser() {
                 localStorage.setItem("userName", uName);
                 localStorage.setItem("schoolId", schId);
                 localStorage.setItem("year", year);
+                localStorage.setItem("secret", secret);
                 window.location = "help1.html";
             }
         }).always(function (data){

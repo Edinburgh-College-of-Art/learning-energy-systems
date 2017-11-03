@@ -20,9 +20,15 @@ $(document).ready(function(){
   $("#year").val(localStorage.getItem("year"));
   
   $("#footer").bind('click', onNextClick);
+  
   $("#updateUser").bind("click",function(){
     if(validateUserInput())
       updateUser();
+  });
+
+  $("#signOut").bind("click",function(){
+    localStorage.clear();
+    window.location="signup.html";
   });
 
   $("#homeIconn").bind("click",function(){
