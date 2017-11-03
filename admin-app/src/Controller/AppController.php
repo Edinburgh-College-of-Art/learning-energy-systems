@@ -19,6 +19,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
 
 use Cake\Controller\Controller;
 use \Cake\Event\Event as Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -47,8 +48,15 @@ class AppController extends \Cake\Controller\Controller
     {
         parent::initialize();
         $this->loadComponent('Flash');
-
     }
 
+    protected function authorize($request, $studentId) {
+        $this->AppStudents = TableRegistry::get('AppStudents');
+        $studentSecret = $this->AppStudents->get($studentId)->secret;
+        $tokenLine = $request->header('Authorization');
+        $token = str_replace("Bearer ","",$tokenLine);
+        $result = hash('sha1', $request->data['request_ts'] . $studentSecret);
+        return $result == $token;
+    }
 
 }

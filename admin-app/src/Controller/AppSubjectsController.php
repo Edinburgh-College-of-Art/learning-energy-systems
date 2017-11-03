@@ -36,6 +36,7 @@ class AppSubjectsController extends AppController {
 
     public function add() {
         $subject = $this->AppData->newEntity();
+        $authorized = $this->authorize($this->request, $this->studentId);
 
         if ($this->request->is('post')) {
             $subject = $this->AppData->patchEntity($subject, $this->request->data);
@@ -44,14 +45,14 @@ class AppSubjectsController extends AppController {
             $subject->light = $subject->computer = $subject->heater = $subject->projector = 0;
             $subject->lightString = $subject->computerString = $subject->heaterString = $subject->projectorString = '000000000';
 
-            if ($this->AppData->save($subject)) {
-                $this->set(compact('subject', 'errors'));
-                $this->set('_serialize', ['subject']);
+            if ($this->AppData->save($subject)) { 
+                $errors = [];    
             } else {
-                $errors = $subject->errors();
-                $this->set(compact('subject', 'errors'));
-                $this->set('_serialize', ['subject', 'errors']);
+                $errors = $subject->errors();    
             }
+
+            $this->set(compact('subject', 'errors', 'authorized'));
+            $this->set('_serialize', ['subject', 'errors', 'authorized']);
         }
     }
 
