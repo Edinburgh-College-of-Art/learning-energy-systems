@@ -117,7 +117,7 @@ CREATE TABLE `app_students` (
   `name` varchar(50) NOT NULL,
   `year` int(11) NOT NULL,
   `app_school_id` bigint(20) NOT NULL,
-  `secret` varchar(32) NOT NULL,
+  `secret` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `app_school_id` (`app_school_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
@@ -129,7 +129,7 @@ CREATE TABLE `app_students` (
 
 LOCK TABLES `app_students` WRITE;
 /*!40000 ALTER TABLE `app_students` DISABLE KEYS */;
-INSERT INTO `app_students` VALUES (1,'hadi',1980,7,'42ce3c106ba960d051eb8382e921ac19'),(2,'Alice',2015,3,'42ce3c106ba960d051eb8382e921ac19'),(3,'geoff',2001,8,'42ce3c106ba960d051eb8382e921ac19'),(4,'Bob',2017,3,'42ce3c106ba960d051eb8382e921ac19'),(126,'Rory',1999,5,'42ce3c106ba960d051eb8382e921ac19');
+INSERT INTO `app_students` VALUES (1,'hadi',1980,7,'9cba9b83a28fcf5d2ed873f9e3ad1090326bf4e1'),(2,'Alice',2015,3,'9cba9b83a28fcf5d2ed873f9e3ad1090326bf4e1'),(3,'geoff',2001,8,'9cba9b83a28fcf5d2ed873f9e3ad1090326bf4e1'),(4,'Bob',2017,3,'9cba9b83a28fcf5d2ed873f9e3ad1090326bf4e1'),(126,'Rory',1999,5,'9cba9b83a28fcf5d2ed873f9e3ad1090326bf4e1');
 /*!40000 ALTER TABLE `app_students` ENABLE KEYS */;
 UNLOCK TABLES;
 

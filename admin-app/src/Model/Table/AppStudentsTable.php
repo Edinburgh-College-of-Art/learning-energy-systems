@@ -39,7 +39,7 @@ class AppStudentsTable extends Table
     }
 
     public function beforeSave($event, $entity, $options) {
-        if ($entity->isNew()){ $entity->secret = hash('md5',time()); }
+        if ($entity->isNew()){ $entity->secret = hash('sha1',time()); }
     }
 
     /**
