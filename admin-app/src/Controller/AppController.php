@@ -20,6 +20,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
 use Cake\Controller\Controller;
 use \Cake\Event\Event as Event;
 use Cake\ORM\TableRegistry;
+use Cake\Network\Exception\UnauthorizedException;
 
 /**
  * Application Controller
@@ -56,7 +57,11 @@ class AppController extends \Cake\Controller\Controller
         $tokenLine = $request->header('Authorization');
         $token = str_replace("Bearer ","",$tokenLine);
         $result = hash('sha1', $request->data['request_ts'] . $studentSecret);
-        return $result == $token;
+        if ($result == $token){
+            return true; 
+        } else {
+            throw new UnauthorizedException(__('You are not authorized to perform this action'));
+        }
     }
 
 }

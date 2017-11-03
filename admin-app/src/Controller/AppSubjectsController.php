@@ -51,8 +51,8 @@ class AppSubjectsController extends AppController {
                 $errors = $subject->errors();    
             }
 
-            $this->set(compact('subject', 'errors', 'authorized'));
-            $this->set('_serialize', ['subject', 'errors', 'authorized']);
+            $this->set(compact('subject', 'errors'));
+            $this->set('_serialize', ['subject', 'errors']);
         }
     }
 
