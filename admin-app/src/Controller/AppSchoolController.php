@@ -57,7 +57,7 @@ class AppSchoolController extends AppController
     public function index()
     {
         $isJson = $this->request->is('json');
-        if ($isJson) { $this->set('appSchool', $this->AppSchool->find('all')); }
+        if ($isJson) { $this->set('appSchool', $this->AppSchool->find()->select(['school_name', 'id'])); }
         else { $this->set('appSchool', $this->paginate($this->AppSchool)); }
         $this->set('_serialize', ['appSchool']);
     }
