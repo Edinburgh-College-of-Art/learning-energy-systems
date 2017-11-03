@@ -342,12 +342,12 @@ function updateDB() {
         projectorString: window.g_projectorTotalString
     };
 
-    $.ajax({ type: 'POST', url: url, data: data, dataType: 'json' }).always(function(data) {
+    $.ajax({ type: 'POST', url: url, data: data, dataType: 'json'}).always(function(data) {
         console.log(data);
     });
-
 }
 
+/*
 jQuery.each(["put", "delete"], function (i, method) {
     jQuery[ method ] = function (url, data, callback, type) {
         if (jQuery.isFunction(data)) {
@@ -364,7 +364,7 @@ jQuery.each(["put", "delete"], function (i, method) {
             always: callback
         });
     };
-});
+});*/
 
 String.prototype.replaceAt = function (index, character) {
     return this.substr(0, index) + character + this.substr(index + character.length);

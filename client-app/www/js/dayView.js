@@ -237,10 +237,14 @@ function okClicked() {
         var dataToBeSent = {
             update: false,
             subject: $("#tempText").val(),
-            date: window.g_currDate
+            date: window.g_currDate,
+            request_ts: new Date - 0
         };
-
-        $.ajax({ type: 'POST', url: url, data: dataToBeSent, dataType: 'json' })
+        
+        var token = sha1(dataToBeSent.request_ts + localStorage.getItem('secret'));
+        var headers = { 'Authorization': 'Bearer ' + token };
+ 
+        $.ajax({ type: 'POST', url: url, data: dataToBeSent, dataType: 'json', headers: headers })
             .success(function (data) {
                 console.log(data);
                 $("#tempDelete").fadeOut("slow").remove();
