@@ -116,10 +116,13 @@ function cancelClicked() {
 }
 
 var dopostqueue = $({});
-function joinUpdateQueue(url, data, callback){ 
+function joinUpdateQueue(url, data, callback){
   dopostqueue.queue(function(){
-      $.ajax({type: 'POST', url: url, datatype: 'json', data: data})
-        .success(function(result){ dopostqueue.dequeue(); callback(result); });
+    data.request_ts = new Date - 0;
+    var token = sha1(data.request_ts + localStorage.getItem('secret'));
+    var headers = { 'Authorization': 'Bearer ' + token };
+    $.ajax({type: 'POST', url: url, datatype: 'json', data: data, headers: headers })
+      .success(function(result){ dopostqueue.dequeue(); callback(result); });
   });
 };
 
@@ -128,7 +131,7 @@ function okClicked(){
   var jsonArr = [];
   var url;
   var data;
-  
+
   var cb = function(data) {
     if (dopostqueue.queue().length == 0) { window.location = "dayView.html";  }
   };
