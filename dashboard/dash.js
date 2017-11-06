@@ -634,36 +634,6 @@ function setupListeners()
 				}
 			});
 
-			$('.deleteButton').last().click(function(event)
-			{
-				/* Act on the event */
-				var deleteConfirm = confirm("Are you sure you want to delete this question? (no way back!)");
-
-				if(deleteConfirm)
-				{
-					var questionID = $(event.currentTarget).attr('questionid');
-					// grey until gone
-					$(event.currentTarget).parent().css('color', 'rgb(225,225,225');
-					$(event.currentTarget).parent().find('.revealButton').css('color', 'rgb(225,225,225');
-
-					// send query
-					$.ajax({
-						url: 'http://www.learningenergy.eca.ed.ac.uk/backend/app_questions/delete/'+questionID,
-						type: 'DELETE',
-						dataType: 'json',
-						data: {},
-					})
-					.done(function() {
-						console.log("success");
-						$(event.currentTarget).parent().remove();
-						reflowListNumbers();
-					})
-					.fail(function(e) {
-						console.log(e);
-					});
-					
-				}
-			});
 		})
 		.fail(function() {
 			alert('Failed to connect to the database - send Chris an angry email');
@@ -697,7 +667,7 @@ function getQuestions() {
 function displayQuestions() {
 	for(var i=0;i<questionData.length; i++)	{
 		var thisQuestion = questionData[i];
-		$('#questionsWrapper').append("<span class='questionRow'><span class='qNumber'>1</span><span class='questionText'>"+thisQuestion.question+"</span><img class='deleteButton' questionID="+thisQuestion.id+" src='img/deleteButton.png' alt='delete question' height='20px' width='20px' /><p class='revealButton'>Reveal answer</p></span");
+		$('#questionsWrapper').append("<span class='questionRow'><span class='qNumber'>1</span><span class='questionText'>"+thisQuestion.question+"</span> <p class='revealButton'>Reveal answer</p></span");
 		if(i % 2 !== 0) {
 			$('span.questionRow').eq(i).append("<hr/>");
 			$('span.questionRow').eq(i).prepend("<hr/>");
@@ -827,38 +797,7 @@ function checkLogin()
 	}
 }
 
-function setupQuestionListeners()
-{
-	$('.deleteButton').click(function(event)
-	{
-		/* Act on the event */
-		var deleteConfirm = confirm("Are you sure you want to delete this question? (no way back!)");
-
-		if(deleteConfirm) 
-		{
-			var questionID = $(event.currentTarget).attr('questionid');
-			// grey until gone
-			$(event.currentTarget).parent().css('color', 'rgb(225,225,225');
-			$(event.currentTarget).parent().find('.revealButton').css('color', 'rgb(225,225,225');
-
-			// send query
-			$.ajax({
-				url: 'http://www.learningenergy.eca.ed.ac.uk/backend/app_questions/delete/'+questionID,
-				type: 'DELETE',
-				dataType: 'json',
-				data: {},
-			})
-			.done(function() {
-				console.log("success");
-				$(event.currentTarget).parent().remove();
-				reflowListNumbers();
-			})
-			.fail(function(e) {
-				console.log(e);
-			});
-			
-		}
-	});
+function setupQuestionListeners() {
 
 	$('.revealButton').click(function(event)
 	{
