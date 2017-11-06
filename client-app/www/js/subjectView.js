@@ -339,10 +339,14 @@ function updateDB() {
         lightString: window.g_lightTotalString,
         computerString: window.g_computerTotalString,
         heaterString: window.g_heaterTotalString,
-        projectorString: window.g_projectorTotalString
+        projectorString: window.g_projectorTotalString,
+        request_ts: new Date - 0
     };
 
-    $.ajax({ type: 'POST', url: url, data: data, dataType: 'json'}).always(function(data) {
+    var token = sha1(data.request_ts + localStorage.getItem('secret'));
+    var headers = { 'Authorization': 'Bearer ' + token };
+
+    $.ajax({ type: 'POST', url: url, data: data, dataType: 'json', headers: headers }).always(function(data) {
         console.log(data);
     });
 }

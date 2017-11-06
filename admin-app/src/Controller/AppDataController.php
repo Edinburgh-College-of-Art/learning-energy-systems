@@ -152,10 +152,12 @@ class AppDataController extends AppController
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null) {
-        $appData = $this->AppData->get($id, [
-            'contain' => []
-        ]);
+        $appData = $this->AppData->get($id, ['contain' => []]);
+        
+        $authorized = $this->authorize($this->request, $appData->app_students_unique_id);
+
         $this->set('appData', $appData);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $appData = $this->AppData->patchEntity($appData, $this->request->data);
 
