@@ -54,27 +54,30 @@ class AppController extends \Cake\Controller\Controller
     }
 
     protected function authorize($request, $studentId = null) {
+        $isAuthorized = false;
         $appSchool = $this->Auth->user();
-        if ($appSchool){ return true; } //Ok if we're already logged in as school user
-        if ($studentId == null) {
-            throw new UnauthorizedException(__('You are not authorized to perform this action'));
-        }
-        
-        $this->AppStudents = TableRegistry::get('AppStudents');
-        $studentSecret = $this->AppStudents->get($studentId)->secret;
-        $tokenLine = $request->header('Authorization');
-        $token = str_replace("Bearer ","",$tokenLine);
-        
-        if (array_key_exists('request_ts', $request->data)) { 
-            $result = hash('sha1', $request->data['request_ts'] . $studentSecret); 
-        } else {
+        if ($appSchool){ return true; } //OK if we're already logged in as school user
+
+        if ($studentId != null) {
+            $this->AppStudents = TableRegistry::get('AppStudents');
+            $studentSecret = $this->AppStudents->get($studentId)->secret;
+            $tokenLine = $request->header('Authorization');
+            $token = str_replace("Bearer ","",$tokenLine);
             $result = rand();
+            if (array_key_exists('request_ts', $request->data)) { 
+                $result=hash('sha1', $request->data['request_ts'] . $studentSecret);
+            }
+            $isAuthorized = ($result == $token);
         }
 
-        if ($result == $token){
-            return true; 
+        if ($isAuthorized){
+            return true;
         } else {
-            throw new UnauthorizedException(__('You are not authorized to perform this action'));
+            if ($request->is('json')){ 
+                throw new UnauthorizedException(__('You are not authorized to perform this action'));
+            } else {
+                $this->redirect('/login');
+            }
         }
     }
 

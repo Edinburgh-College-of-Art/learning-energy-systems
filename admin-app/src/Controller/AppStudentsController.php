@@ -21,6 +21,7 @@ class AppStudentsController extends AppController
         $this->paginate = [
             'contain' => ['AppSchool']
         ];
+        $this->authorize($this->request);
         $this->set('appStudents', $this->paginate($this->AppStudents));
         $this->set('_serialize', ['appStudents']);
     }
