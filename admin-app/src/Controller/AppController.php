@@ -45,13 +45,18 @@ class AppController extends \Cake\Controller\Controller
      *
      * @return void
      */
-    public function initialize()
-    {
+    public function initialize() {
         parent::initialize();
         $this->loadComponent('Flash');
     }
 
-    protected function authorize($request, $studentId) {
+    protected function authorize($request, $studentId = null) {
+        $appSchool = $this->Auth->user();
+        if ($appSchool){ return true; } //Ok if we're already logged in as school user
+        if ($studentId == null) {
+            throw new UnauthorizedException(__('You are not authorized to perform this action'));
+        }
+        
         $this->AppStudents = TableRegistry::get('AppStudents');
         $studentSecret = $this->AppStudents->get($studentId)->secret;
         $tokenLine = $request->header('Authorization');
