@@ -54,16 +54,14 @@ class AppSchoolController extends AppController
      *
      * @return void
      */
-    public function index()
-    {
+    public function index() {
         $isJson = $this->request->is('json');
         if ($isJson) { $this->set('appSchool', $this->AppSchool->find()->select(['school_name', 'id'])); }
         else { $this->set('appSchool', $this->paginate($this->AppSchool)); }
         $this->set('_serialize', ['appSchool']);
     }
 
-    public function muhtest()
-    {
+    public function muhtest() {
         //$isJson = $this->request->is('json');
         $response = $this->response;
         $response->body("<b>Params</b> " . join('<br>', $this->request->params));
@@ -77,8 +75,7 @@ class AppSchoolController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $appSchool = $this->AppSchool->get($id, [
             'contain' => ['AppQuestions', 'AppStudents']
         ]);
@@ -91,8 +88,7 @@ class AppSchoolController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $appSchool = $this->AppSchool->newEntity();
         if ($this->request->is('post')) {
             $appSchool = $this->AppSchool->patchEntity($appSchool, $this->request->data);
@@ -114,8 +110,7 @@ class AppSchoolController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $appSchool = $this->AppSchool->get($id, [
             'contain' => []
         ]);
@@ -139,8 +134,7 @@ class AppSchoolController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $appSchool = $this->AppSchool->get($id);
         if ($this->AppSchool->delete($appSchool)) {
@@ -151,8 +145,7 @@ class AppSchoolController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function login()
-    {
+    public function login() {
         if ($this->request->is('post')) {
             $appSchool = $this->Auth->identify();
             if ($appSchool) {
@@ -163,14 +156,11 @@ class AppSchoolController extends AppController
         }
     }
 
-    public function logout()
-    {
+    public function logout() {
         return $this->redirect($this->Auth->logout());
     }
 
-    public function dash()
-    {
-
+    public function dash() {
     }
 
 }
