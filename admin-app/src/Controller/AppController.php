@@ -56,7 +56,13 @@ class AppController extends \Cake\Controller\Controller
         $studentSecret = $this->AppStudents->get($studentId)->secret;
         $tokenLine = $request->header('Authorization');
         $token = str_replace("Bearer ","",$tokenLine);
-        $result = hash('sha1', $request->data['request_ts'] . $studentSecret);
+        
+        if (array_key_exists('request_ts', $request->data)) { 
+            $result = hash('sha1', $request->data['request_ts'] . $studentSecret); 
+        } else {
+            $result = rand();
+        }
+
         if ($result == $token){
             return true; 
         } else {
