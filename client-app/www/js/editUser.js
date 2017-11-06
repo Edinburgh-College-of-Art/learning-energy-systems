@@ -73,9 +73,11 @@ function updateUser() {
 
   $.ajax({ type: 'POST', url: url, data: dataToBeSent, dataType: 'json', headers: headers })
     .success(function (data) {
-      localStorage.setItem("userName", uName);
-      localStorage.setItem("schoolId", schId);
-      localStorage.setItem("year", year);
+      if (data.errors.length == 0){
+        localStorage.setItem("userName", uName);
+        localStorage.setItem("schoolId", schId);
+        localStorage.setItem("year", year);
+      }
     }).always(function (data){
       console.log(data);
       $("#progImg").hide("slow");
