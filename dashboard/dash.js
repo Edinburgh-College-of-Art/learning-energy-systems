@@ -510,70 +510,10 @@ function setupListeners() {
     }
   });
 
-
-  $('.addButton').click(function(event) {
-    event.preventDefault();
-
-    // check q AND a
-    var question = $.trim($("#questionTextArea").val());
-    var answer = $.trim($("#answerTextArea").val());
-    var questionID;
-    if ( (question === "") || (answer === "") ) {
-      alert("Don't forget both the question and the answer");
-      return;
-    }
-    // send
-    $.ajax({
-      url: 'http://www.learningenergy.eca.ed.ac.uk/backend/app_questions/add',
-      type: 'POST',
-      dataType: 'json',
-      data: {school_id: 5, question: question, answer: answer}
-    })
-    .done(function(e) {
-      questionID = e.data.id;
-      questionData.push({'id':questionID, 'question': question, 'answer': answer, 'app_school_id': 0});
-
-      var numElements = $('#questionsWrapper').find('span.questionRow').length;
-      $('#questionsWrapper').append("<span class='questionRow'><span class='qNumber'>"+(numElements+1)+"</span><span class='questionText'>"+question+"</span><img class='deleteButton' questionID="+questionID+" src='img/deleteButton.png' alt='delete question' height='20px' width='20px' /><p questionID="+questionID+" class='revealButton'>Reveal Answer</p></span");
-      $('.revealButton').last().click(function(event) {
-        var questionID = $(event.currentTarget).attr('questionid');
-
-        if($(event.currentTarget).text() === "Reveal Answer") {
-          var theAnswer;
-          $(event.currentTarget).text("Hide Answer"); // change the button
-          for(var i=0;i<questionData.length; i++) {
-            if(questionData[i].id === +questionID)
-            {
-              theAnswer = questionData[i].answer;
-            }
-          }
-          if($(event.currentTarget).parent().find('hr').length > 0) {
-            $(event.currentTarget).parent().find('hr').last().before("<p class='answer'>"+theAnswer+"</p>");
-          }
-          else {
-            $(event.currentTarget).parent().append("<p class='answer'>"+theAnswer+"</p>");
-          }
-          
-        }
-        else {
-          $(event.currentTarget).text("Reveal Answer");
-          $(event.currentTarget).parent().find('.answer').remove();
-        }
-      });
-
-    })
-    .fail(function() {
-      alert('Failed to connect to the database - send Chris an angry email');
-    });
-  });
-
-
   $('#energyIcons img').click(function(event) {
-    
     if($(event.currentTarget).hasClass('isSelected')) {
       removeCirclesNamed($(event.currentTarget).attr('name'));
-    }
-    else {
+    } else {
       showCirclesNamed($(event.currentTarget).attr('name'));
     }
     $(event.currentTarget).toggleClass('isSelected');
