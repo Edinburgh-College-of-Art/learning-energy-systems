@@ -64,6 +64,7 @@ class AppSubjectsController extends AppController {
 
     public function edit($id = null) {
         $subject = $this->AppData->get($id);
+        $authorized = $this->authorize($this->request, $this->studentId);
         $this->set('appData', $subject);
         
         if ($this->request->is(['patch', 'post', 'put'])) {
