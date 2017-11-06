@@ -64,7 +64,7 @@ class AppDataController extends AppController {
      */
     public function all() {
         $this->set('appData', $this->AppData->find('all'));
-        $this->set('_serialize', ['appData']);
+        $this->set('_serialize', 'appData');
     }
 
     public function week($date = null) {

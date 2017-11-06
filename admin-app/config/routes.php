@@ -63,6 +63,10 @@ Router::scope('/', function ($routes) {
         $routes->connect('/subjects/edit/*', ['controller' => 'AppSubjects', 'action' => 'edit']);
     });
 
+    $routes->resources('AppSchool', function ($routes) { 
+        $routes->connect('/questions', ['controller' => 'AppQuestions', 'action' => 'school']);
+    });
+
     $routes->connect('/subjects/view/*', ['controller' => 'AppSubjects', 'action' => 'view']);
 
     /**

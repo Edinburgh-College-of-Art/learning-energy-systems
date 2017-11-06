@@ -28,15 +28,10 @@ class AppQuestionsController extends AppController
      * @param int|null $id school id
      * @return response
      */
-    public function school($id=null)
-    {
-        $this->layout = null;
-        if($id == null) return;
-
-        $data = $this->AppQuestions->find('all', ['conditions' => ['AppQuestions.app_school_id' => $id]]);
-        $this->response->body(json_encode(compact('data')));
-
-        return $this->response;
+    public function school() {
+        $id = $this->request->params['app_school_id'];        
+        $this->set('appQuestions', $this->AppQuestions->find()->where(['app_school_id =' => $id]));
+        $this->set('_serialize', 'appQuestions');
     }
 
     /**
