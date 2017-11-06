@@ -118,7 +118,6 @@ class AppDataController extends AppController {
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function view($id = null) {
-        $authorized = $this->authorize($this->request);
         $appData = $this->AppData->get($id, []);
         $this->set('appData', $appData);
         $this->set('_serialize', 'appData');
