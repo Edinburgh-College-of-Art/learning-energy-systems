@@ -16,8 +16,7 @@ class AppStudentsController extends AppController
      *
      * @return void
      */
-    public function index()
-    {
+    public function index() {
         $this->paginate = [
             'contain' => ['AppSchool']
         ];
@@ -33,8 +32,8 @@ class AppStudentsController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
+        $this->authorize($this->request, $id);
         $appStudent = $this->AppStudents->get($id, [
             'contain' => ['AppSchool']
         ]);
@@ -47,8 +46,7 @@ class AppStudentsController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $appStudent = $this->AppStudents->newEntity();
 
         if ($this->request->is('post')) {
@@ -77,7 +75,7 @@ class AppStudentsController extends AppController
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null) {
-        $authorized = $this->authorize($this->request, $id);
+        $this->authorize($this->request, $id);
 
         $appStudent = $this->AppStudents->get($id, [
             'contain' => []
@@ -108,10 +106,11 @@ class AppStudentsController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
+        $this->authorize($this->request, $id);
         $appStudent = $this->AppStudents->get($id);
+
         if ($this->AppStudents->delete($appStudent)) {
             $this->Flash->success(__('The app student has been deleted.'));
         } else {
