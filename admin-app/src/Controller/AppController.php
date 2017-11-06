@@ -45,9 +45,12 @@ class AppController extends \Cake\Controller\Controller
      *
      * @return void
      */
-    public function initialize() {
+    public function initialize()
+    {
         parent::initialize();
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth');
+        $this->Auth->allow();
     }
 
     protected function authorize($request, $studentId = null) {

@@ -75,11 +75,13 @@ class AppStudentsController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
+        $authorized = $this->authorize($this->request, $id);
+
         $appStudent = $this->AppStudents->get($id, [
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $appStudent = $this->AppStudents->patchEntity($appStudent, $this->request->data);
             if ($this->AppStudents->save($appStudent)) {
@@ -95,7 +97,7 @@ class AppStudentsController extends AppController
             $appSchools = $this->AppStudents->AppSchool->find('list', ['limit' => 200]);
             $this->set(compact('appStudent', 'appSchools'));
             $this->set('_serialize', ['appStudent']);    
-        }        
+        }
     }
 
     /**
