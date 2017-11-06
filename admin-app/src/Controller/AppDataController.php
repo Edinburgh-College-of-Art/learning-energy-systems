@@ -12,8 +12,7 @@ use Cake\I18n\Time;
  *
  * @property \App\Model\Table\AppDataTable $AppData
  */
-class AppDataController extends AppController
-{
+class AppDataController extends AppController {
 
     /**
      * school method
@@ -21,8 +20,7 @@ class AppDataController extends AppController
      * @param int|null $id school id
      * @return response
      */
-    public function find_deep()
-    {
+    public function find_deep() {
         $this->layout = null;
         $school_name = $this->request->session()->read('Auth.User.school_name');
         if( strlen($school_name) < 1 ) {
@@ -53,8 +51,8 @@ class AppDataController extends AppController
      *
      * @return void
      */
-    public function index()
-    {
+    public function index() {
+        $authorized = $this->authorize($this->request);
         $this->set('appData', $this->paginate($this->AppData));
         $this->set('_serialize', ['appData']);
     }
@@ -120,6 +118,7 @@ class AppDataController extends AppController
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function view($id = null) {
+        $authorized = $this->authorize($this->request);
         $appData = $this->AppData->get($id, []);
         $this->set('appData', $appData);
         $this->set('_serialize', 'appData');
@@ -131,6 +130,7 @@ class AppDataController extends AppController
      * @return void Redirects on successful add, renders view otherwise.
      */
     public function add() {
+        $authorized = $this->authorize($this->request);
         $appData = $this->AppData->newEntity();
         if ($this->request->is('post')) {
             $appData = $this->AppData->patchEntity($appData, $this->request->data);
@@ -186,6 +186,7 @@ class AppDataController extends AppController
     public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $appData = $this->AppData->get($id);
+        $authorized = $this->authorize($this->request, $appData->app_students_unique_id);
         if ($this->AppData->delete($appData)) {
             $this->Flash->success(__('The app data has been deleted.'));
         } else {
