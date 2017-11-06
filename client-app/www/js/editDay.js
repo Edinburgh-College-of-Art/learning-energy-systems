@@ -130,8 +130,7 @@ function okClicked(){
   var data;
   
   var cb = function(data) {
-    console.log(data);
-    //if (dopostqueue.queue().length == 0) { window.location = "editDay.html";  }
+    if (dopostqueue.queue().length == 0) { window.location = "dayView.html";  }
   };
 
   console.log(g_changedSubjects);
