@@ -42,6 +42,8 @@ var SHOW_ALL = false;
 var yAxis = { xMax: 0, xMin: 0, yMax: 0, yMin: 0};
 var xAxis = { xMax: 0, xMin: 0, yMax: 0, yMin: 0};
 
+var schoolId = localStorage['les_school_id'];
+
 // **** APP START **** //
 var spinner = new Spinner(opts);
 styleSelect();
@@ -415,32 +417,27 @@ function populateWeeks()
 
 
 
-function getInitialData()
-{
+function getInitialData() {
 	$("#canvasContainer").css('visibility', 'hidden');
 	spinner.spin($('#canvasContainer')[0]);
 	$(".spinner").css('visibility', 'visible');
 	$.ajax({
-		url: 'http://www.learningenergy.eca.ed.ac.uk/backend/app_data',
+		url: 'http://localhost/app_data/all',
 		type: 'GET',
 		dataType: 'json',
 		data: {}
 	})
-	.done(function(data)
-	{
-		energyData = data.data;
+	.done(function(data) {
+		energyData = data;
 		energyData.weeks = [];
 
-		for(var w=0; w<3; w++)
-		{
+		for(var w=0; w<3; w++) {
 			energyData.weeks.push({
 				days:[{},{},{},{},{}],
 				type_totals: {},
 				subjects: {}
 			});
-		}
-
-		
+		}	
 
 		for(w=0; w<energyData.weeks.length; w++)
 		{
@@ -688,24 +685,20 @@ function setupListeners()
 	});
 }
 
-function getQuestions()
-{
+function getQuestions() {
 	// all questions pertaining to a certain school
-	d3.json("http://www.learningenergy.eca.ed.ac.uk/backend/app_questions.json", function(error, json) {
+	d3.json("http://localhost/app_school/"+schoolId+"/questions.json", function(error, json) {
 		if (error) return console.log(error);
-		questionData = json.data;
+		questionData = json;
 		displayQuestions();
 	});
 }
 
-function displayQuestions()
-{
-	for(var i=0;i<questionData.length; i++)
-	{
+function displayQuestions() {
+	for(var i=0;i<questionData.length; i++)	{
 		var thisQuestion = questionData[i];
 		$('#questionsWrapper').append("<span class='questionRow'><span class='qNumber'>1</span><span class='questionText'>"+thisQuestion.question+"</span><img class='deleteButton' questionID="+thisQuestion.id+" src='img/deleteButton.png' alt='delete question' height='20px' width='20px' /><p class='revealButton'>Reveal answer</p></span");
-		if(i % 2 !== 0)
-		{
+		if(i % 2 !== 0) {
 			$('span.questionRow').eq(i).append("<hr/>");
 			$('span.questionRow').eq(i).prepend("<hr/>");
 		}
@@ -714,8 +707,7 @@ function displayQuestions()
 	setupQuestionListeners();
 }
 
-function deleteQuestion()
-{
+function deleteQuestion(){
 
 }
 
@@ -829,9 +821,8 @@ function calculateSegLengths(numSegs, index)
 
 function checkLogin()
 {
-	var schoolID = localStorage["les_school_id"];
-	if(schoolID === undefined)
-	{
+	var schoolId = localStorage["les_school_id"];
+	if(schoolId === undefined) {
 		// redirect to login.html
 	}
 }
@@ -843,7 +834,7 @@ function setupQuestionListeners()
 		/* Act on the event */
 		var deleteConfirm = confirm("Are you sure you want to delete this question? (no way back!)");
 
-		if(deleteConfirm)
+		if(deleteConfirm) 
 		{
 			var questionID = $(event.currentTarget).attr('questionid');
 			// grey until gone
