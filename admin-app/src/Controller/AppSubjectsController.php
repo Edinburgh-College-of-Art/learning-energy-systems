@@ -84,6 +84,7 @@ class AppSubjectsController extends AppController {
 
     public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
+        $authorized = $this->authorize($this->request, $this->studentId);
         $subject = $this->AppData->get($id);
         if ($this->AppData->delete($subject)) {
             $success = true;

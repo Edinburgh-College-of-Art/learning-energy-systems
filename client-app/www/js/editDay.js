@@ -97,13 +97,16 @@ function loadSubjects() {
 }
 
 function subjectDeleteClicked() {
-  /*
-  TODO:
+  /* TODO:
   Add progress to all updates, something the user will understands what's happening.
   */
+  var data = { request_ts: new Date - 0 };
+  var token = sha1(data.request_ts + localStorage.getItem('secret'));
+  var headers = { 'Authorization': 'Bearer ' + token };
   var subjectId = $(this).attr("parent");
   var url = "http://localhost/app_students/"+window.g_studentUID+"/subjects/delete/"+subjectId+".json";
-  $.ajax({ type: 'POST', url: url, dataType: 'json' }).success(function (data) {
+
+  $.ajax({ type: 'POST', url: url, data: data, dataType: 'json', headers: headers }).success(function (data) {
     if (data.success){ window.location = "editDay.html"; } else { window.location = "editDay.html"; }
   });
 }
