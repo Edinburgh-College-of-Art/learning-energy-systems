@@ -53,7 +53,11 @@ class AppStudentsController extends AppController
             $appStudent = $this->AppStudents->patchEntity($appStudent, $this->request->data);
             if ($this->AppStudents->save($appStudent)) {
                 $this->Flash->success(__('The app student has been saved.'));
-                return $this->redirect(['action' => 'view', $appStudent->id]);
+                if (!$this->request->is('json')){
+                    return $this->redirect(['action' => 'view', $appStudent->id]);
+                }
+                $this->set(compact('appStudent', 'errors'));
+                $this->set('_serialize', ['appStudent']);
             } else {
                 $errors = $appStudent->errors();
                 $this->Flash->error(__("The student couldn't be saved"));

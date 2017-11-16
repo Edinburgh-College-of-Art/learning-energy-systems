@@ -19,7 +19,7 @@ class AppSchoolController extends AppController
         $this->loadComponent('Auth', [
             'loginRedirect' => [
                 'controller' => 'AppSchool',
-                'action' => 'dash'
+                'action' => 'index'
             ],
             'logoutRedirect' => [
                 'controller' => 'AppSchool',
