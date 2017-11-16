@@ -1,5 +1,5 @@
 // CONSTANTS //
-var les_base_url = "http://localhost/";
+var les_base_url = "http://localhost";
 //var les_base_url = "http://app.learningenergy.eca.ed.ac.uk/admin-app";
 
 var _chartPaddingWidth = 25;
