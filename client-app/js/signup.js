@@ -25,7 +25,7 @@ window.onload = function () {
 };
 
 $(window).ready(function(){
-    $.get('http://localhost/app_school.json').success(function(data){
+    $.get(window.les_base_url+'/app_school.json').success(function(data){
         $.each(data.appSchool, function(i,s){ console.log(s); $("#app-school-id").append('<option value="'+s.id+'">'+s.school_name+'</option>'); });
     });
 });

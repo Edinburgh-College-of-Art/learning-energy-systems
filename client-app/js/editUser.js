@@ -35,7 +35,7 @@ $(document).ready(function(){
     window.location="weekView.html";
   });
 
-  $.get('http://localhost/app_school.json').success(function(data){
+  $.get(window.les_base_url+'/app_school.json').success(function(data){
     $.each(data.appSchool, function(i,s){ console.log(s); $("#app-school-id").append('<option value="'+s.id+'">'+s.school_name+'</option>'); });
     $("#app-school-id").val(localStorage.getItem("schoolId").toString());
   });

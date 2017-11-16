@@ -317,7 +317,7 @@ function loadData() {
 }
 
 function updateDB() {
-    var url = 'http://localhost/app_data/edit/'+window.g_subjectId;
+    var url = window.les_base_url + '/app_data/edit/'+window.g_subjectId;
 
     var data = {
         id: window.g_subjectId,
