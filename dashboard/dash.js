@@ -1,4 +1,5 @@
 // CONSTANTS //
+var les_base_url = "http://app.learningenergy.eca.ed.ac.uk/admin_app";
 var _chartPaddingWidth = 25;
 var _chartPaddingHeight = 75;
 var _e_scaleTypes = { week: 0, month: 1};
@@ -370,7 +371,7 @@ function getInitialData() {
   spinner.spin($('#canvasContainer')[0]);
   $(".spinner").css('visibility', 'visible');
   $.ajax({
-    url: 'http://localhost/app_data/all',
+    url: les_base_url + '/app_data/all',
     type: 'GET',
     dataType: 'json',
     data: {}
@@ -522,7 +523,7 @@ function setupListeners() {
 
 function getQuestions() {
   // all questions pertaining to a certain school
-  d3.json("http://localhost/app_school/"+schoolId+"/questions.json", function(error, json) {
+  d3.json(les_base_url + "/app_school/"+schoolId+"/questions.json", function(error, json) {
     if (error) return console.log(error);
     questionData = json;
     displayQuestions();
