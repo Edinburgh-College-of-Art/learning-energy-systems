@@ -309,7 +309,7 @@ daySection.prototype.getY = function () {
 
 function loadUpdateData(_loadOrUpdate) {
     var minSize = 70;
-    var url = window.les_base_url + /app_students/"+window.g_studentUID+"/week/"+window.g_currDate+".json";
+    var url = window.les_base_url + "/app_students/"+window.g_studentUID+"/week/"+window.g_currDate+".json";
     $.ajax({ type: 'GET', url: url, dataType: 'json' }).always(function (data) {
         window.g_monT = window.g_tueT = window.g_wedT = window.g_thurT = window.g_friT = 0;
         console.log(data);
