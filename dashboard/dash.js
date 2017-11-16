@@ -1,5 +1,5 @@
 // CONSTANTS //
-var les_base_url = "http://app.learningenergy.eca.ed.ac.uk/admin_app";
+var les_base_url = "http://app.learningenergy.eca.ed.ac.uk/admin-app";
 var _chartPaddingWidth = 25;
 var _chartPaddingHeight = 75;
 var _e_scaleTypes = { week: 0, month: 1};
