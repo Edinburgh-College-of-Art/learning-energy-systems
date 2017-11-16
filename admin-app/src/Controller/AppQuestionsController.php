@@ -56,6 +56,7 @@ class AppQuestionsController extends AppController
     public function add()
     {
         $appQuestion = $this->AppQuestions->newEntity();
+
         if ($this->request->is('post')) {
             $appQuestion = $this->AppQuestions->patchEntity($appQuestion, $this->request->data);
             if ($this->AppQuestions->save($appQuestion)) {
@@ -64,9 +65,12 @@ class AppQuestionsController extends AppController
             } else {
                 $this->Flash->error(__('The app question could not be saved. Please, try again.'));
             }
+        } else {
+            $appSchools = $this->AppQuestions->AppSchool->find('list', ['limit' => 200]);
+            $this->set(compact('appQuestion', 'appSchools'));
+            $this->set('_serialize', ['appSchools']);
+            $this->set('_serialize', ['appQuestion']);
         }
-
-        $this->set('_serialize', ['appQuestion']);
     }
 
     /**
