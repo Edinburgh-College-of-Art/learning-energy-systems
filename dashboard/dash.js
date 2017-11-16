@@ -1,5 +1,7 @@
 // CONSTANTS //
-var les_base_url = "http://app.learningenergy.eca.ed.ac.uk/admin-app";
+var les_base_url = "http://localhost/";
+//var les_base_url = "http://app.learningenergy.eca.ed.ac.uk/admin-app";
+
 var _chartPaddingWidth = 25;
 var _chartPaddingHeight = 75;
 var _e_scaleTypes = { week: 0, month: 1};
@@ -38,7 +40,10 @@ var SHOW_ALL = false;
 var yAxis = { xMax: 0, xMin: 0, yMax: 0, yMin: 0};
 var xAxis = { xMax: 0, xMin: 0, yMax: 0, yMin: 0};
 
-var schoolId = localStorage['les_school_id'];
+var url = new URL(window.location.href);
+var schoolId = url.searchParams.get("les_school_id");
+if (schoolId == null){ schoolId = localStorage['les_school_id']; }
+if (schoolId == undefined){ schoolId = 1; }
 
 // **** APP START **** //
 var spinner = new Spinner(opts);
