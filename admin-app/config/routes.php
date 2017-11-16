@@ -51,7 +51,6 @@ Router::scope('/', function ($routes) {
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $routes->connect('/login', ['controller' => 'AppSchool', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'AppSchool', 'action' => 'logout']);
-    $routes->connect('/dash', ['controller' => 'AppSchool', 'action' => 'dash']);
 
     $routes->connect('/test', ['controller' => 'AppSchool', 'action' => 'muhtest']);
 

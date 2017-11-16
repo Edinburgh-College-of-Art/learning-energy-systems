@@ -197,7 +197,7 @@ select
 		height:22px;
 		margin-top:-11px;
 		right:0px;
-	    background-image: url('img/arrow_select.png');
+	    background-image: url('../img/arrow_select.png');
 	    background-repeat: no-repeat;
     	background-position: center; 
     	background-size: contain;
@@ -211,7 +211,7 @@ input[type=checkbox] + label {
     display: inline-block;
     width: 23px; 
     height: 23px;
-    background-image: url('img/checkbox.png');
+    background-image: url('../img/checkbox.png');
     background-repeat: no-repeat;
 	background-position: center; 
 	background-size: contain;
@@ -221,7 +221,7 @@ input[type=checkbox] + label {
     top:5px;
 }
 input[type=checkbox]:checked + label {
-    background-image: url('img/checkbox_check.png');
+    background-image: url('../img/checkbox_check.png');
 }
 
 span
@@ -271,7 +271,7 @@ h3
    display: block;
    width: 4em;
    height: 4.5em; 
-   background: #ccc url(img/icons.png) no-repeat -205px 45%;
+   background: #ccc url('../img/icons.png') no-repeat -205px 45%;
    text-indent: -999em;
    cursor: pointer;
 }

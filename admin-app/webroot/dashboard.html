@@ -1,8 +1,24 @@
-
+<!doctype html>
+<html lang='en'>
+<meta charset='utf-8'>
+<head>
+    <title></title>
+    <!--[if lt IE 9]>
+    <script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <link rel="stylesheet" href="./css/dash-style.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/jquery-ui.css" />
+    <script src='./js/moment.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+    <script src='./js/spin.js'></script>
+    <script src='./js/jquery-ui.js'></script> 
+</head>
     <body class="nav-menu">
+
         <div id="header" class="full-width">
             <div id="header-core" class="mainCenter">
-                <span class="helper"></span><?php echo $this->Html->image('logo.png', ['alt' => 'Learning Energy Systems Logo', 'height' => '100px', 'class' => 'logo']); ?>
+                <span class="helper"></span><img class="logo" src="img/logo.png" alt="Learning Energy Systems Logo" height="100px" />
                 <select id="selectSubjects">
                     <option>All Subjects</option>
                 </select>
@@ -16,13 +32,13 @@
             <div id="innerWrapper" class="mainCenter">
                 <div id="energyIcons" class="floatLeft">
                     <p style="color:#A8A6A6; margin-top:0px">Select Sources</p>
-                    <?php echo $this->Html->image('projector-subject-icon.png', ['name' => 'projector', 'class' => 'energyIcon isSelected']); ?>
+                    <img src="img/projector-subject-icon.png" class="energyIcon isSelected" name="projector" />
                     <p class="label" labelFor="projector">X</p>
-                    <?php echo $this->Html->image('lightBulb-subject-icon.png', ['name' => 'light', 'class' => 'energyIcon isSelected']); ?>
+                    <img src="img/lightBulb-subject-icon.png" class="energyIcon isSelected" name="light" />
                     <p class="label" labelFor="light">X</p>
-                    <?php echo $this->Html->image('heater-subject-icon.png', ['name' => 'heater', 'class' => 'energyIcon isSelected']); ?>
+                    <img src="img/heater-subject-icon.png" class="energyIcon isSelected" name="heater" />
                     <p class="label" labelFor="heater">X</p>
-                    <?php echo $this->Html->image('computer-subject-icon.png', ['name' => 'computer', 'class' => 'energyIcon isSelected']); ?>
+                    <img src="img/computer-subject-icon.png" class="energyIcon isSelected" name="computer" />
                     <p class="label" labelFor="computer">X</p>
                 </div>
                 <div id="canvasContainer" class="floatLeft"></div>
@@ -31,20 +47,16 @@
         </div>
         <div id="legendOuter" class="full-width">
             <div id="legendInner" class="mainCenter">
-                <?php echo $this->Html->image('scale.png', ['width' => '90%', 'height' => 'auto', 'style' => 'padding-left:20px']); ?>
+                <img src="img/scale.png" width="90%" height="auto" style="padding-left:20px"/>
             </div>
         </div>
         <div id="learningQuestions" class="mainCenter">
             <h2>Energy Diary - Learning Questions</h2>
-            <form id="questionsForm" action="placeholder.php">
-                <textarea id="questionTextArea" class="qA" rows="10" cols="30" placeholder="Enter Question"></textarea> 
-                <textarea id="answerTextArea" class="qA" rows="10" cols="30" placeholder="Enter Answer"></textarea> 
-                <input type="submit" value="Add" class="addButton">
-            </form>
             <div id="questionsWrapper" class="mainCenter">
                 
             </div>
         </div>
-        <?= $this->Html->script('d3.js') ?>
-        <?= $this->Html->script('dash.js') ?>
+        <script src='./js/d3.js'></script>
+        <script src='./js/dash.js'></script>
     </body>
+</html>
