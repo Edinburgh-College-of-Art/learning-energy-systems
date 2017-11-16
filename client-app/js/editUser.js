@@ -54,7 +54,7 @@ function onNextClick() {
 
 function updateUser() {
   var id = localStorage.getItem("studentId");
-  var url = "http://localhost/app_students/edit/"+id+".json"
+  var url = window.les_base_url + "/app_students/edit/"+id+".json"
   var uName = $("#userName").val();
   var schId = $("#app-school-id").val();
   var year = $("#year").val();

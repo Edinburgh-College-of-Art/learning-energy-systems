@@ -81,7 +81,7 @@ var g_lastHeight;
 
 function loadSubjects() {
   $("#editingSubjects").html("");
-  var url = "http://localhost/app_students/"+window.g_studentUID+"/subjects.json";
+  var url = window.les_base_url + "/app_students/"+window.g_studentUID+"/subjects.json";
   $.ajax({ type: 'GET', url: url, data: { date: window.g_currDate }, dataType: 'json' })
     .always(function (result) {
       var data = result.subjects;
@@ -104,7 +104,7 @@ function subjectDeleteClicked() {
   var token = sha1(data.request_ts + localStorage.getItem('secret'));
   var headers = { 'Authorization': 'Bearer ' + token };
   var subjectId = $(this).attr("parent");
-  var url = "http://localhost/app_students/"+window.g_studentUID+"/subjects/delete/"+subjectId+".json";
+  var url = window.les_base_url + "/app_students/"+window.g_studentUID+"/subjects/delete/"+subjectId+".json";
 
   $.ajax({ type: 'POST', url: url, data: data, dataType: 'json', headers: headers }).success(function (data) {
     if (data.success){ window.location = "editDay.html"; } else { window.location = "editDay.html"; }
@@ -144,7 +144,7 @@ function okClicked(){
   for(var index=0; index<g_changedSubjects.length; index++){
     subjectId = parseInt(g_changedSubjects[index]);
     data = { subject: $("#subjectTitle_"+subjectId).val() };
-    url = "http://localhost/app_students/"+window.g_studentUID+"/subjects/edit/"+subjectId+".json";
+    url = window.les_base_url + "/app_students/"+window.g_studentUID+"/subjects/edit/"+subjectId+".json";
     joinUpdateQueue(url, data, cb);
   }
 };

@@ -312,7 +312,7 @@ function detectPortrait(mainDiv) {
 
 function loadData() {
 
-    var url = "http://localhost/subjects/view/"+g_subjectId+".json";
+    var url = window.les_base_url + "/subjects/view/"+g_subjectId+".json";
     $.ajax({ type: 'GET', url: url, dataType: 'json' }).always(function (data) {
         window.g_title = data.subject;
         window.g_projectorTotal = parseInt(data.projector);

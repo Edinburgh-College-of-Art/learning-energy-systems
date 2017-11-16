@@ -46,7 +46,7 @@ function onNextClick() {
 }
 
 function addNewUser() {
-    var url = "http://localhost/app_students/add";
+    var url = window.les_base_url + "/app_students/add";
     var uName = $("#userName").val();
     var schId = $("#app-school-id").val();
     var year = $("#year").val();

@@ -159,7 +159,7 @@ var g_lastHeight;
 var g_numberOfSubjects=0;
 
 function loadSubjects() {
-    var url = "http://localhost/app_students/"+window.g_studentUID+"/subjects.json";
+    var url = window.les_base_url + "/app_students/"+window.g_studentUID+"/subjects.json";
     $.ajax({ type: 'GET', url: url, data: { date: window.g_currDate }, dataType: 'json' })
         .always(function (result) {
             var data = result.subjects;
@@ -232,7 +232,7 @@ function okClicked() {
         $("#tempOK").attr("src", "img/icons/loader.gif");
         
         var uId = window.g_studentUID;
-        var url = "http://localhost/app_students/"+uId+"/subjects/add.json";
+        var url = window.les_base_url + "/app_students/"+uId+"/subjects/add.json";
         
         var dataToBeSent = {
             update: false,
