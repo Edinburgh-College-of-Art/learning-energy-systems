@@ -118,7 +118,7 @@ class AppSchoolController extends AppController
             $appSchool = $this->AppSchool->patchEntity($appSchool, $this->request->data);
             if ($this->AppSchool->save($appSchool)) {
                 $this->Flash->success(__('The app school has been saved.'));
-                return $this->redirect('../dashboard?les_school_id='.$appSchool->id);
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The app school could not be saved. Please, try again.'));
             }
@@ -150,7 +150,7 @@ class AppSchoolController extends AppController
             $appSchool = $this->Auth->identify();
             if ($appSchool) {
                 $this->Auth->setUser($appSchool);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect('../dashboard?les_school_id='.$appSchool->id);
             }
             $this->Flash->error(__('Invalid username or password, try again'));
         }
