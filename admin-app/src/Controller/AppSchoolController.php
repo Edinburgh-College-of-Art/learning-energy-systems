@@ -151,7 +151,7 @@ class AppSchoolController extends AppController
             if ($appSchool) {
                 $this->Auth->setUser($appSchool);
                 $uid = $this->Auth->User('id');
-                return $this->redirect('../dashboard?les_school_id=' . $uid);
+                return $this->redirect('/dashboard.html?les_school_id=' . $uid);
             }
             $this->Flash->error(__('Invalid username or password, try again'));
         }
