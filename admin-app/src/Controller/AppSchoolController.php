@@ -118,7 +118,7 @@ class AppSchoolController extends AppController
             $appSchool = $this->AppSchool->patchEntity($appSchool, $this->request->data);
             if ($this->AppSchool->save($appSchool)) {
                 $this->Flash->success(__('The app school has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('../dashboard?les_school_id='.$appSchool->id);
             } else {
                 $this->Flash->error(__('The app school could not be saved. Please, try again.'));
             }
