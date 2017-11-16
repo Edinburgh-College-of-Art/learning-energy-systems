@@ -1,14 +1,14 @@
+<?= $this->element('admin-nav'); ?>
+
 <div class="actions columns large-2 medium-3">
     <h3><?= __('Actions') ?></h3>
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('New App School'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List App Questions'), ['controller' => 'AppQuestions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New App Question'), ['controller' => 'AppQuestions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List App Students'), ['controller' => 'AppStudents', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New App Student'), ['controller' => 'AppStudents', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New School'), ['action' => 'add']) ?></li>
     </ul>
 </div>
+
 <div class="appSchool index large-10 medium-9 columns">
+    
     <table cellpadding="0" cellspacing="0">
     <thead>
         <tr>
