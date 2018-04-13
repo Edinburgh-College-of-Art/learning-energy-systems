@@ -31,3 +31,7 @@ admin-app/vendors/*
 # php-api
 
 php-methods/config.ini
+
+# MINE
+
+DEVNOTES.md

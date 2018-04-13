@@ -425,9 +425,10 @@ function getInitialData() {
       }
 
       var weekday = e.date.isoWeekday();
-      if(weekday <= 5) {
+      if(weekday <= 5) { // TODO: check -- shouldn't this be < 5??
         var thisWeekNumber = moment().isoWeek();
-        var weekOffset = thisWeekNumber - e.date.isoWeek();
+        var weekOffset = Math.abs(thisWeekNumber - e.date.isoWeek());
+        if (weekOffset >= energyData.weeks.length) { continue; }
         var eWeek = energyData.weeks[weekOffset];
         eWeek.offset = weekOffset;
         var eDay = eWeek.days[weekday-1];
