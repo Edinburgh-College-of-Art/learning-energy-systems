@@ -34,23 +34,22 @@ div#chart, div#legendOuter
 
 div#chart {}
 
-div#canvasContainer
+div#canvasContainer 
 {
   height:400px;
   width:90%;
 }
 
-div#header
-{
+nav#header {
   background-color: rgb(255,255,255);
   height:200px;
   text-align:center;
+  margin-top:1em;
 }
 
-  div#header-core
-  {
-    height:100%;
-  }
+div#header-core {
+  height:100%;
+}
 
 div#learningQuestions
 {
