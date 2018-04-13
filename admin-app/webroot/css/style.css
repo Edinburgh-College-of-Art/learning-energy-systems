@@ -1,11 +1,11 @@
 html, body
 {
-	padding:0;
-	margin:0;
-	height:100%;
-	width:100%;
-	font-family: 'TTRounds', sans-serif;
-	font-weight: normal;
+  padding:0;
+  margin:0;
+  height:100%;
+  width:100%;
+  font-family: 'TTRounds', sans-serif;
+  font-weight: normal;
 }
 
 *:focus {outline:0;}
@@ -14,96 +14,93 @@ html, body
 
 .full-width
 {
-	width:100%;
+  width:100%;
 }
 
 .mainCenter
 {
-	width:800px;
-	margin:0 auto;
-	text-align:center;
+  width:800px;
+  margin:0 auto;
+  text-align:center;
 }
 
 div#chart, div#legendOuter
 {
-	background-color: #f2f2f2;
-	text-align: center;
-	padding: 10px 0 10px 0;
-	height:auto;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 10px 0 10px 0;
+  height:auto;
 }
 
-div#chart
-{
-	margin-bottom: 10px;
-}
+div#chart {}
 
 div#canvasContainer
 {
-	height:400px;
-	width:90%;
+  height:400px;
+  width:90%;
 }
 
 div#header
 {
-	background-color: rgb(255,255,255);
-	height:200px;
-	text-align:center;
+  background-color: rgb(255,255,255);
+  height:200px;
+  text-align:center;
 }
 
-	div#header-core
-	{
-		height:100%;
-	}
+  div#header-core
+  {
+    height:100%;
+  }
 
 div#learningQuestions
 {
-	margin-top:90px;
-	min-height:175px;
+  margin-top:90px;
+  min-height:175px;
 }
-	
-	form#questionsForm
-	{
-		margin-bottom: 25px;
-	}
+  
+  form#questionsForm
+  {
+    margin-bottom: 25px;
+  }
 
-	.questionText
-	{
-		margin-left:15px;
-		max-width: 575px;
-	}
+  .questionText
+  {
+    margin-left:15px;
+    max-width: 575px;
+  }
 
-	.questionRow
-	{
-		width: 100%;
-		text-align: left;
-		padding-left: 60px;
-		-moz-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		box-sizing: border-box;
-	}
-		.revealButton
-		{
-			color:#29b473;
-			font-size: 12px;
-			text-decoration: underline;
-		}
+  .questionRow
+  {
+    width: 100%;
+    text-align: left;
+    padding-left: 60px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+    .revealButton
+    {
+      color:#29b473;
+      font-size: 12px;
+      text-decoration: underline;
+    }
 
-			.revealButton:hover
-			{
-				cursor:pointer;
-			}
+      .revealButton:hover
+      {
+        cursor:pointer;
+      }
 
-		.deleteButton
-		{
-			margin-left:40px;
-			position: relative;
-			top:5px;
-			float:right;
-		}
+    .deleteButton
+    {
+      margin-left:40px;
+      position: relative;
+      top:5px;
+      float:right;
+    }
 
-		span.qNumber {
-			float:left;
-		}
+    span.qNumber {
+      float:left;
+    }
 
 /* MISC */
 
@@ -116,126 +113,126 @@ div#learningQuestions
 
 .logo
 {
-	vertical-align: middle;
+  vertical-align: middle;
     max-height: 100px;
     max-width: 100px;
 }
 
 .login-logo 
 {
-	vertical-align: middle;
+  vertical-align: middle;
     max-height: 180px;
     max-width: 180px;
 }
 
 .floatLeft
 {
-	float:left;
-	margin:0;
+  float:left;
+  margin:0;
 }
 
 /* UI */
 
 #energyIcons
 {
-	width:10%;
-	height:100%;
-	text-align: center;
+  width:10%;
+  height:100%;
+  text-align: center;
 }
-	#energyIcons p.label
-	{
-		margin:0;
-		position:relative;
-		top:-7px;
-		visibility: hidden;
-	}
-	.energyIcon
-	{
-		width: 60%;
-		height: auto;
-		margin-bottom: 1px;
-		border-radius: 50%;
-	}
+  #energyIcons p.label
+  {
+    margin:0;
+    position:relative;
+    top:-7px;
+    visibility: hidden;
+  }
+  .energyIcon
+  {
+    width: 60%;
+    height: auto;
+    margin-bottom: 1px;
+    border-radius: 50%;
+  }
 
 .addButton, form button {
-	background-color:#29b473;
-	text-indent:0;
-	display:inline-block;
-	color:#ffffff;
-	font-family:arial;
-	font-size:15px;
-	font-weight:bold;
-	font-style:normal;
-	height:30px;
-	line-height:15px;
-	width:60px;
-	text-decoration:none;
-	text-align:center;
-	border:0;
-	position: relative;
-	top:-86px;
-	font-family: 'TTRounds';
+  background-color:#29b473;
+  text-indent:0;
+  display:inline-block;
+  color:#ffffff;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  font-style:normal;
+  height:30px;
+  line-height:15px;
+  width:60px;
+  text-decoration:none;
+  text-align:center;
+  border:0;
+  position: relative;
+  top:-86px;
+  font-family: 'TTRounds';
 }.classname:hover {
-	background-color:#26a366;
+  background-color:#26a366;
 }.classname:active {
-	position:relative;
-	top:1px;
+  position:relative;
+  top:1px;
 }
 
 form button{
-	top:0px;
+  top:0px;
 }
 
 .qA
 {
-	border-color: #29b473;
-	width:300px;
-	height:100px;
-	font-family: "TTRounds";
-	resize:none;
+  border-color: #29b473;
+  width:300px;
+  height:100px;
+  font-family: "TTRounds";
+  resize:none;
 }
 
 select
 {
-	width:200px;
+  width:200px;
 }
-	.ui-menu .ui-menu-item
-	{
-		background-color: #fff;
-	}
+  .ui-menu .ui-menu-item
+  {
+    background-color: #fff;
+  }
 
-	.ui-selectmenu-button
-	{
-		position: relative;
-		top:4px;
-		border-color: #BBBDBF;
-		border-style: solid;
-		border-width: 1px;
-		color: #8C8080;
-	}
+  .ui-selectmenu-button
+  {
+    position: relative;
+    top:4px;
+    border-color: #BBBDBF;
+    border-style: solid;
+    border-width: 1px;
+    color: #8C8080;
+  }
 
-	.ui-state-default .ui-icon.select-icon-arrow {
-		width:29px;
-		height:29px;
-		margin-top:-15px;
-		right:0px;
-	    background-image: url('../img/arrow_select.png');
-	    background-repeat: no-repeat;
-    	background-position: center; 
-    	background-size: contain;
-	}
+  .ui-state-default .ui-icon.select-icon-arrow {
+    width:29px;
+    height:29px;
+    margin-top:-15px;
+    right:0px;
+      background-image: url('../img/arrow_select.png');
+      background-repeat: no-repeat;
+      background-position: center; 
+      background-size: contain;
+  }
 
 div.input input
 {
-	width:210px;
-	height:35px;
-	border-color: #29b473;
-	border-style: solid;
-	border-width: 2px;
-	margin-bottom: 10px;
-	padding-left: 10px;
-	font-family: 'TTRounds';
-	font-size: 16px;
+  width:210px;
+  height:35px;
+  border-color: #29b473;
+  border-style: solid;
+  border-width: 2px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-family: 'TTRounds';
+  font-size: 16px;
 }
 
 input[type=checkbox] {
@@ -248,8 +245,8 @@ input[type=checkbox] + label {
     height: 23px;
     background-image: url('../img/checkbox.png');
     background-repeat: no-repeat;
-	background-position: center; 
-	background-size: contain;
+  background-position: center; 
+  background-size: contain;
     cursor: pointer;
     margin: 0px 8px 0 8px;
     position: relative;
@@ -263,36 +260,36 @@ input[type=checkbox]:checked + label {
 
 span
 {
-	display:inline-block;
+  display:inline-block;
 }
 
 h1,h2,h3
 {
-	color:#29b473;
+  color:#29b473;
 }
 
 h2.login-header
 {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 h3
 {
-	width:auto;
-	height:auto;
-	color: #A8A6A6;
-	clear:both;
+  width:auto;
+  height:auto;
+  color: #A8A6A6;
+  clear:both;
 }
 
 .shadowed
 {
-	stroke:#000;
-	stroke-width: 3;
+  stroke:#000;
+  stroke-width: 3;
 }
 
 .isSelected
 {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 /* DROPDOWN */
