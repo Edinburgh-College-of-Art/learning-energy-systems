@@ -1,5 +1,7 @@
 # learning-energy-systems
 
+Codebase no longer used, see https://github.com/Edinburgh-College-of-Art/learning-energy-systems-v2 
+
 ### Directories
 
 * `client-app/` contains the LES web app frontend to input energy predictions.
